@@ -1,0 +1,744 @@
+{
+  "_readme": "Edit portfolio facts in this file. Keep valid JSON. Project folders map to images/project/<folder>, and work folders map to images/work/<folder>.",
+  "meta": {
+    "title": "Proud — PM/PO · Manual QA · UX Designer",
+    "description": "Portfolio website content for Ratchaprapa Chattrakulrak.",
+    "updated": "2026-06-12"
+  },
+  "personal": {
+    "name": "Ratchaprapa Chattrakulrak",
+    "shortName": "Ratchaprapa C.",
+    "nickname": "Proud",
+    "logo": "proud.",
+    "email": "ratchaprapa.c@gmail.com",
+    "phone": "+66 93 690 5490",
+    "location": "Thailand",
+    "github": "https://github.com/ProudHokori",
+    "linkedin": "https://www.linkedin.com/in/ratchaprapa-chattrakulrak-97111626a/",
+    "youtube": "https://www.youtube.com/@hoshitsukihokori",
+    "introVideo": "images/profile/introduce.mp4"
+  },
+  "navigation": [
+    "About",
+    "Experience",
+    "Skills",
+    "Projects",
+    "Contact"
+  ],
+  "hero": {
+    "badge": "Open to full-time opportunities",
+    "greeting": "Hi, I'm",
+    "nickname": "Proud",
+    "name": "Ratchaprapa C.",
+    "roles": [
+      "Product Owner / PM",
+      "Manual QA",
+      "UX/UI Designer",
+      "Frontend Developer"
+    ],
+    "description": "Software Engineering graduate with PM/PO, QA, UX, and frontend experience. I turn messy problems into clear requirements, practical flows, and shippable products.",
+    "ctas": [
+      {
+        "label": "View Projects",
+        "url": "#projects",
+        "style": "primary"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/ratchaprapa-chattrakulrak-97111626a/",
+        "style": "ghost"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/ProudHokori",
+        "style": "ghost"
+      }
+    ],
+    "stats": [
+      {
+        "value": "5+",
+        "label": "Years freelancing"
+      },
+      {
+        "value": "100+",
+        "label": "Client projects"
+      },
+      {
+        "value": "11",
+        "label": "Technical projects"
+      },
+      {
+        "value": "B.Eng.",
+        "label": "Software & Knowledge Eng."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "About",
+    "heading": "Product-minded builder with technical depth",
+    "portraitImage": "images/profile/present pic2.jpg",
+    "paragraphs": [
+      "I'm Proud, a Software Engineering graduate from Kasetsart University. I work across product strategy, UX, QA, and frontend, so I can connect user needs with what teams can actually build.",
+      "At ByteArk and in team projects like Courtly, I translated research into requirements, managed backlog priorities, clarified scope, tested releases, and helped bridge design with engineering."
+    ],
+    "education": {
+      "degree": "B.Eng. Software and Knowledge Engineering",
+      "institution": "Kasetsart University",
+      "year": "Aug 2021 – May 2026"
+    },
+    "roleCards": [
+      {
+        "title": "PM / Product Owner",
+        "description": "Research, requirements, backlog priorities, stakeholder alignment, and release readiness."
+      },
+      {
+        "title": "Manual QA",
+        "description": "Test cases, exploratory testing, regression checks, and clear bug reports."
+      },
+      {
+        "title": "UX/UI Design",
+        "description": "User research, wireframes, Figma mockups, and usable interface patterns."
+      }
+    ]
+  },
+  "experiences": [
+    {
+      "folder": "Byteark Intern",
+      "company": "ByteArk Co., Ltd.",
+      "title": "PM/PO Intern",
+      "year": "May 2024 Nov 2024",
+      "bullets": [
+        "Researched users, competitors, pain points, and personas to shape product direction.",
+        "Wrote user stories, RFCs, and acceptance criteria; aligned UI flows with designers and engineers.",
+        "Tracked sprint progress, tested releases, and surfaced issues before they became blockers."
+      ]
+    },
+    {
+      "folder": "Hokori Studio",
+      "company": "Hokori Design Studio",
+      "title": "Founder — 3D Design Services",
+      "year": "Dec 2022 Jan 2025",
+      "bullets": [
+        "Founded a 3D design service and delivered 100+ interior/exterior client projects.",
+        "Owned marketing, scoping, client communication, production, and team coordination."
+      ]
+    },
+    {
+      "folder": "GDSC",
+      "company": "Google Developer Student Club (GDSC), KU",
+      "title": "Core Team Member",
+      "year": "Aug 2022 Apr 2024",
+      "bullets": [
+        "Organised tech workshops, career sessions, and student community events.",
+        "Designed Goodoo UI components used as workshop teaching material."
+      ]
+    },
+    {
+      "folder": "CPSK Club",
+      "company": "SKE19 & CPSK Club, Kasetsart University",
+      "title": "Vice-President & Financial Manager",
+      "year": "Jan 2022 Dec 2024",
+      "bullets": [
+        "Led event teams across BarCamp Bangkhen, JobFair, SOS Camp, and Byenior.",
+        "Managed budgets, approvals, procurement documents, and financial records."
+      ]
+    },
+    {
+      "folder": "Freelance",
+      "company": "Self-employed",
+      "title": "Freelancer — Development, Design, AI Media",
+      "year": "Oct 2021 Present",
+      "bullets": [
+        "Delivered client work across development, graphic design, and AI-generated media.",
+        "Learned new tools quickly and adapted to varied client needs."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "category": "Product Management",
+      "items": [
+        "Backlog Prioritisation",
+        "User Story Writing",
+        "RFC Writing",
+        "Agile / Scrum",
+        "Roadmap Planning",
+        "Sprint Planning",
+        "Release Management",
+        "Stakeholder Communication",
+        "Product Discovery"
+      ],
+      "highlight": [
+        "Backlog Prioritisation",
+        "User Story Writing",
+        "RFC Writing",
+        "Agile / Scrum"
+      ]
+    },
+    {
+      "category": "Manual QA",
+      "items": [
+        "Manual & Functional Testing",
+        "Exploratory Testing",
+        "Test Case Writing",
+        "Regression Testing",
+        "Bug Reporting & Tracking",
+        "UAT Support",
+        "Release Readiness"
+      ],
+      "highlight": [
+        "Manual & Functional Testing",
+        "Exploratory Testing",
+        "Test Case Writing"
+      ]
+    },
+    {
+      "category": "UX/UI Design",
+      "items": [
+        "Figma",
+        "UX Research & Interviews",
+        "Wireframing & Prototyping",
+        "Persona Development",
+        "User Journey Mapping",
+        "Adobe Illustrator",
+        "Competitor Analysis"
+      ],
+      "highlight": [
+        "Figma",
+        "UX Research & Interviews",
+        "Wireframing & Prototyping"
+      ]
+    },
+    {
+      "category": "Development",
+      "items": [
+        "Next.js / React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Python",
+        "Kotlin (Android)",
+        "PostgreSQL",
+        "Docker",
+        "Prisma ORM"
+      ],
+      "highlight": [
+        "Next.js / React",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "category": "Tools",
+      "items": [
+        "Jira",
+        "Linear",
+        "ClickUp",
+        "Postman",
+        "Notion",
+        "Miro",
+        "Google Sheets",
+        "SketchUp",
+        "AI-assisted workflows"
+      ],
+      "highlight": [
+        "Jira"
+      ]
+    },
+    {
+      "category": "Soft Skills",
+      "items": [
+        "Cross-functional Communication",
+        "Customer Empathy",
+        "Big-picture Thinking",
+        "Attention to Detail",
+        "Organisation & Planning",
+        "Team Coordination"
+      ],
+      "highlight": [
+        "Cross-functional Communication",
+        "Customer Empathy"
+      ]
+    }
+  ],
+  "projectsSection": {
+    "eyebrow": "Projects",
+    "heading": "Selected work",
+    "subheading": "Focused product, UX, and technical projects built with clear user intent.",
+    "filters": [
+      {
+        "label": "All",
+        "value": "all"
+      },
+      {
+        "label": "PM / PO",
+        "value": "pm"
+      },
+      {
+        "label": "UX/UI",
+        "value": "ux"
+      },
+      {
+        "label": "Development",
+        "value": "dev"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "slug": "sleepsense",
+      "name": "SleepSense",
+      "folder": "sleepsense",
+      "tags": [
+        "pm",
+        "dev"
+      ],
+      "type": "PM · ML · IoT",
+      "year": "2026",
+      "context": "Team Project",
+      "description": "IoT sleep monitoring system with sensors, MQTT pipeline, ML score, and Streamlit dashboard.",
+      "tech": [
+        "Python",
+        "scikit-learn",
+        "Streamlit",
+        "MQTT",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/ProudHokori/SleepSense",
+          "kind": "github"
+        },
+        {
+          "label": "Demo",
+          "url": "https://youtu.be/gK2Yn2xOHhc?si=taa_gkQkzXv3kZ6z",
+          "kind": "demo"
+        }
+      ],
+      "youtube": "https://youtu.be/gK2Yn2xOHhc?si=taa_gkQkzXv3kZ6z",
+      "modal": {
+        "about": "SleepSense turns bedroom environment data into sleep-quality insights through IoT sensors, backend processing, ML, and a dashboard.",
+        "experience": "I worked across product planning, architecture, API flow, data handling, and presentation, translating a messy real-world problem into measurable insights.",
+        "challenges": [
+          "Keeping data consistent from sensors to dashboard.",
+          "Making ML results understandable for users.",
+          "Balancing PM decisions with hands-on debugging."
+        ]
+      }
+    },
+    {
+      "slug": "ku-eater",
+      "name": "KU Eater",
+      "folder": "ku-eater",
+      "tags": [
+        "pm",
+        "ux",
+        "dev"
+      ],
+      "type": "PM · UX · Frontend",
+      "year": "2025",
+      "context": "Senior Capstone Project (Team)",
+      "description": "Food recommendation platform for KU cafeterias with reviews, menu browsing, web, and Android flows.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Kotlin",
+        "Figma",
+        "Tailwind CSS"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/ProudHokori/ku-eater-android",
+          "kind": "github"
+        }
+      ],
+      "youtube": "",
+      "modal": {
+        "about": "KU Eater helps Kasetsart students decide what to eat through recommendations, peer reviews, and menu browsing.",
+        "experience": "I shaped research, user flows, Figma direction, backlog thinking, and frontend/mobile decisions while keeping the user problem visible.",
+        "challenges": [
+          "Turning broad meal-choice pain points into focused features.",
+          "Keeping web and Android flows consistent.",
+          "Prioritising features around the core decision journey."
+        ]
+      }
+    },
+    {
+      "slug": "courtly",
+      "name": "Courtly",
+      "folder": "courtly",
+      "tags": [
+        "pm",
+        "dev"
+      ],
+      "type": "PM · Frontend · QA",
+      "year": "2025",
+      "context": "Team Project",
+      "description": "Badminton booking and court-management system for players and real operator workflows.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Docker",
+        "JWT Auth"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Courtly-Badminton-Court-Management/courtly-project",
+          "kind": "github"
+        }
+      ],
+      "youtube": "",
+      "modal": {
+        "about": "Courtly supports badminton reservations, manager scheduling, check-ins, and operational visibility.",
+        "experience": "I owned PM/PO work end to end while contributing to frontend, API design, and QA under deadline pressure.",
+        "challenges": [
+          "Cutting scope without weakening the booking flow.",
+          "Writing build-ready stories and acceptance criteria.",
+          "Switching between leadership and implementation."
+        ]
+      }
+    },
+    {
+      "slug": "furstay",
+      "name": "FurStay",
+      "folder": "furstay",
+      "tags": [
+        "pm",
+        "dev"
+      ],
+      "type": "PM · Full-stack",
+      "year": "2026",
+      "context": "Team Project",
+      "description": "Pet-sitting platform with owner, sitter, and admin roles designed around trust and booking clarity.",
+      "tech": [
+        "Next.js",
+        "Prisma ORM",
+        "NextAuth",
+        "PostgreSQL"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/ProudHokori/FurStay",
+          "kind": "github"
+        }
+      ],
+      "youtube": "",
+      "modal": {
+        "about": "FurStay separates pet owner, sitter, and admin journeys for a clearer pet-sitting service experience.",
+        "experience": "I helped define product structure, role boundaries, and technical choices across Next.js, Prisma, NextAuth, and PostgreSQL.",
+        "challenges": [
+          "Keeping role permissions and journeys easy to understand.",
+          "Designing data around booking, profiles, and admin review.",
+          "Balancing marketplace UX with service operations."
+        ]
+      }
+    },
+    {
+      "slug": "ecowear",
+      "name": "EcoWear",
+      "folder": "ecowear",
+      "tags": [
+        "ux"
+      ],
+      "type": "UX/UI Design",
+      "year": "2024",
+      "context": "Academic Project",
+      "description": "Sustainable fashion UX project covering research, personas, journey maps, wireframes, and Figma UI.",
+      "tech": [
+        "Figma"
+      ],
+      "links": [
+        {
+          "label": "Figma (private)",
+          "disabled": true
+        }
+      ],
+      "youtube": "",
+      "modal": {
+        "about": "EcoWear explores how sustainable shopping can feel clear, rewarding, and easy to act on.",
+        "experience": "I moved from research to personas, journey maps, wireframes, high-fidelity Figma, and a reusable component direction.",
+        "challenges": [
+          "Showing sustainability signals without slowing shopping.",
+          "Turning research insights into interface patterns.",
+          "Keeping the visual system consistent."
+        ]
+      }
+    },
+    {
+      "slug": "referite",
+      "name": "Referite",
+      "folder": "referite",
+      "tags": [
+        "pm",
+        "ux"
+      ],
+      "type": "PM · UX/UI",
+      "year": "2023",
+      "context": "Software Process & PM Course (Team)",
+      "description": "Referee and scoring system for a simulated Paris 2024 suite, managed with Agile/Jira workflows.",
+      "tech": [
+        "Figma",
+        "Jira",
+        "Agile / Scrum"
+      ],
+      "links": [
+        {
+          "label": "Figma (private)",
+          "disabled": true
+        }
+      ],
+      "youtube": "",
+      "modal": {
+        "about": "Referite combines score entry, match management, and referee workflows for a simulated Olympics software suite.",
+        "experience": "I acted as Product Owner, using Jira for planning, backlog grooming, reviews, and retrospectives.",
+        "challenges": [
+          "Turning Agile theory into real team artifacts.",
+          "Reducing ambiguity with acceptance criteria.",
+          "Managing sprint scope as deadlines tightened."
+        ]
+      }
+    },
+    {
+      "slug": "planty",
+      "name": "Planty",
+      "folder": "planty",
+      "tags": [
+        "dev"
+      ],
+      "type": "Knowledge Eng.",
+      "year": "2024",
+      "context": "Individual Academic Project",
+      "description": "Prolog knowledge base that recommends plants from environment and care preferences.",
+      "tech": [
+        "Prolog",
+        "SWI-Prolog",
+        "Google AppSheet"
+      ],
+      "links": [
+        {
+          "label": "No public repo",
+          "disabled": true
+        }
+      ],
+      "youtube": "",
+      "modal": {
+        "about": "Planty uses Prolog rules to match users with plants based on care preferences and environment.",
+        "experience": "This project taught me to model a domain as facts, rules, and queries instead of procedural logic.",
+        "challenges": [
+          "Thinking declaratively in Prolog.",
+          "Turning flexible preferences into strict rules.",
+          "Seeing where rule-based AI is transparent or brittle."
+        ]
+      }
+    },
+    {
+      "slug": "smoogenie",
+      "name": "Smoogenie",
+      "folder": "smoogenie",
+      "tags": [
+        "dev"
+      ],
+      "type": "Ontology · Semantic Web",
+      "year": "2024",
+      "context": "Team Academic Project",
+      "description": "OWL/RDF smoothie recommendation ontology using ingredients, nutrients, diets, and SPARQL queries.",
+      "tech": [
+        "Protege",
+        "OWL 2",
+        "SPARQL",
+        "RDF"
+      ],
+      "links": [
+        {
+          "label": "No public repo",
+          "disabled": true
+        }
+      ],
+      "youtube": "",
+      "modal": {
+        "about": "Smoogenie models smoothie ingredients, nutrients, flavours, and diets as a semantic recommendation system.",
+        "experience": "I learned how recommendations can come from structured relationships, not only app logic.",
+        "challenges": [
+          "Designing an ontology that stayed queryable.",
+          "Choosing classes and properties carefully.",
+          "Making knowledge engineering feel approachable."
+        ]
+      }
+    },
+    {
+      "slug": "goodoo",
+      "name": "Goodoo",
+      "folder": "goodoo",
+      "tags": [
+        "ux"
+      ],
+      "type": "UX/UI Design",
+      "year": "2023",
+      "context": "GDSC Club Project (Workshop Material)",
+      "description": "Task-management app design and reusable UI system created for GDSC workshop teaching.",
+      "tech": [
+        "Figma"
+      ],
+      "links": [
+        {
+          "label": "Figma (private)",
+          "disabled": true
+        }
+      ],
+      "youtube": "",
+      "modal": {
+        "about": "Goodoo is a task-management UI designed as clear, implementable workshop material.",
+        "experience": "I focused on teachable components, clean states, and handoff specs that helped students build faster.",
+        "challenges": [
+          "Designing for beginner developers.",
+          "Keeping components simple and reusable.",
+          "Writing handoff details that reduced confusion."
+        ]
+      }
+    },
+    {
+      "slug": "powerbank-lender",
+      "name": "PowerBank Lender",
+      "folder": "powerbank",
+      "tags": [
+        "dev",
+        "ux"
+      ],
+      "type": "UI · Frontend",
+      "year": "2023",
+      "context": "Team Project (3-day sprint)",
+      "description": "Three-day smart powerbank cabinet prototype with employee login, borrow/return, and alarm concept.",
+      "tech": [
+        "React",
+        "Python",
+        "MongoDB"
+      ],
+      "links": [
+        {
+          "label": "No public repo",
+          "disabled": true
+        }
+      ],
+      "youtube": "",
+      "modal": {
+        "about": "PowerBank Lender is a smart cabinet prototype for tracked powerbank borrowing and returning.",
+        "experience": "A short sprint forced fast prioritisation across UI, hardware behaviour, backend assumptions, and demo flow.",
+        "challenges": [
+          "Delivering a convincing prototype in three days.",
+          "Handling borrow, return, and unauthorised removal cases.",
+          "Keeping the demo flow understandable."
+        ]
+      }
+    },
+    {
+      "slug": "book-collection",
+      "name": "Book Collection",
+      "folder": "book-collection",
+      "tags": [
+        "dev"
+      ],
+      "type": "Full-stack · Self-taught",
+      "year": "2022",
+      "context": "Individual Project — first serious coding project",
+      "description": "Solo Python Tkinter book manager connected to Google Sheets API for real data persistence.",
+      "tech": [
+        "Python",
+        "Tkinter",
+        "Google Sheets API"
+      ],
+      "links": [
+        {
+          "label": "No public repo",
+          "disabled": true
+        }
+      ],
+      "youtube": "",
+      "modal": {
+        "about": "Book Collection is a personal book manager where my first serious API integration clicked.",
+        "experience": "I built the GUI, data flow, and Google Sheets connection myself, using books as a motivating domain.",
+        "challenges": [
+          "Moving from scripts into a structured app.",
+          "Learning API credentials, requests, and updates.",
+          "Making a personal tool feel usable."
+        ]
+      }
+    }
+  ],
+  "contact": {
+    "eyebrow": "Contact",
+    "heading": "Let's connect",
+    "subheading": "Open to PM/PO, QA, UX, and product-minded frontend roles.",
+    "profileImage": "images/profile/profile picture2.jpg",
+    "links": [
+      {
+        "label": "Email",
+        "value": "ratchaprapa.c@gmail.com",
+        "url": "mailto:ratchaprapa.c@gmail.com"
+      },
+      {
+        "label": "Phone",
+        "value": "+66 93 690 5490",
+        "url": "tel:+66936905490"
+      },
+      {
+        "label": "LinkedIn",
+        "value": "ratchaprapa-chattrakulrak",
+        "url": "https://www.linkedin.com/in/ratchaprapa-chattrakulrak-97111626a/"
+      },
+      {
+        "label": "GitHub",
+        "value": "ProudHokori",
+        "url": "https://github.com/ProudHokori"
+      },
+      {
+        "label": "YouTube",
+        "value": "@hoshitsukihokori",
+        "url": "https://www.youtube.com/@hoshitsukihokori"
+      }
+    ],
+    "availability": "Based in Thailand<br/>Remote or on-site<br/><strong>PM/PO</strong> · <strong>Manual QA</strong> · <strong>UX Design</strong>",
+    "form": {
+      "namePlaceholder": "Jane Smith",
+      "emailPlaceholder": "jane@company.com",
+      "messagePlaceholder": "Tell me about the role...",
+      "successMessage": "Message received — I'll get back to you soon."
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Ratchaprapa Chattrakulrak. All rights reserved.",
+    "education": "B.Eng. Software & Knowledge Engineering, Kasetsart University"
+  },
+  "assetRoots": [
+    "image",
+    "images"
+  ],
+  "projectFolders": {
+    "powerbank-lender": "powerbank"
+  },
+  "mediaFallback": {
+    "project": {
+      "sleepsense": [
+        "SleepSense_API_Making_Flow_NodeRED.png",
+        "SleepSense_Cover.png",
+        "SleepSense_Logo.png",
+        "SleepSense_MQTT_Flow_NodeRED.png",
+        "SleepSense_Pre_Process_Table.png",
+        "SleepSense_Sensor_Wiring.png",
+        "SleepSense_Sreamlit_Dashboard.png",
+        "SleepSense_System_Diagram.png"
+      ],
+      "courtly": [
+        "1-logo.png",
+        "step1.png",
+        "step2.png",
+        "step3.png"
+      ]
+    },
+    "work": {}
+  }
+}

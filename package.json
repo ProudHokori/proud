@@ -1,0 +1,9 @@
+{
+  "name": "proud-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "python -m http.server 8765",
+    "build": "echo Static portfolio ready"
+  }
+}

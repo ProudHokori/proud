@@ -186,7 +186,7 @@
     .role-chip svg { color: var(--accent); flex-shrink: 0; }
 
     .hero-desc {
-      max-width: 580px; color: var(--muted); font-size: 0.94rem; line-height: 1.82; margin-bottom: 40px;
+      max-width: 540px; color: var(--muted); font-size: 0.95rem; line-height: 1.62; margin-bottom: 36px;
     }
     .hero-desc strong { color: var(--text2); font-weight: 500; }
     .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -195,6 +195,7 @@
       border-radius: 8px; font-family: var(--ff); font-weight: 600; font-size: 0.85rem;
       cursor: pointer; text-decoration: none; transition: all 0.2s; border: none;
     }
+    .btn svg, .proj-link svg, .clink-icon svg { flex-shrink: 0; overflow: visible; }
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: var(--button-fg); box-shadow: 0 0 22px rgba(155,147,199,0.22);
@@ -229,15 +230,24 @@
       font-family: var(--ffd); font-size: clamp(1.9rem, 3.5vw, 2.8rem);
       font-weight: 700; letter-spacing: -1px; line-height: 1.1; margin-bottom: 16px;
     }
-    .ssub { color: var(--muted); font-size: 0.92rem; max-width: 480px; line-height: 1.8; margin-bottom: 52px; }
+    .ssub { color: var(--muted); font-size: 0.92rem; max-width: 460px; line-height: 1.62; margin-bottom: 48px; }
 
     /* -- ABOUT -- */
-    #about { background: var(--s1); }
-    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 72px; align-items: start; max-width: 1080px; }
-    .about-body p { color: var(--muted); line-height: 1.85; margin-bottom: 18px; font-size: 0.92rem; }
+    #about { background: var(--s1); position: relative; overflow: hidden; padding: 0; }
+    .about-grid {
+      display: grid; grid-template-columns: minmax(0, 58%) minmax(390px, 42%);
+      min-height: 760px; position: relative; z-index: 2;
+    }
+    .about-body {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 56px clamp(44px, 4vw, 72px) 48px clamp(52px, 5vw, 82px);
+    }
+    .about-body .stag { margin-bottom: clamp(62px, 8vh, 92px); }
+    .about-body .sh { max-width: 700px; font-size: clamp(2.35rem, 3.8vw, 3.7rem); line-height: 1.04; margin-bottom: 24px; }
+    .about-body p { color: var(--muted); line-height: 1.68; margin-bottom: 16px; font-size: 0.94rem; max-width: 680px; }
     .about-body p strong { color: var(--text2); font-weight: 500; }
     .about-edu {
-      margin-top: 32px; padding: 20px 22px;
+      margin-top: 28px; padding: 20px 22px;
       background: var(--s2); border: 1px solid var(--border2); border-radius: 12px;
       display: flex; gap: 14px; align-items: flex-start;
       box-shadow: inset 0 1px 0 rgba(155,147,199,0.06);
@@ -247,10 +257,26 @@
     .about-edu-inst { font-size: 0.8rem; color: var(--muted); }
     .about-edu-year { font-size: 0.73rem; color: var(--accent); margin-top: 5px; }
 
-    .role-cards { display: flex; flex-direction: column; gap: 14px; }
+    .about-side { position: relative; min-width: 0; min-height: 760px; }
+    .about-portrait-stage {
+      position: absolute; inset: 0; overflow: hidden;
+      background: var(--s2);
+    }
+    .about-portrait-stage::before {
+      content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(90deg, var(--s1) 0%, transparent 9%);
+    }
+    .about-portrait {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover; object-position: left center;
+    }
+    .role-cards {
+      position: relative; z-index: 2; width: 100%; margin-top: 22px;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;
+    }
     .role-card {
-      background: var(--s2); border: 1px solid var(--border); border-radius: 14px;
-      padding: 22px; transition: all 0.3s; cursor: default;
+      background: transparent; border: 1px solid var(--border); border-radius: 8px;
+      padding: 16px 18px; transition: all 0.3s; cursor: default;
       position: relative; overflow: hidden;
     }
     .role-card::before {
@@ -262,23 +288,36 @@
     .role-card:hover::before { opacity: 1; }
     .role-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
     .role-card-icon { color: var(--accent); }
-    .role-card-title { font-weight: 600; font-size: 0.88rem; color: var(--text); }
-    .role-card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
+    .role-card-title { font-weight: 600; font-size: 0.84rem; color: var(--text); }
+    .role-card-desc { font-size: 0.77rem; color: var(--muted); line-height: 1.5; }
 
     /* -- EXPERIENCE -- */
     #experience { background: var(--bg); }
-    .exp-list { max-width: 780px; }
-    .exp-item { display: grid; grid-template-columns: 155px 1fr; gap: 0 32px; margin-bottom: 48px; position: relative; }
+    .exp-list { max-width: 840px; }
+    .exp-item {
+      display: grid; grid-template-columns: 132px 58px minmax(0,1fr);
+      gap: 0 22px; margin-bottom: 48px; position: relative;
+    }
     .exp-item:not(:last-child)::after {
-      content: ''; position: absolute; left: 154px; top: 28px; bottom: -24px;
+      content: ''; position: absolute; left: 160px; top: 58px; bottom: -24px;
       width: 1px; background: linear-gradient(180deg, var(--border2), transparent);
     }
     .exp-meta { text-align: right; padding-top: 2px; }
     .exp-year { font-size: 0.73rem; color: var(--muted); line-height: 1.6; }
-    .exp-dot {
-      width: 9px; height: 9px; background: var(--accent); border-radius: 50%;
-      position: absolute; left: 150px; top: 6px;
-      box-shadow: 0 0 8px rgba(155,147,199,0.35), 0 0 0 3px var(--bg);
+    .exp-avatar {
+      width: 58px; height: 58px; border-radius: 50%; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, var(--s2)), var(--s2));
+      border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border2));
+      color: var(--accent3); font-family: var(--ffd); font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.6px; box-shadow: 0 0 0 5px var(--bg), 0 14px 30px rgba(0,0,0,0.22);
+      position: relative; z-index: 1;
+    }
+    .exp-avatar img {
+      width: 100%; height: 100%; display: block; object-fit: cover; object-position: center;
+    }
+    .exp-content {
+      min-width: 0; padding-top: 1px;
     }
     .exp-company {
       font-size: 0.7rem; color: var(--accent); font-weight: 700;
@@ -287,8 +326,8 @@
     .exp-title { font-weight: 600; font-size: 0.95rem; color: var(--text); margin-bottom: 6px; }
     .exp-bullets { list-style: none; }
     .exp-bullets li {
-      font-size: 0.8rem; color: var(--muted); line-height: 1.7;
-      padding-left: 14px; position: relative; margin-bottom: 5px;
+      font-size: 0.8rem; color: var(--muted); line-height: 1.54;
+      padding-left: 14px; position: relative; margin-bottom: 6px;
     }
     .exp-bullets li::before {
       content: ''; position: absolute; left: 0; top: 9px;
@@ -363,6 +402,7 @@
     .slide video, .slide iframe { width: 100%; height: 100%; display: block; border: 0; object-fit: cover; }
     .proj-img { aspect-ratio: 16 / 9; height: auto; overflow: hidden; position: relative; flex-shrink: 0; background: var(--media-bg); }
     .proj-cover { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .proj-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 24px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, var(--media-bg)), var(--media-bg2)); color: var(--text2); font-family: var(--ffd); font-weight: 700; text-align: center; }
     .slider-btn {
       position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
       width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(155,147,199,0.24);
@@ -390,7 +430,11 @@
     .proj-type { font-size: 0.67rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); }
     .proj-name { font-family: var(--ffd); font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; color: var(--text); }
     .proj-context { font-size: 0.73rem; color: var(--muted); margin-bottom: 10px; }
-    .proj-desc { font-size: 0.79rem; color: var(--muted); line-height: 1.68; flex: 1; margin-bottom: 14px; }
+    .proj-desc {
+      font-size: 0.79rem; color: var(--muted); line-height: 1.5; flex: 1; margin-bottom: 14px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
     .proj-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
     .proj-tech span {
       font-size: 0.68rem; padding: 3px 9px; border-radius: 4px;
@@ -466,15 +510,15 @@
       line-height: 1.04; letter-spacing: -1px; margin-bottom: 8px;
     }
     .project-modal-context { color: var(--muted); font-size: 0.82rem; margin-bottom: 22px; }
-    .project-detail-block { margin-bottom: 22px; }
+    .project-detail-block { margin-bottom: 18px; }
     .project-detail-block h3 {
       font-size: 0.74rem; letter-spacing: 1.4px; text-transform: uppercase;
       color: var(--accent3); margin-bottom: 8px;
     }
     .project-detail-block p, .project-detail-block li {
-      color: var(--muted); font-size: 0.86rem; line-height: 1.75;
+      color: var(--muted); font-size: 0.85rem; line-height: 1.56;
     }
-    .project-detail-block ul { list-style: none; display: grid; gap: 8px; }
+    .project-detail-block ul { list-style: none; display: grid; gap: 7px; }
     .project-detail-block li { padding-left: 16px; position: relative; }
     .project-detail-block li::before {
       content: ''; width: 5px; height: 1px; background: var(--accent);
@@ -488,6 +532,18 @@
 
     /* -- CONTACT -- */
     #contact { background: var(--s1); }
+    .contact-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 42px; max-width: 1080px; margin-bottom: 52px;
+    }
+    .contact-head-copy { min-width: 0; }
+    .contact-head .ssub { margin-bottom: 0; }
+    .contact-portrait {
+      width: clamp(132px, 13vw, 190px); height: clamp(132px, 13vw, 190px);
+      margin-top: 18px; border-radius: 50%; object-fit: cover; object-position: center;
+      border: 1px solid var(--border2); background: var(--s2); flex-shrink: 0;
+      box-shadow: 0 20px 54px var(--shadow-soft), 0 0 0 8px color-mix(in srgb, var(--accent) 7%, transparent);
+    }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1080px; align-items: start; }
     .contact-links-list { display: flex; flex-direction: column; gap: 10px; }
     .clink {
@@ -509,7 +565,7 @@
       border-left: 2px solid var(--accent); border-radius: 12px;
       box-shadow: -4px 0 18px rgba(155,147,199,0.06);
     }
-    .avail-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.85; }
+    .avail-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
     .avail-card p strong { color: var(--text2); }
 
     .contact-form { display: flex; flex-direction: column; gap: 14px; }
@@ -525,6 +581,146 @@
     }
     .fg textarea { min-height: 110px; }
     #form-ok { display: none; font-size: 0.8rem; color: var(--accent); margin-top: 4px; }
+
+    /* -- INTRO VIDEO POPUP -- */
+    .intro-video-widget {
+      position: fixed; right: 28px; bottom: 28px; z-index: 240;
+      width: min(360px, calc(100vw - 36px));
+      pointer-events: none; opacity: 0;
+      transform: translateY(28px) scale(0.96);
+      transition: transform 0.48s cubic-bezier(.16,1,.3,1), opacity 0.34s ease;
+    }
+    .intro-video-widget.is-visible {
+      pointer-events: auto; opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .intro-video-widget.is-closed {
+      pointer-events: none; opacity: 0;
+      transform: translateX(34px) translateY(12px) scale(0.94);
+    }
+    .intro-video-panel {
+      position: relative; overflow: visible;
+      border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border2));
+      border-radius: 16px; background: var(--s2);
+      box-shadow: 0 28px 78px rgba(0,0,0,0.46), 0 0 0 1px rgba(255,255,255,0.035) inset;
+    }
+    .intro-video-panel::after {
+      content: ''; position: absolute; inset: auto 0 0; height: 38%;
+      border-radius: 0 0 16px 16px; pointer-events: none;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.38));
+    }
+    .intro-video-panel video {
+      display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+      border-radius: 15px; background: var(--media-bg);
+    }
+    .intro-video-close {
+      position: absolute; top: -14px; right: -14px; z-index: 4;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid color-mix(in srgb, var(--accent3) 46%, var(--border2));
+      background: color-mix(in srgb, var(--s2) 76%, transparent);
+      color: var(--text); backdrop-filter: blur(12px);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 12px 30px rgba(0,0,0,0.32);
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+    .intro-video-close:hover {
+      transform: scale(1.06); border-color: var(--accent3);
+      background: color-mix(in srgb, var(--accent3) 20%, var(--s2));
+    }
+    .intro-video-toggle,
+    .intro-video-sound {
+      position: absolute; left: 14px; bottom: 14px; z-index: 3;
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid color-mix(in srgb, var(--accent3) 48%, rgba(255,255,255,0.2));
+      background: linear-gradient(135deg, var(--accent3), var(--accent2));
+      color: var(--button-fg); cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.34);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    }
+    .intro-video-sound {
+      left: 74px; width: 42px; height: 42px;
+      background: color-mix(in srgb, var(--bg) 58%, transparent);
+      color: var(--text); backdrop-filter: blur(10px);
+    }
+    .intro-video-toggle:hover,
+    .intro-video-sound:hover {
+      transform: translateY(-1px) scale(1.04);
+      filter: brightness(1.04);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.38);
+    }
+    .intro-video-toggle svg,
+    .intro-video-sound svg,
+    .intro-video-tab svg,
+    .intro-video-close svg { width: 18px; height: 18px; display: block; }
+    .intro-video-tab {
+      position: fixed; right: 0; bottom: 80px; z-index: 235;
+      width: 70px; height: 64px; border-radius: 999px 0 0 999px;
+      border: 1px solid color-mix(in srgb, var(--accent3) 38%, var(--border2)); border-right: 0;
+      background: linear-gradient(135deg, var(--accent3), var(--accent2));
+      color: var(--button-fg); cursor: pointer; backdrop-filter: blur(14px);
+      display: none; align-items: center; justify-content: flex-end;
+      gap: 0; padding: 0 24px 0 18px; overflow: hidden; white-space: nowrap;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.32);
+      transition: width 0.42s cubic-bezier(.16,1,.3,1), gap 0.32s ease, transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+      animation: introTabPulse 2.6s ease-in-out infinite;
+    }
+    .intro-video-tab.is-replay {
+      background: color-mix(in srgb, var(--s2) 78%, transparent);
+      color: var(--accent3);
+      animation: introReplayPulse 3.2s ease-in-out infinite;
+    }
+    .intro-video-tab svg { flex: 0 0 18px; }
+    .intro-video-tab .intro-replay-icon { display: none; }
+    .intro-video-tab-label {
+      max-width: 0; overflow: hidden; opacity: 0;
+      transform: translateX(18px);
+      font-family: var(--ffd); font-size: 0.84rem; font-weight: 600;
+      letter-spacing: 0;
+      transition: max-width 0.42s cubic-bezier(.16,1,.3,1), opacity 0.2s ease, transform 0.42s cubic-bezier(.16,1,.3,1);
+    }
+    .intro-video-tab:hover,
+    .intro-video-tab:focus-visible {
+      width: min(286px, calc(100vw - 16px)); gap: 12px;
+      transform: translateX(0); filter: brightness(1.05);
+      background: linear-gradient(135deg, var(--accent3), var(--accent2));
+      color: var(--button-fg);
+    }
+    .intro-video-tab:hover .intro-video-tab-label,
+    .intro-video-tab:focus-visible .intro-video-tab-label {
+      max-width: 205px; opacity: 1; transform: translateX(0);
+    }
+    .intro-video-tab.is-replay:hover,
+    .intro-video-tab.is-replay:focus-visible {
+      width: 132px;
+      background: color-mix(in srgb, var(--s2) 78%, transparent);
+      color: var(--accent3);
+    }
+    .intro-video-tab.is-replay:hover .intro-video-tab-label,
+    .intro-video-tab.is-replay:focus-visible .intro-video-tab-label {
+      max-width: 54px;
+    }
+    .intro-video-tab.is-replay .intro-play-tab-icon { display: none; }
+    .intro-video-tab.is-replay .intro-replay-icon { display: block; }
+    .intro-video-tab.is-visible { display: inline-flex; }
+    @keyframes introTabPulse {
+      0%, 100% {
+        box-shadow: 0 18px 45px rgba(0,0,0,0.32), 0 0 0 0 rgba(184,177,214,0.34), 0 0 0 0 rgba(127,138,180,0.18);
+      }
+      55% {
+        box-shadow: 0 18px 45px rgba(0,0,0,0.32), 0 0 0 18px rgba(184,177,214,0), 0 0 0 30px rgba(127,138,180,0);
+      }
+    }
+    @keyframes introReplayPulse {
+      0%, 100% { box-shadow: 0 18px 45px rgba(0,0,0,0.32), 0 0 0 0 rgba(184,177,214,0.12); }
+      50% { box-shadow: 0 18px 45px rgba(0,0,0,0.32), 0 0 0 7px rgba(184,177,214,0); }
+    }
+    .intro-video-close:focus-visible,
+    .intro-video-toggle:focus-visible,
+    .intro-video-sound:focus-visible,
+    .intro-video-tab:focus-visible {
+      outline: 2px solid var(--accent3); outline-offset: 3px;
+    }
 
     /* -- FOOTER -- */
     footer {
@@ -564,13 +760,25 @@
       section { padding: 72px 24px; }
       #hero { padding: 90px 24px 60px; }
       .hero-stats { gap: 28px; }
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-grid { grid-template-columns: 1fr; min-height: 0; }
+      .about-side { min-height: 560px; grid-row: 2; }
+      .about-portrait-stage { position: absolute; }
+      .about-portrait-stage::before { background: linear-gradient(180deg, var(--s1) 0%, transparent 10%); }
+      .about-body { grid-row: 1; padding: 64px 24px 56px; }
+      .about-body .stag { margin-bottom: 46px; }
+      .about-body .sh { font-size: clamp(2.2rem, 8vw, 3.4rem); }
+      .role-cards { margin-top: 28px; }
       .skills-cats { grid-template-columns: 1fr 1fr; }
+      .contact-head { gap: 24px; }
+      .contact-portrait { width: 128px; height: 128px; margin-top: 16px; }
       .contact-grid { grid-template-columns: 1fr; gap: 36px; }
-      .exp-item { grid-template-columns: 1fr; }
+      .intro-video-widget { right: 18px; bottom: 18px; width: min(320px, calc(100vw - 32px)); }
+      .intro-video-tab { bottom: 64px; width: 74px; height: 68px; }
+      .exp-item { grid-template-columns: 58px minmax(0,1fr); gap: 0 18px; }
       .exp-item::after { display: none; }
-      .exp-dot { display: none; }
-      .exp-meta { text-align: left; margin-bottom: 4px; }
+      .exp-meta { grid-column: 2; text-align: left; margin-bottom: 4px; padding-top: 0; }
+      .exp-avatar { grid-row: 1 / span 2; grid-column: 1; }
+      .exp-content { grid-column: 2; }
       .project-modal { padding: 16px; align-items: flex-start; overflow-y: auto; }
       .project-modal-panel { grid-template-columns: 1fr; height: auto; max-height: none; }
       .project-modal-slider { min-height: 260px; height: 48vh; }
@@ -578,8 +786,18 @@
       footer { flex-direction: column; text-align: center; }
     }
     @media(max-width:600px){
+      .about-side { min-height: 390px; }
+      .about-body { padding-top: 48px; }
+      .about-body .stag { margin-bottom: 36px; }
+      .role-cards { grid-template-columns: 1fr; gap: 8px; padding-bottom: 8px; }
+      .role-card { padding: 16px; }
+      .role-card-head { margin-bottom: 4px; }
       .skills-cats { grid-template-columns: 1fr; }
       .proj-grid { grid-template-columns: 1fr; }
+      .contact-head { align-items: center; gap: 18px; margin-bottom: 40px; }
+      .contact-portrait { width: 92px; height: 92px; margin-top: 0; }
+      .intro-video-widget { width: min(280px, calc(100vw - 28px)); right: 14px; bottom: 14px; }
+      .intro-video-tab { width: 64px; height: 60px; bottom: 54px; }
       .project-modal { padding: 10px; }
       .project-modal-slider { height: 300px; min-height: 300px; }
     }
@@ -618,1242 +836,20 @@
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-overlay"></div>
-  <div class="hero-inner">
-    <div class="hero-badge">
-      <span class="badge-dot"></span> Open to full-time opportunities
-    </div>
-    <h1 class="hero-name">
-      <span class="hi">Hi, I'm </span><span class="ac">Proud</span><br/>
-      <span class="nm">Ratchaprapa C.</span>
-    </h1>
-    <div class="hero-roles">
-      <span class="role-chip">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        Product Owner / PM
-      </span>
-      <span class="role-chip">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        Manual QA
-      </span>
-      <span class="role-chip">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        UX/UI Designer
-      </span>
-      <span class="role-chip">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Frontend Developer
-      </span>
-    </div>
-    <p class="hero-desc">
-      Software Engineering graduate from <strong>Kasetsart University</strong> with hands-on experience across the full product lifecycle.
-      Interned as PM/PO at <strong>ByteArk</strong> — UX research, backlog management, QA, and release readiness.
-      Technical enough to bridge strategy and execution.
-    </p>
-    <div class="hero-ctas">
-      <a href="#projects" class="btn btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        View Projects
-      </a>
-      <a href="https://www.linkedin.com/in/ratchaprapa-chattrakulrak-97111626a/" target="_blank" class="btn btn-ghost">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://github.com/ProudHokori" target="_blank" class="btn btn-ghost">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-        GitHub
-      </a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-num">5+</div><div class="stat-label">Years freelancing</div></div>
-      <div><div class="stat-num">100+</div><div class="stat-label">Client projects</div></div>
-      <div><div class="stat-num">11</div><div class="stat-label">Technical projects</div></div>
-      <div><div class="stat-num">B.Eng.</div><div class="stat-label">Software &amp; Knowledge Eng.</div></div>
-    </div>
-  </div>
+  <div class="hero-inner" id="hero-content"></div>
 </section>
 
 <!-- -- ABOUT -- -->
-<section id="about">
-  <div class="stag">About</div>
-  <div class="about-grid">
-    <div class="about-body">
-      <h2 class="sh">PM who bridges<br/>strategy &amp; execution</h2>
-      <p>I'm Proud — a <strong>Software Engineering graduate from Kasetsart University</strong> with experience spanning the full product lifecycle. I've worked as a PM/PO intern at ByteArk, conducting UX research, competitor analysis, and persona work before translating insights into user stories and requirements.</p>
-      <p>In the Courtly project, I owned the entire PM/PO process end-to-end: defining requirements, managing the backlog across sprints, negotiating scope under tight deadlines, and keeping the team aligned — while also contributing directly to <strong>frontend development and API design</strong>.</p>
-      <p>My technical background lets me communicate clearly with engineers and <strong>spot risks early</strong> — making me a PM who sits confidently at the intersection of business, design, and technology.</p>
-      <div class="about-edu">
-        <div class="about-edu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-        <div>
-          <div class="about-edu-deg">B.Eng. Software and Knowledge Engineering</div>
-          <div class="about-edu-inst">Kasetsart University</div>
-          <div class="about-edu-year">Aug 2021 – May 2026</div>
-        </div>
-      </div>
-    </div>
-    <div class="role-cards">
-      <div class="role-card reveal">
-        <div class="role-card-head">
-          <span class="role-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
-          <span class="role-card-title">PM / Product Owner</span>
-        </div>
-        <p class="role-card-desc">End-to-end product work from research and requirement writing to backlog prioritisation, stakeholder communication, and release readiness.</p>
-      </div>
-      <div class="role-card reveal">
-        <div class="role-card-head">
-          <span class="role-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
-          <span class="role-card-title">Manual QA</span>
-        </div>
-        <p class="role-card-desc">Writing test cases, running manual and exploratory testing, and detailed bug reporting to ensure high-quality releases.</p>
-      </div>
-      <div class="role-card reveal">
-        <div class="role-card-head">
-          <span class="role-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span>
-          <span class="role-card-title">UX/UI Design</span>
-        </div>
-        <p class="role-card-desc">Proficient in UX research, wireframing, and high-fidelity Figma mockups with a strong focus on user-centric design principles.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="about"></section>
 
 <!-- -- EXPERIENCE -- -->
-<section id="experience">
-  <div class="stag">Experience</div>
-  <h2 class="sh">Where I've worked</h2>
-  <div class="exp-list">
-
-    <div class="exp-item reveal" data-folder="Byteark Intern">
-      <div class="exp-meta"><div class="exp-year">May 2024<br/>Nov 2024</div></div>
-      <div class="exp-dot"></div>
-      <div>
-        <div class="exp-company">ByteArk Co., Ltd.</div>
-        <div class="exp-title">PM/PO Intern</div>
-        <ul class="exp-bullets">
-          <li>Conducted UX research including user interviews, surveys, pain point analysis, persona development, and competitor benchmarking to shape a new product direction.</li>
-          <li>Defined and wrote detailed user stories, RFCs, and acceptance criteria; collaborated closely with designers to translate requirements into UI flows.</li>
-          <li>Monitored development sprint-by-sprint, bridging design and engineering — catching misalignments early and unblocking the team before blockers escalated.</li>
-          <li>Performed manual, regression, and exploratory testing; filed structured bug reports before each release.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item reveal" data-folder="Hokori Studio">
-      <div class="exp-meta"><div class="exp-year">Dec 2022<br/>Jan 2025</div></div>
-      <div class="exp-dot"></div>
-      <div>
-        <div class="exp-company">Hokori Design Studio</div>
-        <div class="exp-title">Founder — 3D Design Services</div>
-        <ul class="exp-bullets">
-          <li>Founded and ran a 3D interior/exterior design business, managing 100+ client projects end-to-end.</li>
-          <li>Handled marketing, client communication, scoping, production, and team coordination across all projects.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item reveal" data-folder="GDSC">
-      <div class="exp-meta"><div class="exp-year">Aug 2022<br/>Apr 2024</div></div>
-      <div class="exp-dot"></div>
-      <div>
-        <div class="exp-company">Google Developer Student Club (GDSC), KU</div>
-        <div class="exp-title">Core Team Member</div>
-        <ul class="exp-bullets">
-          <li>Organised tech events, workshops, and career sessions covering emerging tech trends and industry guidance.</li>
-          <li>Contributed UI component design for Goodoo — used as hands-on teaching material in GDSC workshops.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item reveal" data-folder="CPSK Club">
-      <div class="exp-meta"><div class="exp-year">Jan 2022<br/>Dec 2024</div></div>
-      <div class="exp-dot"></div>
-      <div>
-        <div class="exp-company">SKE19 &amp; CPSK Club, Kasetsart University</div>
-        <div class="exp-title">Vice-President &amp; Financial Manager</div>
-        <ul class="exp-bullets">
-          <li>Led teams across events including BarCamp Bangkhen, JobFair, SOS Camp, and Byenior.</li>
-          <li>Managed full financial operations: accounting, budget approval, procurement documentation, and record-keeping.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item reveal" data-folder="Freelance">
-      <div class="exp-meta"><div class="exp-year">Oct 2021<br/>Present</div></div>
-      <div class="exp-dot"></div>
-      <div>
-        <div class="exp-company">Self-employed</div>
-        <div class="exp-title">Freelancer — Development, Design, AI Media</div>
-        <ul class="exp-bullets">
-          <li>Delivered diverse client projects spanning development, graphic design, and AI-generated media.</li>
-          <li>Self-learned new tools and skills on demand; gained broad industry insight from varied clients.</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
+<section id="experience"></section>
 
 <!-- -- SKILLS -- -->
-<section id="skills">
-  <div class="stag">Skills</div>
-  <h2 class="sh">What I work with</h2>
-  <div class="skills-cats">
-    <div class="skill-cat reveal">
-      <div class="skill-cat-head"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Product Management</div>
-      <div class="skill-tags">
-        <span class="stk hi">Backlog Prioritisation</span><span class="stk hi">User Story Writing</span>
-        <span class="stk hi">RFC Writing</span><span class="stk hi">Agile / Scrum</span>
-        <span class="stk">Roadmap Planning</span><span class="stk">Sprint Planning</span>
-        <span class="stk">Release Management</span><span class="stk">Stakeholder Communication</span>
-        <span class="stk">Product Discovery</span>
-      </div>
-    </div>
-    <div class="skill-cat reveal">
-      <div class="skill-cat-head"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Manual QA</div>
-      <div class="skill-tags">
-        <span class="stk hi">Manual &amp; Functional Testing</span><span class="stk hi">Exploratory Testing</span>
-        <span class="stk hi">Test Case Writing</span><span class="stk">Regression Testing</span>
-        <span class="stk">Bug Reporting &amp; Tracking</span><span class="stk">UAT Support</span>
-        <span class="stk">Release Readiness</span>
-      </div>
-    </div>
-    <div class="skill-cat reveal">
-      <div class="skill-cat-head"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>UX/UI Design</div>
-      <div class="skill-tags">
-        <span class="stk hi">Figma</span><span class="stk hi">UX Research &amp; Interviews</span>
-        <span class="stk hi">Wireframing &amp; Prototyping</span><span class="stk">Persona Development</span>
-        <span class="stk">User Journey Mapping</span><span class="stk">Adobe Illustrator</span>
-        <span class="stk">Competitor Analysis</span>
-      </div>
-    </div>
-    <div class="skill-cat reveal">
-      <div class="skill-cat-head"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Development</div>
-      <div class="skill-tags">
-        <span class="stk hi">Next.js / React</span><span class="stk hi">TypeScript</span>
-        <span class="stk hi">Tailwind CSS</span><span class="stk">Python</span>
-        <span class="stk">Kotlin (Android)</span><span class="stk">PostgreSQL</span>
-        <span class="stk">Docker</span><span class="stk">Prisma ORM</span>
-      </div>
-    </div>
-    <div class="skill-cat reveal">
-      <div class="skill-cat-head"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Tools</div>
-      <div class="skill-tags">
-        <span class="stk hi">Jira</span><span class="stk">Linear</span>
-        <span class="stk">ClickUp</span><span class="stk">Postman</span>
-        <span class="stk">Notion</span><span class="stk">Miro</span>
-        <span class="stk">Google Sheets</span><span class="stk">SketchUp</span>
-        <span class="stk">AI-assisted workflows</span>
-      </div>
-    </div>
-    <div class="skill-cat reveal">
-      <div class="skill-cat-head"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Soft Skills</div>
-      <div class="skill-tags">
-        <span class="stk hi">Cross-functional Communication</span><span class="stk hi">Customer Empathy</span>
-        <span class="stk">Big-picture Thinking</span><span class="stk">Attention to Detail</span>
-        <span class="stk">Organisation &amp; Planning</span><span class="stk">Team Coordination</span>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="skills"></section>
 
 <!-- -- PROJECTS -- -->
-<section id="projects">
-  <div class="stag">Projects</div>
-  <h2 class="sh">Selected work</h2>
-  <p class="ssub">From product-managed systems to solo dev projects — each one built with real intent.</p>
-  <div class="proj-filter">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="pm">PM / PO</button>
-    <button class="filter-btn" data-filter="ux">UX/UI</button>
-    <button class="filter-btn" data-filter="dev">Development</button>
-  </div>
-  <div class="proj-grid">
-
-    <div class="proj-card tilt-card reveal" data-tags="pm dev">
-      <div class="proj-slider">
-        <div class="slider-track">
-          <!-- Slide 1: Dashboard UI -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ss1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#060d14"/><stop offset="100%" stop-color="#0a1520"/></linearGradient></defs>
-            <rect width="560" height="200" fill="url(#ss1)"/>
-            <!-- top bar -->
-            <rect x="0" y="0" width="560" height="28" fill="#0d1e2a"/>
-            <text x="16" y="18" fill="#34D399" font-size="9" font-family="Inter" font-weight="600">SleepSense</text>
-            <text x="16" y="28" fill="#34D399" font-size="7" font-family="Inter" opacity="0.5">Dashboard</text>
-            <circle cx="540" cy="14" r="5" fill="#34D399" opacity="0.7"/>
-            <!-- sleep score gauge -->
-            <circle cx="88" cy="112" r="42" fill="none" stroke="#0d2a1a" stroke-width="8"/>
-            <circle cx="88" cy="112" r="42" fill="none" stroke="#34D399" stroke-width="8" stroke-dasharray="211 264" stroke-dashoffset="66" stroke-linecap="round" opacity="0.9"/>
-            <text x="88" y="107" text-anchor="middle" fill="#34D399" font-size="18" font-family="Inter" font-weight="700">82</text>
-            <text x="88" y="120" text-anchor="middle" fill="#34D399" font-size="7" font-family="Inter" opacity="0.6">/100</text>
-            <text x="88" y="133" text-anchor="middle" fill="#34D399" font-size="8" font-family="Inter" opacity="0.5">Sleep Score</text>
-            <!-- sensor cards -->
-            <rect x="148" y="38" width="92" height="38" rx="5" fill="#0d2015"/>
-            <text x="155" y="52" fill="#6ee7b7" font-size="7" font-family="Inter" opacity="0.6">TEMPERATURE</text>
-            <text x="155" y="66" fill="#34D399" font-size="13" font-family="Inter" font-weight="600">22.4°C</text>
-            <rect x="248" y="38" width="92" height="38" rx="5" fill="#0d2015"/>
-            <text x="255" y="52" fill="#6ee7b7" font-size="7" font-family="Inter" opacity="0.6">HUMIDITY</text>
-            <text x="255" y="66" fill="#34D399" font-size="13" font-family="Inter" font-weight="600">55%</text>
-            <rect x="348" y="38" width="92" height="38" rx="5" fill="#0d2015"/>
-            <text x="355" y="52" fill="#6ee7b7" font-size="7" font-family="Inter" opacity="0.6">SOUND</text>
-            <text x="355" y="66" fill="#34D399" font-size="13" font-family="Inter" font-weight="600">Low</text>
-            <rect x="448" y="38" width="92" height="38" rx="5" fill="#0d2015"/>
-            <text x="455" y="52" fill="#6ee7b7" font-size="7" font-family="Inter" opacity="0.6">AIR QUALITY</text>
-            <text x="455" y="66" fill="#34D399" font-size="13" font-family="Inter" font-weight="600">Good</text>
-            <!-- chart -->
-            <rect x="148" y="84" width="392" height="90" rx="5" fill="#0a1a10"/>
-            <text x="158" y="97" fill="#6ee7b7" font-size="7" font-family="Inter" opacity="0.5">SLEEP TREND — 7 DAYS</text>
-            <polyline points="168,158 208,140 248,148 288,125 328,132 368,118 408,128 448,110 488,115 528,105" fill="none" stroke="#34D399" stroke-width="1.5" opacity="0.8"/>
-            <polyline points="168,158 208,140 248,148 288,125 328,132 368,118 408,128 448,110 488,115 528,105" fill="url(#ssgrad)" opacity="0.15"/>
-            <defs><linearGradient id="ssgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#34D399"/><stop offset="100%" stop-color="transparent"/></linearGradient></defs>
-            </svg>
-            <div class="slide-caption">Dashboard — Sleep score, real-time sensors &amp; 7-day trend</div>
-          </div>
-          <!-- Slide 2: Architecture -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#060d14"/>
-            <text x="280" y="18" text-anchor="middle" fill="#34D399" font-size="9" font-family="Inter" font-weight="600" opacity="0.6">SYSTEM ARCHITECTURE — 3 LAYERS</text>
-            <!-- Layer 1 IoT -->
-            <rect x="20" y="28" width="155" height="148" rx="7" fill="#0a1a10" stroke="#34D399" stroke-width="0.8" opacity="0.7"/>
-            <text x="97" y="44" text-anchor="middle" fill="#34D399" font-size="8" font-family="Inter" font-weight="600">IoT Field Zone</text>
-            <rect x="32" y="52" width="131" height="22" rx="3" fill="#0d2015"/><text x="97" y="67" text-anchor="middle" fill="#6ee7b7" font-size="8" font-family="monospace">Temp Sensor</text>
-            <rect x="32" y="78" width="131" height="22" rx="3" fill="#0d2015"/><text x="97" y="93" text-anchor="middle" fill="#6ee7b7" font-size="8" font-family="monospace">Humidity Sensor</text>
-            <rect x="32" y="104" width="131" height="22" rx="3" fill="#0d2015"/><text x="97" y="119" text-anchor="middle" fill="#6ee7b7" font-size="8" font-family="monospace">Sound / Light</text>
-            <rect x="32" y="130" width="131" height="22" rx="3" fill="#0d2015"/><text x="97" y="145" text-anchor="middle" fill="#6ee7b7" font-size="8" font-family="monospace">MQTT Broker</text>
-            <!-- arrows -->
-            <line x1="175" y1="102" x2="200" y2="102" stroke="#34D399" stroke-width="1" marker-end="url(#arr)" opacity="0.6"/>
-            <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#34D399" opacity="0.6"/></marker></defs>
-            <!-- Layer 2 Cloud -->
-            <rect x="202" y="28" width="155" height="148" rx="7" fill="#0a1020" stroke="#818CF8" stroke-width="0.8" opacity="0.7"/>
-            <text x="279" y="44" text-anchor="middle" fill="#818CF8" font-size="8" font-family="Inter" font-weight="600">Cloud Backend</text>
-            <rect x="214" y="52" width="131" height="22" rx="3" fill="#101030"/><text x="279" y="67" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="monospace">REST API</text>
-            <rect x="214" y="78" width="131" height="22" rx="3" fill="#101030"/><text x="279" y="93" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="monospace">PostgreSQL</text>
-            <rect x="214" y="104" width="131" height="22" rx="3" fill="#101030"/><text x="279" y="119" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="monospace">Docker</text>
-            <rect x="214" y="130" width="131" height="22" rx="3" fill="#101030"/><text x="279" y="145" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="monospace">Data Pipeline</text>
-            <!-- arrow -->
-            <line x1="357" y1="102" x2="382" y2="102" stroke="#818CF8" stroke-width="1" marker-end="url(#arr2)" opacity="0.6"/>
-            <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#818CF8" opacity="0.6"/></marker></defs>
-            <!-- Layer 3 Analytics -->
-            <rect x="384" y="28" width="155" height="148" rx="7" fill="#14081a" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
-            <text x="461" y="44" text-anchor="middle" fill="#a78bfa" font-size="8" font-family="Inter" font-weight="600">Analytics</text>
-            <rect x="396" y="52" width="131" height="22" rx="3" fill="#1a0d25"/><text x="461" y="67" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="monospace">scikit-learn ML</text>
-            <rect x="396" y="78" width="131" height="22" rx="3" fill="#1a0d25"/><text x="461" y="93" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="monospace">Pandas Pipeline</text>
-            <rect x="396" y="104" width="131" height="22" rx="3" fill="#1a0d25"/><text x="461" y="119" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="monospace">Streamlit UI</text>
-            <rect x="396" y="130" width="131" height="22" rx="3" fill="#1a0d25"/><text x="461" y="145" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="monospace">Sleep Score ML</text>
-            </svg>
-            <div class="slide-caption">3-layer architecture: IoT → Cloud → ML Analytics</div>
-          </div>
-          <!-- Slide 3: ML Code -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0a0c10"/>
-            <rect x="0" y="0" width="560" height="22" fill="#111520"/>
-            <text x="16" y="14" fill="#6ee7b7" font-size="8" font-family="monospace">ml_model.py — scikit-learn sleep quality predictor</text>
-            <!-- code lines -->
-            <text x="16" y="38" fill="#818CF8" font-size="9" font-family="monospace">from</text><text x="54" y="38" fill="#c4b5fd" font-size="9" font-family="monospace"> sklearn.ensemble </text><text x="196" y="38" fill="#818CF8" font-size="9" font-family="monospace">import</text><text x="242" y="38" fill="#34D399" font-size="9" font-family="monospace"> RandomForestRegressor</text>
-            <text x="16" y="54" fill="#818CF8" font-size="9" font-family="monospace">from</text><text x="54" y="54" fill="#c4b5fd" font-size="9" font-family="monospace"> sklearn.preprocessing </text><text x="222" y="54" fill="#818CF8" font-size="9" font-family="monospace">import</text><text x="268" y="54" fill="#34D399" font-size="9" font-family="monospace"> StandardScaler</text>
-            <text x="16" y="74" fill="#6366f1" font-size="9" font-family="monospace">features</text><text x="82" y="74" fill="#c4b5fd" font-size="9" font-family="monospace"> = [</text><text x="108" y="74" fill="#fbbf24" font-size="9" font-family="monospace">'temp','humidity','sound','light','aqi'</text><text x="392" y="74" fill="#c4b5fd" font-size="9" font-family="monospace">]</text>
-            <text x="16" y="90" fill="#818CF8" font-size="9" font-family="monospace">model</text><text x="58" y="90" fill="#c4b5fd" font-size="9" font-family="monospace"> = RandomForestRegressor(</text>
-            <text x="32" y="106" fill="#6366f1" font-size="9" font-family="monospace">  n_estimators</text><text x="128" y="106" fill="#c4b5fd" font-size="9" font-family="monospace">=</text><text x="136" y="106" fill="#fb923c" font-size="9" font-family="monospace">100</text><text x="160" y="106" fill="#c4b5fd" font-size="9" font-family="monospace">,  </text><text x="178" y="106" fill="#6366f1" font-size="9" font-family="monospace">random_state</text><text x="266" y="106" fill="#c4b5fd" font-size="9" font-family="monospace">=</text><text x="274" y="106" fill="#fb923c" font-size="9" font-family="monospace">42</text>
-            <text x="16" y="122" fill="#c4b5fd" font-size="9" font-family="monospace">model.fit(X_train, y_train)</text>
-            <text x="16" y="142" fill="#6ee7b7" font-size="9" font-family="monospace"># Feature importance: temp(0.32) humidity(0.28) sound(0.21)</text>
-            <text x="16" y="158" fill="#818CF8" font-size="9" font-family="monospace">score</text><text x="58" y="158" fill="#c4b5fd" font-size="9" font-family="monospace"> = model.score(X_test, y_test)</text>
-            <text x="16" y="174" fill="#6ee7b7" font-size="9" font-family="monospace"># R² = 0.87 — strong predictive accuracy</text>
-            <!-- cursor blink -->
-            <rect x="16" y="182" width="6" height="10" fill="#a78bfa" opacity="0.7"><animate attributeName="opacity" values="0.7;0;0.7" dur="1.2s" repeatCount="indefinite"/></rect>
-            </svg>
-            <div class="slide-caption">Python + scikit-learn ML model — R² 0.87 sleep quality predictor</div>
-          </div>
-        </div>
-        <button class="slider-btn prev">&#8249;</button>
-        <button class="slider-btn next">&#8250;</button>
-        <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">PM · ML · IoT</span><span class="proj-year">2026</span></div>
-        <div class="proj-name">SleepSense</div>
-        <div class="proj-context">Team Project</div>
-        <div class="proj-desc">IoT sleep environment monitoring with ML pipeline for personalised sleep quality scores and trend analysis. Three-layer architecture: IoT Field, Cloud Backend, and Analytics.</div>
-        <div class="proj-tech"><span>Python</span><span>scikit-learn</span><span>Streamlit</span><span>MQTT</span><span>PostgreSQL</span><span>Docker</span></div>
-        <div class="proj-links">
-          <a href="https://github.com/ProudHokori/SleepSense" target="_blank" class="proj-link"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
-          <a href="https://youtu.be/gK2Yn2xOHhc?si=taa_gkQkzXv3kZ6z" target="_blank" class="proj-link"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>Demo</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="proj-card tilt-card reveal" data-tags="pm ux dev">
-      <div class="proj-slider">
-        <div class="slider-track">
-          <!-- Slide 1: Mobile App UI -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0e0820"/>
-            <!-- phone frame -->
-            <rect x="160" y="8" width="110" height="184" rx="14" fill="#160b2a" stroke="#C084FC" stroke-width="1.2"/>
-            <rect x="168" y="22" width="94" height="162" rx="6" fill="#0e0820"/>
-            <!-- header -->
-            <rect x="168" y="22" width="94" height="24" rx="6" fill="#1a0f35"/>
-            <text x="215" y="38" text-anchor="middle" fill="#C084FC" font-size="8" font-family="Inter" font-weight="600">KU Eater</text>
-            <!-- search bar -->
-            <rect x="172" y="50" width="86" height="12" rx="4" fill="#1e1240"/>
-            <text x="215" y="59" text-anchor="middle" fill="#7c6fa0" font-size="6" font-family="Inter">Search food...</text>
-            <!-- food cards -->
-            <rect x="172" y="67" width="86" height="30" rx="4" fill="#1a0f35"/>
-            <rect x="172" y="67" width="26" height="30" rx="4" fill="#2a0f40"/>
-            <text x="185" y="85" text-anchor="middle" fill="#C084FC" font-size="10" font-family="Inter">🍜</text>
-            <text x="220" y="78" fill="#ede9fe" font-size="7" font-family="Inter" font-weight="600">Pad Thai</text>
-            <text x="220" y="88" fill="#7c6fa0" font-size="6" font-family="Inter">Canteen A · ฿45</text>
-            <rect x="172" y="101" width="86" height="30" rx="4" fill="#1a0f35"/>
-            <rect x="172" y="101" width="26" height="30" rx="4" fill="#2a0f40"/>
-            <text x="185" y="119" text-anchor="middle" fill="#C084FC" font-size="10" font-family="Inter">🍛</text>
-            <text x="220" y="112" fill="#ede9fe" font-size="7" font-family="Inter" font-weight="600">Green Curry</text>
-            <text x="220" y="122" fill="#7c6fa0" font-size="6" font-family="Inter">Canteen B · ฿50</text>
-            <rect x="172" y="135" width="86" height="30" rx="4" fill="#1a0f35"/>
-            <rect x="172" y="135" width="26" height="30" rx="4" fill="#2a0f40"/>
-            <text x="185" y="153" text-anchor="middle" fill="#C084FC" font-size="10" font-family="Inter">🍱</text>
-            <text x="220" y="146" fill="#ede9fe" font-size="7" font-family="Inter" font-weight="600">Bento Set</text>
-            <text x="220" y="156" fill="#7c6fa0" font-size="6" font-family="Inter">Canteen C · ฿65</text>
-            <!-- bottom nav -->
-            <rect x="168" y="176" width="94" height="8" rx="3" fill="#1e1240"/>
-            <!-- right side info -->
-            <text x="310" y="35" fill="#C084FC" font-size="9" font-family="Inter" font-weight="600">Problem Solved</text>
-            <text x="310" y="52" fill="#9d8abf" font-size="8" font-family="Inter">KU has 200+ food stalls.</text>
-            <text x="310" y="64" fill="#9d8abf" font-size="8" font-family="Inter">Students waste 10+ min</text>
-            <text x="310" y="76" fill="#9d8abf" font-size="8" font-family="Inter">deciding what to eat.</text>
-            <rect x="310" y="90" width="200" height="1" fill="#2a2050" opacity="0.5"/>
-            <text x="310" y="108" fill="#C084FC" font-size="9" font-family="Inter" font-weight="600">Role: Product Owner</text>
-            <text x="310" y="122" fill="#9d8abf" font-size="8" font-family="Inter">Led UX research · surveys</text>
-            <text x="310" y="134" fill="#9d8abf" font-size="8" font-family="Inter">Figma UI · backlog mgmt</text>
-            <text x="310" y="146" fill="#9d8abf" font-size="8" font-family="Inter">Next.js frontend dev</text>
-            <rect x="310" y="158" width="86" height="18" rx="4" fill="#2a1845"/>
-            <text x="353" y="171" text-anchor="middle" fill="#C084FC" font-size="7.5" font-family="Inter" font-weight="600">Web + Android App</text>
-            </svg>
-            <div class="slide-caption">Mobile-first food recommendation app for KU students</div>
-          </div>
-          <!-- Slide 2: Figma/UX Process -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0e0820"/>
-            <text x="16" y="18" fill="#C084FC" font-size="9" font-family="Inter" font-weight="600" opacity="0.6">UX PROCESS</text>
-            <!-- research phase -->
-            <rect x="16" y="28" width="120" height="72" rx="6" fill="#140b25" stroke="#C084FC" stroke-width="0.8"/>
-            <text x="76" y="44" text-anchor="middle" fill="#C084FC" font-size="8" font-family="Inter" font-weight="600">Research</text>
-            <text x="76" y="57" text-anchor="middle" fill="#9d8abf" font-size="7" font-family="Inter">30 user surveys</text>
-            <text x="76" y="68" text-anchor="middle" fill="#9d8abf" font-size="7" font-family="Inter">8 user interviews</text>
-            <text x="76" y="79" text-anchor="middle" fill="#9d8abf" font-size="7" font-family="Inter">Pain: decision fatigue</text>
-            <!-- arrow -->
-            <text x="144" y="66" fill="#C084FC" font-size="12" font-family="Inter">→</text>
-            <!-- design phase -->
-            <rect x="156" y="28" width="120" height="72" rx="6" fill="#140b25" stroke="#C084FC" stroke-width="0.8"/>
-            <text x="216" y="44" text-anchor="middle" fill="#C084FC" font-size="8" font-family="Inter" font-weight="600">Figma Design</text>
-            <rect x="166" y="50" width="50" height="34" rx="3" fill="#1e1035"/>
-            <rect x="169" y="53" width="44" height="10" rx="2" fill="#2a1845"/>
-            <rect x="169" y="66" width="20" height="12" rx="2" fill="#2a1845"/>
-            <rect x="193" y="66" width="20" height="12" rx="2" fill="#2a1845"/>
-            <text x="224" y="60" fill="#9d8abf" font-size="7" font-family="Inter">Wireframes</text>
-            <text x="224" y="71" fill="#9d8abf" font-size="7" font-family="Inter">Hi-fi mockups</text>
-            <text x="224" y="82" fill="#9d8abf" font-size="7" font-family="Inter">Component lib</text>
-            <!-- arrow -->
-            <text x="284" y="66" fill="#C084FC" font-size="12" font-family="Inter">→</text>
-            <!-- dev phase -->
-            <rect x="296" y="28" width="120" height="72" rx="6" fill="#140b25" stroke="#C084FC" stroke-width="0.8"/>
-            <text x="356" y="44" text-anchor="middle" fill="#C084FC" font-size="8" font-family="Inter" font-weight="600">Development</text>
-            <text x="356" y="57" text-anchor="middle" fill="#9d8abf" font-size="7" font-family="Inter">Next.js / TypeScript</text>
-            <text x="356" y="68" text-anchor="middle" fill="#9d8abf" font-size="7" font-family="Inter">Kotlin (Android)</text>
-            <text x="356" y="79" text-anchor="middle" fill="#9d8abf" font-size="7" font-family="Inter">Recommendation API</text>
-            <!-- arrow -->
-            <text x="424" y="66" fill="#C084FC" font-size="12" font-family="Inter">→</text>
-            <!-- ship -->
-            <rect x="436" y="28" width="108" height="72" rx="6" fill="#1a0b30" stroke="#C084FC" stroke-width="1.2"/>
-            <text x="490" y="57" text-anchor="middle" fill="#C084FC" font-size="20" font-family="Inter">✓</text>
-            <text x="490" y="72" text-anchor="middle" fill="#C084FC" font-size="8" font-family="Inter" font-weight="600">Shipped</text>
-            <text x="490" y="83" text-anchor="middle" fill="#9d8abf" font-size="7" font-family="Inter">Web + Android</text>
-            <!-- personas row -->
-            <text x="16" y="122" fill="#C084FC" font-size="8" font-family="Inter" font-weight="600" opacity="0.7">USER PERSONAS</text>
-            <rect x="16" y="130" width="160" height="50" rx="5" fill="#140b25"/>
-            <circle cx="36" cy="155" r="12" fill="#2a1845"/>
-            <text x="36" y="159" text-anchor="middle" fill="#C084FC" font-size="8" font-family="Inter">P</text>
-            <text x="56" y="145" fill="#ede9fe" font-size="8" font-family="Inter" font-weight="600">Busy Student</text>
-            <text x="56" y="157" fill="#9d8abf" font-size="7" font-family="Inter">Needs quick decision</text>
-            <text x="56" y="167" fill="#9d8abf" font-size="7" font-family="Inter">Budget-conscious</text>
-            <rect x="188" y="130" width="160" height="50" rx="5" fill="#140b25"/>
-            <circle cx="208" cy="155" r="12" fill="#2a1845"/>
-            <text x="208" y="159" text-anchor="middle" fill="#C084FC" font-size="8" font-family="Inter">S</text>
-            <text x="228" y="145" fill="#ede9fe" font-size="8" font-family="Inter" font-weight="600">Food Explorer</text>
-            <text x="228" y="157" fill="#9d8abf" font-size="7" font-family="Inter">Wants variety + reviews</text>
-            <text x="228" y="167" fill="#9d8abf" font-size="7" font-family="Inter">Tries new stalls weekly</text>
-            <rect x="360" y="130" width="180" height="50" rx="5" fill="#140b25"/>
-            <text x="370" y="145" fill="#C084FC" font-size="8" font-family="Inter" font-weight="600">Key Insight</text>
-            <text x="370" y="158" fill="#9d8abf" font-size="7" font-family="Inter">"I spend more time choosing</text>
-            <text x="370" y="168" fill="#9d8abf" font-size="7" font-family="Inter">than actually eating"</text>
-            </svg>
-            <div class="slide-caption">UX process: 30 surveys → Figma → Next.js + Android</div>
-          </div>
-          <!-- Slide 3: Tech Stack -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0a0c10"/>
-            <rect x="0" y="0" width="560" height="22" fill="#111520"/>
-            <text x="16" y="14" fill="#C084FC" font-size="8" font-family="monospace">recommendation.ts — Next.js TypeScript</text>
-            <text x="16" y="38" fill="#818CF8" font-size="9" font-family="monospace">interface</text><text x="82" y="38" fill="#34D399" font-size="9" font-family="monospace"> FoodItem </text><text x="148" y="38" fill="#c4b5fd" font-size="9" font-family="monospace">{"{"}</text>
-            <text x="32" y="54" fill="#6366f1" font-size="9" font-family="monospace">  name</text><text x="72" y="54" fill="#c4b5fd" font-size="9" font-family="monospace">:</text><text x="80" y="54" fill="#818CF8" font-size="9" font-family="monospace"> string</text><text x="122" y="54" fill="#c4b5fd" font-size="9" font-family="monospace">;</text>
-            <text x="32" y="68" fill="#6366f1" font-size="9" font-family="monospace">  score</text><text x="78" y="68" fill="#c4b5fd" font-size="9" font-family="monospace">:</text><text x="86" y="68" fill="#818CF8" font-size="9" font-family="monospace"> number</text><text x="134" y="68" fill="#c4b5fd" font-size="9" font-family="monospace">;</text>
-            <text x="32" y="82" fill="#6366f1" font-size="9" font-family="monospace">  canteen</text><text x="88" y="82" fill="#c4b5fd" font-size="9" font-family="monospace">:</text><text x="96" y="82" fill="#818CF8" font-size="9" font-family="monospace"> string</text><text x="138" y="82" fill="#c4b5fd" font-size="9" font-family="monospace">;</text>
-            <text x="16" y="96" fill="#c4b5fd" font-size="9" font-family="monospace">{"}"}</text>
-            <text x="16" y="114" fill="#818CF8" font-size="9" font-family="monospace">export async function</text><text x="182" y="114" fill="#34D399" font-size="9" font-family="monospace"> getRecommendations</text><text x="338" y="114" fill="#c4b5fd" font-size="9" font-family="monospace">(userId: string) {"{"}</text>
-            <text x="32" y="128" fill="#818CF8" font-size="9" font-family="monospace">  const</text><text x="72" y="128" fill="#6366f1" font-size="9" font-family="monospace"> prefs</text><text x="104" y="128" fill="#c4b5fd" font-size="9" font-family="monospace"> = await getUserPreferences(userId);</text>
-            <text x="32" y="142" fill="#818CF8" font-size="9" font-family="monospace">  return</text><text x="78" y="142" fill="#34D399" font-size="9" font-family="monospace"> filterByScore</text><text x="166" y="142" fill="#c4b5fd" font-size="9" font-family="monospace">(allMenuItems, prefs);</text>
-            <text x="16" y="156" fill="#c4b5fd" font-size="9" font-family="monospace">{"}"}</text>
-            <text x="16" y="174" fill="#6ee7b7" font-size="9" font-family="monospace">// Tech: Next.js · TypeScript · Tailwind · Kotlin (Android) · Figma</text>
-            <rect x="16" y="182" width="6" height="10" fill="#C084FC" opacity="0.7"><animate attributeName="opacity" values="0.7;0;0.7" dur="1.2s" repeatCount="indefinite"/></rect>
-            </svg>
-            <div class="slide-caption">TypeScript frontend — personalised recommendation logic</div>
-          </div>
-        </div>
-        <button class="slider-btn prev">&#8249;</button>
-        <button class="slider-btn next">&#8250;</button>
-        <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">PM · UX · Frontend</span><span class="proj-year">2025</span></div>
-        <div class="proj-name">KU Eater</div>
-        <div class="proj-context">Senior Capstone Project (Team)</div>
-        <div class="proj-desc">Personalised food recommendation platform for KU cafeterias. Solves decision fatigue via smart recommendations, peer reviews, and menu browsing. Web app + Android companion.</div>
-        <div class="proj-tech"><span>Next.js</span><span>TypeScript</span><span>Kotlin</span><span>Figma</span><span>Tailwind CSS</span></div>
-        <div class="proj-links">
-          <a href="https://github.com/ProudHokori/ku-eater-android" target="_blank" class="proj-link"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="proj-card tilt-card reveal" data-tags="pm dev">
-      <div class="proj-slider">
-        <div class="slider-track">
-          <!-- Slide 1: Booking Calendar -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#080818"/>
-            <rect x="0" y="0" width="560" height="28" fill="#0f0e2a"/>
-            <text x="16" y="18" fill="#818CF8" font-size="9" font-family="Inter" font-weight="600">Courtly</text>
-            <text x="280" y="18" text-anchor="middle" fill="#9d9abf" font-size="8" font-family="Inter">Court Booking — Week View</text>
-            <!-- time labels -->
-            <text x="50" y="46" fill="#524b75" font-size="7" font-family="Inter" text-anchor="middle">09:00</text>
-            <text x="50" y="68" fill="#524b75" font-size="7" font-family="Inter" text-anchor="middle">10:00</text>
-            <text x="50" y="90" fill="#524b75" font-size="7" font-family="Inter" text-anchor="middle">11:00</text>
-            <text x="50" y="112" fill="#524b75" font-size="7" font-family="Inter" text-anchor="middle">12:00</text>
-            <text x="50" y="134" fill="#524b75" font-size="7" font-family="Inter" text-anchor="middle">13:00</text>
-            <text x="50" y="156" fill="#524b75" font-size="7" font-family="Inter" text-anchor="middle">14:00</text>
-            <!-- day headers -->
-            <text x="118" y="38" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="Inter">Mon</text>
-            <text x="193" y="38" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="Inter">Tue</text>
-            <text x="268" y="38" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="Inter">Wed</text>
-            <text x="343" y="38" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="Inter">Thu</text>
-            <text x="418" y="38" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="Inter">Fri</text>
-            <text x="493" y="38" text-anchor="middle" fill="#c4b5fd" font-size="8" font-family="Inter">Sat</text>
-            <!-- slots: col width=75, start x=80 -->
-            <!-- booked = #1e1c40 text muted; available = #0f1a30 text accent; selected = #2a1845 highlight -->
-            <!-- Mon -->
-            <rect x="81" y="42" width="74" height="20" rx="3" fill="#1e1c40"/><text x="118" y="55" text-anchor="middle" fill="#524b75" font-size="7" font-family="Inter">Booked</text>
-            <rect x="81" y="64" width="74" height="20" rx="3" fill="#0d2030"/><text x="118" y="77" text-anchor="middle" fill="#818CF8" font-size="7" font-family="Inter">Available</text>
-            <rect x="81" y="86" width="74" height="20" rx="3" fill="#2a1845" stroke="#818CF8" stroke-width="0.8"/><text x="118" y="99" text-anchor="middle" fill="#c4b5fd" font-size="7" font-family="Inter">Selected ✓</text>
-            <rect x="81" y="108" width="74" height="20" rx="3" fill="#1e1c40"/><text x="118" y="121" text-anchor="middle" fill="#524b75" font-size="7" font-family="Inter">Booked</text>
-            <rect x="81" y="130" width="74" height="20" rx="3" fill="#0d2030"/><text x="118" y="143" text-anchor="middle" fill="#818CF8" font-size="7" font-family="Inter">Available</text>
-            <rect x="81" y="152" width="74" height="20" rx="3" fill="#1e1c40"/><text x="118" y="165" text-anchor="middle" fill="#524b75" font-size="7" font-family="Inter">Booked</text>
-            <!-- Tue -->
-            <rect x="156" y="42" width="74" height="20" rx="3" fill="#0d2030"/><text x="193" y="55" text-anchor="middle" fill="#818CF8" font-size="7" font-family="Inter">Available</text>
-            <rect x="156" y="64" width="74" height="20" rx="3" fill="#0d2030"/><text x="193" y="77" text-anchor="middle" fill="#818CF8" font-size="7" font-family="Inter">Available</text>
-            <rect x="156" y="86" width="74" height="20" rx="3" fill="#1e1c40"/><text x="193" y="99" text-anchor="middle" fill="#524b75" font-size="7" font-family="Inter">Booked</text>
-            <rect x="156" y="108" width="74" height="20" rx="3" fill="#0d2030"/><text x="193" y="121" text-anchor="middle" fill="#818CF8" font-size="7" font-family="Inter">Available</text>
-            <rect x="156" y="130" width="74" height="20" rx="3" fill="#1e1c40"/><text x="193" y="143" text-anchor="middle" fill="#524b75" font-size="7" font-family="Inter">Booked</text>
-            <rect x="156" y="152" width="74" height="20" rx="3" fill="#0d2030"/><text x="193" y="165" text-anchor="middle" fill="#818CF8" font-size="7" font-family="Inter">Available</text>
-            <!-- summary -->
-            <rect x="81" y="174" width="304" height="18" rx="3" fill="#13113a"/>
-            <text x="233" y="186" text-anchor="middle" fill="#818CF8" font-size="7.5" font-family="Inter">Court A — Mon 11:00–12:00 selected · Confirm booking?</text>
-            </svg>
-            <div class="slide-caption">Court booking calendar — availability view for players</div>
-          </div>
-          <!-- Slide 2: Manager Dashboard -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#080818"/>
-            <rect x="0" y="0" width="560" height="28" fill="#0f0e2a"/>
-            <text x="16" y="18" fill="#818CF8" font-size="9" font-family="Inter" font-weight="600">Manager Dashboard</text>
-            <rect x="420" y="8" width="68" height="14" rx="4" fill="#2a1845"/>
-            <text x="454" y="18" text-anchor="middle" fill="#818CF8" font-size="7" font-family="Inter">Check In</text>
-            <!-- stats row -->
-            <rect x="16" y="36" width="120" height="44" rx="6" fill="#0f0e2a" stroke="#1c1a38"/>
-            <text x="76" y="54" text-anchor="middle" fill="#818CF8" font-size="18" font-family="Inter" font-weight="700">8</text>
-            <text x="76" y="68" text-anchor="middle" fill="#524b75" font-size="7" font-family="Inter">Courts Today</text>
-            <rect x="148" y="36" width="120" height="44" rx="6" fill="#0f0e2a" stroke="#1c1a38"/>
-            <text x="208" y="54" text-anchor="middle" fill="#34D399" font-size="18" font-family="Inter" font-weight="700">24</text>
-            <text x="208" y="68" text-anchor="middle" fill="#524b75" font-size="7" font-family="Inter">Bookings</text>
-            <rect x="280" y="36" width="120" height="44" rx="6" fill="#0f0e2a" stroke="#1c1a38"/>
-            <text x="340" y="54" text-anchor="middle" fill="#fbbf24" font-size="18" font-family="Inter" font-weight="700">3</text>
-            <text x="340" y="68" text-anchor="middle" fill="#524b75" font-size="7" font-family="Inter">Pending Check-in</text>
-            <rect x="412" y="36" width="132" height="44" rx="6" fill="#0f0e2a" stroke="#1c1a38"/>
-            <text x="478" y="54" text-anchor="middle" fill="#fb923c" font-size="18" font-family="Inter" font-weight="700">1</text>
-            <text x="478" y="68" text-anchor="middle" fill="#524b75" font-size="7" font-family="Inter">No-show</text>
-            <!-- booking table -->
-            <rect x="16" y="88" width="528" height="16" rx="3" fill="#131240"/>
-            <text x="26" y="99" fill="#524b75" font-size="7" font-family="Inter">BOOKING ID</text>
-            <text x="130" y="99" fill="#524b75" font-size="7" font-family="Inter">COURT</text>
-            <text x="200" y="99" fill="#524b75" font-size="7" font-family="Inter">TIME</text>
-            <text x="280" y="99" fill="#524b75" font-size="7" font-family="Inter">PLAYER</text>
-            <text x="400" y="99" fill="#524b75" font-size="7" font-family="Inter">STATUS</text>
-            <!-- rows -->
-            <rect x="16" y="106" width="528" height="18" rx="2" fill="#0f0d20"/>
-            <text x="26" y="118" fill="#9d9abf" font-size="7.5" font-family="monospace">#CT-2401</text>
-            <text x="130" y="118" fill="#9d9abf" font-size="7.5" font-family="Inter">Court A</text>
-            <text x="200" y="118" fill="#9d9abf" font-size="7.5" font-family="Inter">09:00–10:00</text>
-            <text x="280" y="118" fill="#9d9abf" font-size="7.5" font-family="Inter">Thanawut K.</text>
-            <rect x="395" y="109" width="48" height="12" rx="6" fill="#0d2015"/>
-            <text x="419" y="118" text-anchor="middle" fill="#34D399" font-size="7" font-family="Inter">Checked In</text>
-            <rect x="16" y="126" width="528" height="18" rx="2" fill="#13112a"/>
-            <text x="26" y="138" fill="#9d9abf" font-size="7.5" font-family="monospace">#CT-2402</text>
-            <text x="130" y="138" fill="#9d9abf" font-size="7.5" font-family="Inter">Court B</text>
-            <text x="200" y="138" fill="#9d9abf" font-size="7.5" font-family="Inter">10:00–11:00</text>
-            <text x="280" y="138" fill="#9d9abf" font-size="7.5" font-family="Inter">Siriwan P.</text>
-            <rect x="395" y="129" width="52" height="12" rx="6" fill="#2a1a00"/>
-            <text x="421" y="138" text-anchor="middle" fill="#fbbf24" font-size="7" font-family="Inter">Pending</text>
-            <rect x="16" y="146" width="528" height="18" rx="2" fill="#0f0d20"/>
-            <text x="26" y="158" fill="#9d9abf" font-size="7.5" font-family="monospace">#CT-2403</text>
-            <text x="130" y="158" fill="#9d9abf" font-size="7.5" font-family="Inter">Court A</text>
-            <text x="200" y="158" fill="#9d9abf" font-size="7.5" font-family="Inter">11:00–12:00</text>
-            <text x="280" y="158" fill="#9d9abf" font-size="7.5" font-family="Inter">Proud R.</text>
-            <rect x="395" y="149" width="60" height="12" rx="6" fill="#2a1845"/>
-            <text x="425" y="158" text-anchor="middle" fill="#c4b5fd" font-size="7" font-family="Inter">Confirmed</text>
-            </svg>
-            <div class="slide-caption">Manager dashboard — check-in tracking and court operations</div>
-          </div>
-          <!-- Slide 3: Tech + What I Learned -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0a0c10"/>
-            <rect x="0" y="0" width="560" height="22" fill="#111520"/>
-            <text x="16" y="14" fill="#818CF8" font-size="8" font-family="monospace">docker-compose.yml + JWT Auth flow</text>
-            <text x="16" y="38" fill="#818CF8" font-size="9" font-family="monospace">services</text><text x="68" y="38" fill="#c4b5fd" font-size="9" font-family="monospace">:</text>
-            <text x="32" y="52" fill="#34D399" font-size="9" font-family="monospace">  frontend</text><text x="98" y="52" fill="#c4b5fd" font-size="9" font-family="monospace">: image: next-app</text>
-            <text x="32" y="66" fill="#34D399" font-size="9" font-family="monospace">  backend</text><text x="94" y="66" fill="#c4b5fd" font-size="9" font-family="monospace">:  image: api-server</text>
-            <text x="32" y="80" fill="#34D399" font-size="9" font-family="monospace">  db</text><text x="54" y="80" fill="#c4b5fd" font-size="9" font-family="monospace">:          image: postgres:15</text>
-            <text x="16" y="98" fill="#6ee7b7" font-size="9" font-family="monospace"># JWT: login → token → protected routes</text>
-            <text x="16" y="114" fill="#818CF8" font-size="9" font-family="monospace">const</text><text x="52" y="114" fill="#6366f1" font-size="9" font-family="monospace"> token</text><text x="84" y="114" fill="#c4b5fd" font-size="9" font-family="monospace"> = jwt.sign({userId, role}, SECRET)</text>
-            <!-- what I learned -->
-            <rect x="16" y="128" width="528" height="56" rx="6" fill="#0f0d20" stroke="#1c1a38"/>
-            <text x="26" y="142" fill="#818CF8" font-size="8" font-family="Inter" font-weight="600">What I learned as PM/PO on Courtly</text>
-            <text x="26" y="156" fill="#7c73a8" font-size="7.5" font-family="Inter">· Owned full backlog: wrote user stories, acceptance criteria, sprint goals under deadline pressure</text>
-            <text x="26" y="168" fill="#7c73a8" font-size="7.5" font-family="Inter">· Negotiated scope cuts mid-sprint when timeline tightened — kept team morale and output quality</text>
-            <text x="26" y="180" fill="#7c73a8" font-size="7.5" font-family="Inter">· Built frontend + API while PM-ing — proved I can lead AND build simultaneously</text>
-            </svg>
-            <div class="slide-caption">Docker + JWT auth stack — PM/PO + frontend developer in one</div>
-          </div>
-        </div>
-        <button class="slider-btn prev">&#8249;</button>
-        <button class="slider-btn next">&#8250;</button>
-        <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">PM · Frontend · QA</span><span class="proj-year">2025</span></div>
-        <div class="proj-name">Courtly</div>
-        <div class="proj-context">Team Project</div>
-        <div class="proj-desc">Full-stack badminton court management and booking system for real Thai operators. Dual-role: players browse and reserve; managers handle check-in, scheduling, and operations.</div>
-        <div class="proj-tech"><span>Next.js</span><span>TypeScript</span><span>PostgreSQL</span><span>Docker</span><span>JWT Auth</span></div>
-        <div class="proj-links">
-          <a href="https://github.com/Courtly-Badminton-Court-Management/courtly-project" target="_blank" class="proj-link"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="proj-card tilt-card reveal" data-tags="pm dev">
-      <div class="proj-slider">
-        <div class="slider-track">
-          <!-- Slide 1: App UI -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0f0800"/>
-            <rect x="0" y="0" width="560" height="28" fill="#1a0e00"/>
-            <text x="16" y="17" fill="#F97316" font-size="9" font-family="Inter" font-weight="600">FurStay</text>
-            <text x="80" y="17" fill="#7a5530" font-size="7.5" font-family="Inter">Find a trusted pet sitter near you</text>
-            <rect x="400" y="8" width="80" height="14" rx="4" fill="#2a1200"/>
-            <text x="440" y="18" text-anchor="middle" fill="#F97316" font-size="7" font-family="Inter">Book Now</text>
-            <!-- sitter cards -->
-            <rect x="16" y="36" width="162" height="80" rx="6" fill="#1a0e00" stroke="#F97316" stroke-width="0.8"/>
-            <circle cx="48" cy="64" r="18" fill="#2a1500"/>
-            <text x="48" y="69" text-anchor="middle" fill="#F97316" font-size="14" font-family="Inter">🐾</text>
-            <text x="80" y="55" fill="#ede9fe" font-size="8" font-family="Inter" font-weight="600">Narak Sitter</text>
-            <text x="80" y="67" fill="#9d7060" font-size="7" font-family="Inter">Dogs · Cats · Rabbits</text>
-            <text x="80" y="79" fill="#F97316" font-size="8" font-family="Inter">★ 4.9  (47 reviews)</text>
-            <text x="16" y="106" fill="#9d7060" font-size="7" font-family="Inter">฿200/night</text>
-            <text x="100" y="106" fill="#34D399" font-size="7" font-family="Inter">Available ●</text>
-            <rect x="190" y="36" width="162" height="80" rx="6" fill="#1a0e00" stroke="#F97316" stroke-width="0.8"/>
-            <circle cx="222" cy="64" r="18" fill="#2a1500"/>
-            <text x="222" y="69" text-anchor="middle" fill="#F97316" font-size="14" font-family="Inter">🐶</text>
-            <text x="254" y="55" fill="#ede9fe" font-size="8" font-family="Inter" font-weight="600">Happy Paws</text>
-            <text x="254" y="67" fill="#9d7060" font-size="7" font-family="Inter">Dogs only · Home visit</text>
-            <text x="254" y="79" fill="#F97316" font-size="8" font-family="Inter">★ 4.7  (31 reviews)</text>
-            <text x="190" y="106" fill="#9d7060" font-size="7" font-family="Inter">฿150/night</text>
-            <text x="274" y="106" fill="#34D399" font-size="7" font-family="Inter">Available ●</text>
-            <!-- booking flow right -->
-            <rect x="364" y="36" width="180" height="148" rx="6" fill="#150a00" stroke="#F97316" stroke-width="0.8"/>
-            <text x="454" y="52" text-anchor="middle" fill="#F97316" font-size="8" font-family="Inter" font-weight="600">Booking Flow</text>
-            <rect x="374" y="58" width="160" height="14" rx="3" fill="#1e1000"/>
-            <text x="454" y="68" text-anchor="middle" fill="#9d7060" font-size="7" font-family="Inter">Select Pet Type</text>
-            <text x="374" y="84" fill="#F97316" font-size="9" font-family="Inter">↓</text>
-            <rect x="374" y="88" width="160" height="14" rx="3" fill="#1e1000"/>
-            <text x="454" y="98" text-anchor="middle" fill="#9d7060" font-size="7" font-family="Inter">Choose Dates</text>
-            <text x="374" y="114" fill="#F97316" font-size="9" font-family="Inter">↓</text>
-            <rect x="374" y="118" width="160" height="14" rx="3" fill="#1e1000"/>
-            <text x="454" y="128" text-anchor="middle" fill="#9d7060" font-size="7" font-family="Inter">Pick a Sitter</text>
-            <text x="374" y="144" fill="#F97316" font-size="9" font-family="Inter">↓</text>
-            <rect x="374" y="148" width="160" height="14" rx="3" fill="#2a1200" stroke="#F97316" stroke-width="0.5"/>
-            <text x="454" y="158" text-anchor="middle" fill="#F97316" font-size="7" font-family="Inter">Confirm + Pay</text>
-            <!-- bottom -->
-            <rect x="16" y="124" width="336" height="48" rx="6" fill="#150a00"/>
-            <text x="26" y="140" fill="#F97316" font-size="8" font-family="Inter" font-weight="600">3 User Roles · NextAuth RBAC</text>
-            <text x="26" y="153" fill="#7a5530" font-size="7" font-family="Inter">Pet Owner: browse, book, track</text>
-            <text x="26" y="164" fill="#7a5530" font-size="7" font-family="Inter">Sitter: manage requests, set availability</text>
-            </svg>
-            <div class="slide-caption">Pet-sitting marketplace — owner, sitter, and admin roles</div>
-          </div>
-          <!-- Slide 2: Architecture -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0f0800"/>
-            <text x="280" y="18" text-anchor="middle" fill="#F97316" font-size="8" font-family="Inter" font-weight="600" opacity="0.6">LAYERED ARCHITECTURE — JUSTIFIED TECH CHOICES</text>
-            <!-- 3 role boxes top -->
-            <rect x="30" y="28" width="140" height="52" rx="6" fill="#1a0e00" stroke="#F97316" stroke-width="0.8"/>
-            <text x="100" y="46" text-anchor="middle" fill="#F97316" font-size="9" font-family="Inter" font-weight="600">Pet Owner</text>
-            <text x="100" y="58" text-anchor="middle" fill="#9d7060" font-size="7" font-family="Inter">Browse · Book · Track</text>
-            <text x="100" y="70" text-anchor="middle" fill="#9d7060" font-size="7" font-family="Inter">NextAuth session</text>
-            <rect x="210" y="28" width="140" height="52" rx="6" fill="#1a0e00" stroke="#F97316" stroke-width="0.8"/>
-            <text x="280" y="46" text-anchor="middle" fill="#F97316" font-size="9" font-family="Inter" font-weight="600">Pet Sitter</text>
-            <text x="280" y="58" text-anchor="middle" fill="#9d7060" font-size="7" font-family="Inter">Manage · Accept · Earn</text>
-            <text x="280" y="70" text-anchor="middle" fill="#9d7060" font-size="7" font-family="Inter">Role-based routes</text>
-            <rect x="390" y="28" width="140" height="52" rx="6" fill="#1a0e00" stroke="#F97316" stroke-width="0.8"/>
-            <text x="460" y="46" text-anchor="middle" fill="#F97316" font-size="9" font-family="Inter" font-weight="600">Admin</text>
-            <text x="460" y="58" text-anchor="middle" fill="#9d7060" font-size="7" font-family="Inter">Oversee · Moderate</text>
-            <text x="460" y="70" text-anchor="middle" fill="#9d7060" font-size="7" font-family="Inter">Full access</text>
-            <!-- arrows down -->
-            <line x1="100" y1="80" x2="100" y2="100" stroke="#F97316" stroke-width="0.8" stroke-dasharray="3,2"/>
-            <line x1="280" y1="80" x2="280" y2="100" stroke="#F97316" stroke-width="0.8" stroke-dasharray="3,2"/>
-            <line x1="460" y1="80" x2="460" y2="100" stroke="#F97316" stroke-width="0.8" stroke-dasharray="3,2"/>
-            <!-- middle layer Next.js -->
-            <rect x="30" y="100" width="500" height="32" rx="6" fill="#1e1200" stroke="#F97316" stroke-width="0.8"/>
-            <text x="280" y="112" text-anchor="middle" fill="#F97316" font-size="8" font-family="Inter" font-weight="600">Next.js + TypeScript (Frontend + API Routes)</text>
-            <text x="280" y="124" text-anchor="middle" fill="#7a5530" font-size="7" font-family="Inter">NextAuth · Prisma ORM · Tailwind CSS</text>
-            <!-- arrow -->
-            <line x1="280" y1="132" x2="280" y2="152" stroke="#F97316" stroke-width="0.8" stroke-dasharray="3,2"/>
-            <!-- db layer -->
-            <rect x="30" y="152" width="500" height="30" rx="6" fill="#1e1200" stroke="#F97316" stroke-width="0.8"/>
-            <text x="280" y="164" text-anchor="middle" fill="#F97316" font-size="8" font-family="Inter" font-weight="600">PostgreSQL — Prisma Schema (Booking, User, Pet, Service)</text>
-            <text x="280" y="175" text-anchor="middle" fill="#7a5530" font-size="7" font-family="Inter">Each layer choice justified by requirement: type-safe ORM, RBAC at session level, relational data model</text>
-            </svg>
-            <div class="slide-caption">Deliberate layered architecture — every tech choice justified</div>
-          </div>
-          <!-- Slide 3: Prisma schema -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0a0c10"/>
-            <rect x="0" y="0" width="560" height="22" fill="#111520"/>
-            <text x="16" y="14" fill="#F97316" font-size="8" font-family="monospace">schema.prisma — FurStay data model</text>
-            <text x="16" y="38" fill="#818CF8" font-size="9" font-family="monospace">model</text><text x="60" y="38" fill="#34D399" font-size="9" font-family="monospace"> Booking </text><text x="114" y="38" fill="#c4b5fd" font-size="9" font-family="monospace">{"{"}</text>
-            <text x="32" y="52" fill="#6366f1" font-size="9" font-family="monospace">  id</text><text x="54" y="52" fill="#c4b5fd" font-size="9" font-family="monospace">       String   </text><text x="168" y="52" fill="#818CF8" font-size="9" font-family="monospace">@id @default</text><text x="260" y="52" fill="#c4b5fd" font-size="9" font-family="monospace">(cuid())</text>
-            <text x="32" y="66" fill="#6366f1" font-size="9" font-family="monospace">  status</text><text x="82" y="66" fill="#818CF8" font-size="9" font-family="monospace">  BookingStatus</text>
-            <text x="32" y="80" fill="#6366f1" font-size="9" font-family="monospace">  startDate</text><text x="98" y="80" fill="#818CF8" font-size="9" font-family="monospace"> DateTime</text>
-            <text x="32" y="94" fill="#6366f1" font-size="9" font-family="monospace">  owner</text><text x="80" y="94" fill="#818CF8" font-size="9" font-family="monospace">    User</text><text x="114" y="94" fill="#c4b5fd" font-size="9" font-family="monospace">     </text><text x="118" y="94" fill="#818CF8" font-size="9" font-family="monospace">@relation</text><text x="184" y="94" fill="#c4b5fd" font-size="9" font-family="monospace">(fields:[ownerId])</text>
-            <text x="32" y="108" fill="#6366f1" font-size="9" font-family="monospace">  sitter</text><text x="80" y="108" fill="#818CF8" font-size="9" font-family="monospace">   User</text><text x="118" y="108" fill="#818CF8" font-size="9" font-family="monospace">     @relation</text><text x="184" y="108" fill="#c4b5fd" font-size="9" font-family="monospace">(fields:[sitterId])</text>
-            <text x="16" y="122" fill="#c4b5fd" font-size="9" font-family="monospace">{"}"}</text>
-            <text x="16" y="140" fill="#6ee7b7" font-size="9" font-family="monospace">// enum BookingStatus { PENDING CONFIRMED COMPLETED CANCELLED }</text>
-            <rect x="16" y="152" width="528" height="32" rx="5" fill="#0f0d20" stroke="#1c1a38"/>
-            <text x="26" y="165" fill="#F97316" font-size="8" font-family="Inter" font-weight="600">Skills learned:</text>
-            <text x="26" y="177" fill="#7a5530" font-size="7.5" font-family="Inter">Prisma ORM · RBAC with NextAuth · relational data modelling · full-stack architecture design</text>
-            </svg>
-            <div class="slide-caption">Prisma ORM schema — type-safe relational data model</div>
-          </div>
-        </div>
-        <button class="slider-btn prev">&#8249;</button>
-        <button class="slider-btn next">&#8250;</button>
-        <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">PM · Full-stack</span><span class="proj-year">2026</span></div>
-        <div class="proj-name">FurStay</div>
-        <div class="proj-context">Team Project</div>
-        <div class="proj-desc">Pet-sitting service platform with three distinct user roles (Pet Owner, Pet Sitter, Admin). Deliberate layered architecture where each tech choice was justified per layer.</div>
-        <div class="proj-tech"><span>Next.js</span><span>Prisma ORM</span><span>NextAuth</span><span>PostgreSQL</span></div>
-        <div class="proj-links">
-          <a href="https://github.com/ProudHokori/FurStay" target="_blank" class="proj-link"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="proj-card tilt-card reveal" data-tags="ux">
-      <div class="proj-slider">
-        <div class="slider-track">
-          <!-- Slide 1: App Mockup -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0f0c00"/>
-            <!-- phone -->
-            <rect x="30" y="8" width="108" height="184" rx="14" fill="#1a1500" stroke="#F59E0B" stroke-width="1.2"/>
-            <rect x="40" y="22" width="88" height="162" rx="6" fill="#110e00"/>
-            <rect x="40" y="22" width="88" height="22" rx="6" fill="#1e1a00"/>
-            <text x="84" y="37" text-anchor="middle" fill="#F59E0B" font-size="8" font-family="Inter" font-weight="600">EcoWear</text>
-            <!-- filter bar -->
-            <rect x="43" y="48" width="82" height="10" rx="3" fill="#1e1a00"/>
-            <rect x="43" y="48" width="22" height="10" rx="3" fill="#F59E0B" opacity="0.2"/>
-            <text x="54" y="56" text-anchor="middle" fill="#F59E0B" font-size="5.5" font-family="Inter">All</text>
-            <text x="72" y="56" text-anchor="middle" fill="#6b5a20" font-size="5.5" font-family="Inter">Tops</text>
-            <text x="90" y="56" text-anchor="middle" fill="#6b5a20" font-size="5.5" font-family="Inter">Pants</text>
-            <!-- product grid -->
-            <rect x="43" y="62" width="38" height="48" rx="4" fill="#1e1a00"/>
-            <rect x="43" y="62" width="38" height="32" rx="4" fill="#2a2200"/>
-            <rect x="43" y="96" width="22" height="6" rx="2" fill="#1a1500"/>
-            <rect x="43" y="104" width="16" height="4" rx="2" fill="#F59E0B" opacity="0.4"/>
-            <rect x="85" y="62" width="38" height="48" rx="4" fill="#1e1a00"/>
-            <rect x="85" y="62" width="38" height="32" rx="4" fill="#2a2200"/>
-            <rect x="85" y="96" width="22" height="6" rx="2" fill="#1a1500"/>
-            <rect x="85" y="104" width="16" height="4" rx="2" fill="#F59E0B" opacity="0.4"/>
-            <rect x="43" y="114" width="38" height="48" rx="4" fill="#1e1a00"/>
-            <rect x="43" y="114" width="38" height="32" rx="4" fill="#2a2200"/>
-            <!-- eco badge -->
-            <rect x="43" y="62" width="18" height="8" rx="3" fill="#0d2015"/>
-            <text x="52" y="69" text-anchor="middle" fill="#34D399" font-size="5" font-family="Inter">ECO</text>
-            <!-- right side -->
-            <text x="175" y="28" fill="#F59E0B" font-size="9" font-family="Inter" font-weight="600">EcoWear</text>
-            <text x="175" y="42" fill="#8a7040" font-size="7.5" font-family="Inter">Sustainable fashion shopping app</text>
-            <text x="175" y="58" fill="#8a7040" font-size="7.5" font-family="Inter">Making eco-conscious choices feel</text>
-            <text x="175" y="70" fill="#8a7040" font-size="7.5" font-family="Inter">easy and rewarding, not effortful.</text>
-            <rect x="175" y="84" width="360" height="1" fill="#2a2000" opacity="0.5"/>
-            <text x="175" y="100" fill="#F59E0B" font-size="8" font-family="Inter" font-weight="600">Key Design Decisions</text>
-            <text x="175" y="114" fill="#8a7040" font-size="7.5" font-family="Inter">· Eco-badge system: visible at a glance</text>
-            <text x="175" y="126" fill="#8a7040" font-size="7.5" font-family="Inter">· Sustainability score per item (0–100)</text>
-            <text x="175" y="138" fill="#8a7040" font-size="7.5" font-family="Inter">· "Good choice" micro-reward on purchase</text>
-            <text x="175" y="150" fill="#8a7040" font-size="7.5" font-family="Inter">· Filter by: material · impact · brand</text>
-            <rect x="175" y="162" width="80" height="16" rx="5" fill="#1e1a00" stroke="#F59E0B" stroke-width="0.8"/>
-            <text x="215" y="173" text-anchor="middle" fill="#F59E0B" font-size="7" font-family="Inter">Figma · Hi-Fi</text>
-            </svg>
-            <div class="slide-caption">Sustainable fashion app — eco-badges, scores, reward UX</div>
-          </div>
-          <!-- Slide 2: Persona + Journey -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0f0c00"/>
-            <text x="16" y="16" fill="#F59E0B" font-size="8" font-family="Inter" font-weight="600" opacity="0.6">USER PERSONA</text>
-            <!-- persona card -->
-            <rect x="16" y="24" width="240" height="100" rx="8" fill="#1a1500" stroke="#F59E0B" stroke-width="0.8"/>
-            <circle cx="54" cy="64" r="22" fill="#2a2000"/>
-            <text x="54" y="70" text-anchor="middle" fill="#F59E0B" font-size="16" font-family="Inter">👩</text>
-            <text x="90" y="42" fill="#ede9fe" font-size="9" font-family="Inter" font-weight="600">Pim, 24</text>
-            <text x="90" y="54" fill="#8a7040" font-size="7" font-family="Inter">University student · Bangkok</text>
-            <text x="90" y="68" fill="#F59E0B" font-size="7" font-family="Inter" font-weight="600">Goals</text>
-            <text x="90" y="79" fill="#8a7040" font-size="7" font-family="Inter">Buy clothes I feel good about</text>
-            <text x="90" y="90" fill="#8a7040" font-size="7" font-family="Inter">Know what "eco" actually means</text>
-            <text x="16" y="116" fill="#F59E0B" font-size="7" font-family="Inter" font-weight="600">Pain</text>
-            <text x="50" y="116" fill="#8a7040" font-size="7" font-family="Inter">Can't tell if a brand is truly sustainable</text>
-            <!-- journey map -->
-            <text x="16" y="140" fill="#F59E0B" font-size="8" font-family="Inter" font-weight="600" opacity="0.6">USER JOURNEY</text>
-            <rect x="16" y="148" width="80" height="40" rx="5" fill="#1a1500" stroke="#F59E0B" stroke-width="0.6"/>
-            <text x="56" y="163" text-anchor="middle" fill="#F59E0B" font-size="7.5" font-family="Inter" font-weight="600">Discover</text>
-            <text x="56" y="175" text-anchor="middle" fill="#8a7040" font-size="6.5" font-family="Inter">Sees eco-badge</text>
-            <text x="56" y="184" text-anchor="middle" fill="#8a7040" font-size="6.5" font-family="Inter">in feed</text>
-            <text x="102" y="170" fill="#F59E0B" font-size="10" font-family="Inter">→</text>
-            <rect x="112" y="148" width="80" height="40" rx="5" fill="#1a1500" stroke="#F59E0B" stroke-width="0.6"/>
-            <text x="152" y="163" text-anchor="middle" fill="#F59E0B" font-size="7.5" font-family="Inter" font-weight="600">Browse</text>
-            <text x="152" y="175" text-anchor="middle" fill="#8a7040" font-size="6.5" font-family="Inter">Filters by</text>
-            <text x="152" y="184" text-anchor="middle" fill="#8a7040" font-size="6.5" font-family="Inter">material</text>
-            <text x="198" y="170" fill="#F59E0B" font-size="10" font-family="Inter">→</text>
-            <rect x="208" y="148" width="80" height="40" rx="5" fill="#1a1500" stroke="#F59E0B" stroke-width="0.6"/>
-            <text x="248" y="163" text-anchor="middle" fill="#F59E0B" font-size="7.5" font-family="Inter" font-weight="600">Evaluate</text>
-            <text x="248" y="175" text-anchor="middle" fill="#8a7040" font-size="6.5" font-family="Inter">Reads score</text>
-            <text x="248" y="184" text-anchor="middle" fill="#8a7040" font-size="6.5" font-family="Inter">&amp; reviews</text>
-            <text x="294" y="170" fill="#F59E0B" font-size="10" font-family="Inter">→</text>
-            <rect x="304" y="148" width="80" height="40" rx="5" fill="#1a1500" stroke="#F59E0B" stroke-width="0.6"/>
-            <text x="344" y="163" text-anchor="middle" fill="#F59E0B" font-size="7.5" font-family="Inter" font-weight="600">Purchase</text>
-            <text x="344" y="175" text-anchor="middle" fill="#8a7040" font-size="6.5" font-family="Inter">Gets "Good</text>
-            <text x="344" y="184" text-anchor="middle" fill="#8a7040" font-size="6.5" font-family="Inter">choice!" reward</text>
-            <text x="390" y="170" fill="#34D399" font-size="10" font-family="Inter">✓</text>
-            <!-- tools -->
-            <rect x="268" y="24" width="280" height="100" rx="8" fill="#1a1500" stroke="#F59E0B" stroke-width="0.6"/>
-            <text x="408" y="40" text-anchor="middle" fill="#F59E0B" font-size="8" font-family="Inter" font-weight="600">Research Methods</text>
-            <text x="278" y="57" fill="#8a7040" font-size="7.5" font-family="Inter">✦ 25 user surveys (Google Forms)</text>
-            <text x="278" y="70" fill="#8a7040" font-size="7.5" font-family="Inter">✦ Affinity mapping of pain points</text>
-            <text x="278" y="83" fill="#8a7040" font-size="7.5" font-family="Inter">✦ 2 persona archetypes created</text>
-            <text x="278" y="96" fill="#8a7040" font-size="7.5" font-family="Inter">✦ Figma: lo-fi → hi-fi → component sys</text>
-            <text x="278" y="110" fill="#8a7040" font-size="7.5" font-family="Inter">✦ Presented to 10-person review panel</text>
-            </svg>
-            <div class="slide-caption">Persona + user journey — research-driven design decisions</div>
-          </div>
-          <!-- Slide 3: Figma wireframes -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#0f0c00"/>
-            <text x="16" y="16" fill="#F59E0B" font-size="8" font-family="Inter" font-weight="600" opacity="0.6">FIGMA — WIREFRAME TO HI-FI PROGRESSION</text>
-            <!-- lo-fi -->
-            <rect x="16" y="24" width="82" height="130" rx="8" fill="#1a1500" stroke="#F59E0B" stroke-width="0.6"/>
-            <text x="57" y="38" text-anchor="middle" fill="#8a7040" font-size="6.5" font-family="Inter">Lo-fi</text>
-            <rect x="24" y="44" width="66" height="8" rx="2" fill="#2a2000"/>
-            <rect x="24" y="56" width="30" height="30" rx="2" fill="#2a2000"/>
-            <rect x="58" y="56" width="30" height="30" rx="2" fill="#2a2000"/>
-            <rect x="24" y="90" width="66" height="6" rx="2" fill="#2a2000"/>
-            <rect x="24" y="100" width="50" height="6" rx="2" fill="#2a2000"/>
-            <rect x="24" y="112" width="30" height="30" rx="2" fill="#2a2000"/>
-            <rect x="58" y="112" width="30" height="30" rx="2" fill="#2a2000"/>
-            <!-- arrow -->
-            <text x="106" y="92" fill="#F59E0B" font-size="14" font-family="Inter">→</text>
-            <!-- mid-fi -->
-            <rect x="122" y="24" width="82" height="130" rx="8" fill="#1a1500" stroke="#F59E0B" stroke-width="0.8"/>
-            <text x="163" y="38" text-anchor="middle" fill="#8a7040" font-size="6.5" font-family="Inter">Mid-fi</text>
-            <rect x="130" y="44" width="66" height="8" rx="2" fill="#251e00"/>
-            <rect x="130" y="56" width="30" height="30" rx="2" fill="#251e00"/>
-            <rect x="164" y="56" width="30" height="30" rx="2" fill="#251e00"/>
-            <rect x="130" y="90" width="48" height="5" rx="2" fill="#251e00"/>
-            <rect x="130" y="99" width="36" height="4" rx="2" fill="#251e00"/>
-            <!-- eco tag -->
-            <rect x="130" y="56" width="16" height="7" rx="2" fill="#0d2015"/>
-            <text x="138" y="62" text-anchor="middle" fill="#34D399" font-size="4.5" font-family="Inter">ECO</text>
-            <!-- arrow -->
-            <text x="212" y="92" fill="#F59E0B" font-size="14" font-family="Inter">→</text>
-            <!-- hi-fi -->
-            <rect x="228" y="24" width="82" height="130" rx="8" fill="#1e1800" stroke="#F59E0B" stroke-width="1.2"/>
-            <text x="269" y="38" text-anchor="middle" fill="#F59E0B" font-size="6.5" font-family="Inter" font-weight="600">Hi-fi</text>
-            <rect x="236" y="44" width="66" height="8" rx="2" fill="#2a2200"/>
-            <rect x="236" y="56" width="30" height="30" rx="3" fill="#2a2200"/>
-            <rect x="270" y="56" width="30" height="30" rx="3" fill="#2a2200"/>
-            <rect x="236" y="56" width="18" height="8" rx="3" fill="#0d2015"/>
-            <text x="245" y="63" text-anchor="middle" fill="#34D399" font-size="5" font-family="Inter">ECO</text>
-            <rect x="236" y="90" width="48" height="5" rx="2" fill="#2a2200"/>
-            <rect x="236" y="99" width="28" height="4" rx="2" fill="#F59E0B" opacity="0.5"/>
-            <rect x="236" y="108" width="66" height="14" rx="4" fill="#F59E0B"/>
-            <text x="269" y="118" text-anchor="middle" fill="#0f0c00" font-size="6" font-family="Inter" font-weight="600">Add to Cart</text>
-            <!-- design system -->
-            <rect x="330" y="24" width="216" height="130" rx="8" fill="#1a1500"/>
-            <text x="438" y="38" text-anchor="middle" fill="#F59E0B" font-size="8" font-family="Inter" font-weight="600">Design System</text>
-            <!-- colors -->
-            <text x="340" y="52" fill="#8a7040" font-size="7" font-family="Inter">Colors</text>
-            <rect x="340" y="56" width="18" height="12" rx="2" fill="#F59E0B"/>
-            <rect x="362" y="56" width="18" height="12" rx="2" fill="#34D399"/>
-            <rect x="384" y="56" width="18" height="12" rx="2" fill="#ede9fe"/>
-            <rect x="406" y="56" width="18" height="12" rx="2" fill="#1a1500"/>
-            <!-- typography -->
-            <text x="340" y="82" fill="#8a7040" font-size="7" font-family="Inter">Typography</text>
-            <text x="340" y="94" fill="#ede9fe" font-size="11" font-family="Inter" font-weight="700">Heading</text>
-            <text x="340" y="106" fill="#ede9fe" font-size="8" font-family="Inter" font-weight="500">Body text</text>
-            <text x="340" y="116" fill="#8a7040" font-size="7" font-family="Inter">Caption</text>
-            <!-- components -->
-            <text x="340" y="132" fill="#8a7040" font-size="7" font-family="Inter">Components</text>
-            <rect x="340" y="136" width="44" height="12" rx="5" fill="#F59E0B"/>
-            <text x="362" y="145" text-anchor="middle" fill="#0f0c00" font-size="6" font-family="Inter" font-weight="600">Primary</text>
-            <rect x="390" y="136" width="44" height="12" rx="5" fill="none" stroke="#F59E0B" stroke-width="0.8"/>
-            <text x="412" y="145" text-anchor="middle" fill="#F59E0B" font-size="6" font-family="Inter">Outline</text>
-            <!-- bottom caption -->
-            <text x="16" y="172" fill="#8a7040" font-size="7.5" font-family="Inter">Skills: UX Research · Persona · Journey Map · Wireframing · Hi-fi Figma · Component System · Design Handoff</text>
-            </svg>
-            <div class="slide-caption">Figma design progression — lo-fi → hi-fi + design system</div>
-          </div>
-        </div>
-        <button class="slider-btn prev">&#8249;</button>
-        <button class="slider-btn next">&#8250;</button>
-        <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">UX/UI Design</span><span class="proj-year">2024</span></div>
-        <div class="proj-name">EcoWear</div>
-        <div class="proj-context">Academic Project</div>
-        <div class="proj-desc">End-to-end UX for a sustainable fashion app. User research, personas, journey mapping, wireframing, and high-fidelity Figma mockups with a cohesive component system.</div>
-        <div class="proj-tech"><span>Figma</span></div>
-        <div class="proj-links"><span class="proj-link" style="opacity:.4;cursor:default"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Figma (private)</span></div>
-      </div>
-    </div>
-
-    <div class="proj-card tilt-card reveal" data-tags="pm ux">
-      <div class="proj-slider">
-        <div class="slider-track">
-          <!-- Slide 1: Scoreboard UI -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#000d1a"/>
-            <rect x="0" y="0" width="560" height="28" fill="#001525"/>
-            <text x="16" y="18" fill="#60A5FA" font-size="9" font-family="Inter" font-weight="600">Referite</text>
-            <text x="280" y="18" text-anchor="middle" fill="#3a7abf" font-size="8" font-family="Inter">Paris 2024 Olympics — Referee Management System</text>
-            <!-- scoreboard -->
-            <rect x="60" y="36" width="200" height="80" rx="6" fill="#001830" stroke="#60A5FA" stroke-width="1"/>
-            <text x="160" y="52" text-anchor="middle" fill="#3a7abf" font-size="8" font-family="Inter">Team A</text>
-            <text x="160" y="98" text-anchor="middle" fill="#60A5FA" font-size="36" font-family="Inter" font-weight="700">3</text>
-            <rect x="280" y="60" width="1" height="44" fill="#60A5FA" opacity="0.3"/>
-            <rect x="300" y="36" width="200" height="80" rx="6" fill="#001830" stroke="#60A5FA" stroke-width="1"/>
-            <text x="400" y="52" text-anchor="middle" fill="#3a7abf" font-size="8" font-family="Inter">Team B</text>
-            <text x="400" y="98" text-anchor="middle" fill="#60A5FA" font-size="36" font-family="Inter" font-weight="700">1</text>
-            <!-- round info -->
-            <rect x="60" y="122" width="440" height="24" rx="4" fill="#001020"/>
-            <text x="160" y="137" text-anchor="middle" fill="#3a7abf" font-size="7.5" font-family="Inter">Round 3 of 5</text>
-            <text x="280" y="137" text-anchor="middle" fill="#60A5FA" font-size="7.5" font-family="Inter">● LIVE</text>
-            <text x="400" y="137" text-anchor="middle" fill="#3a7abf" font-size="7.5" font-family="Inter">Referee: P. Ratchaprapa</text>
-            <!-- action buttons -->
-            <rect x="60" y="152" width="80" height="18" rx="4" fill="#001830" stroke="#60A5FA" stroke-width="0.8"/>
-            <text x="100" y="164" text-anchor="middle" fill="#60A5FA" font-size="7" font-family="Inter">+1 Team A</text>
-            <rect x="148" y="152" width="80" height="18" rx="4" fill="#001830" stroke="#60A5FA" stroke-width="0.8"/>
-            <text x="188" y="164" text-anchor="middle" fill="#60A5FA" font-size="7" font-family="Inter">+1 Team B</text>
-            <rect x="236" y="152" width="80" height="18" rx="4" fill="#001830" stroke="#60A5FA" stroke-width="0.8"/>
-            <text x="276" y="164" text-anchor="middle" fill="#3a7abf" font-size="7" font-family="Inter">Penalty</text>
-            <rect x="324" y="152" width="80" height="18" rx="4" fill="#001e38" stroke="#60A5FA" stroke-width="0.8"/>
-            <text x="364" y="164" text-anchor="middle" fill="#3a7abf" font-size="7" font-family="Inter">End Round</text>
-            <rect x="420" y="152" width="80" height="18" rx="4" fill="#001830" stroke="#60A5FA" stroke-width="0.8"/>
-            <text x="460" y="164" text-anchor="middle" fill="#3a7abf" font-size="7" font-family="Inter">Match End</text>
-            </svg>
-            <div class="slide-caption">Score entry and match management UI — Paris 2024 simulation</div>
-          </div>
-          <!-- Slide 2: Jira Sprint Board -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#000d1a"/>
-            <rect x="0" y="0" width="560" height="22" fill="#001525"/>
-            <text x="16" y="14" fill="#60A5FA" font-size="8" font-family="Inter" font-weight="600">Jira — Sprint 3 Board · Software Process &amp; PM Course</text>
-            <!-- column headers -->
-            <text x="60" y="36" text-anchor="middle" fill="#3a7abf" font-size="8" font-family="Inter" font-weight="600">TO DO</text>
-            <text x="210" y="36" text-anchor="middle" fill="#3a7abf" font-size="8" font-family="Inter" font-weight="600">IN PROGRESS</text>
-            <text x="360" y="36" text-anchor="middle" fill="#3a7abf" font-size="8" font-family="Inter" font-weight="600">IN REVIEW</text>
-            <text x="490" y="36" text-anchor="middle" fill="#34D399" font-size="8" font-family="Inter" font-weight="600">DONE</text>
-            <!-- col dividers -->
-            <line x1="130" y1="28" x2="130" y2="195" stroke="#001e38" stroke-width="1"/>
-            <line x1="290" y1="28" x2="290" y2="195" stroke="#001e38" stroke-width="1"/>
-            <line x1="430" y1="28" x2="430" y2="195" stroke="#001e38" stroke-width="1"/>
-            <!-- to do cards -->
-            <rect x="16" y="42" width="108" height="30" rx="3" fill="#001830" stroke="#60A5FA" stroke-width="0.6"/>
-            <text x="24" y="53" fill="#3a7abf" font-size="6" font-family="monospace">REF-14</text>
-            <text x="24" y="63" fill="#9d9abf" font-size="7" font-family="Inter">Referee assignment</text>
-            <rect x="16" y="76" width="108" height="30" rx="3" fill="#001830" stroke="#60A5FA" stroke-width="0.6"/>
-            <text x="24" y="87" fill="#3a7abf" font-size="6" font-family="monospace">REF-15</text>
-            <text x="24" y="97" fill="#9d9abf" font-size="7" font-family="Inter">Export match report</text>
-            <!-- in progress -->
-            <rect x="146" y="42" width="108" height="30" rx="3" fill="#001e38" stroke="#60A5FA" stroke-width="0.8"/>
-            <text x="154" y="53" fill="#60A5FA" font-size="6" font-family="monospace">REF-11</text>
-            <text x="154" y="63" fill="#9d9abf" font-size="7" font-family="Inter">Score entry UI</text>
-            <rect x="146" y="76" width="108" height="30" rx="3" fill="#001e38" stroke="#60A5FA" stroke-width="0.8"/>
-            <text x="154" y="87" fill="#60A5FA" font-size="6" font-family="monospace">REF-12</text>
-            <text x="154" y="97" fill="#9d9abf" font-size="7" font-family="Inter">Match timer logic</text>
-            <!-- review -->
-            <rect x="306" y="42" width="108" height="30" rx="3" fill="#001525" stroke="#fbbf24" stroke-width="0.6"/>
-            <text x="314" y="53" fill="#fbbf24" font-size="6" font-family="monospace">REF-09</text>
-            <text x="314" y="63" fill="#9d9abf" font-size="7" font-family="Inter">Referee auth flow</text>
-            <!-- done -->
-            <rect x="446" y="42" width="98" height="30" rx="3" fill="#001525" stroke="#34D399" stroke-width="0.6"/>
-            <text x="454" y="53" fill="#34D399" font-size="6" font-family="monospace">REF-01</text>
-            <text x="454" y="63" fill="#9d9abf" font-size="7" font-family="Inter">Figma wireframes</text>
-            <rect x="446" y="76" width="98" height="30" rx="3" fill="#001525" stroke="#34D399" stroke-width="0.6"/>
-            <text x="454" y="87" fill="#34D399" font-size="6" font-family="monospace">REF-03</text>
-            <text x="454" y="97" fill="#9d9abf" font-size="7" font-family="Inter">DB schema design</text>
-            <rect x="446" y="110" width="98" height="30" rx="3" fill="#001525" stroke="#34D399" stroke-width="0.6"/>
-            <text x="454" y="121" fill="#34D399" font-size="6" font-family="monospace">REF-05</text>
-            <text x="454" y="131" fill="#9d9abf" font-size="7" font-family="Inter">Sprint 1 retro</text>
-            <!-- what I learned -->
-            <rect x="16" y="148" width="408" height="36" rx="5" fill="#001020"/>
-            <text x="26" y="162" fill="#60A5FA" font-size="8" font-family="Inter" font-weight="600">Role: Product Owner — ran real Agile ceremonies</text>
-            <text x="26" y="175" fill="#3a7abf" font-size="7" font-family="Inter">Sprint planning · backlog grooming · daily standups · sprint review · retrospective · stakeholder demo</text>
-            </svg>
-            <div class="slide-caption">Real Jira sprint board — PO running full Agile workflow</div>
-          </div>
-          <!-- Slide 3: Figma UI Components -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#000d1a"/>
-            <text x="16" y="16" fill="#60A5FA" font-size="8" font-family="Inter" font-weight="600" opacity="0.6">FIGMA — UI COMPONENTS + LEARNING</text>
-            <!-- button components -->
-            <text x="16" y="34" fill="#3a7abf" font-size="7" font-family="Inter">Button States</text>
-            <rect x="16" y="40" width="80" height="20" rx="5" fill="#60A5FA"/>
-            <text x="56" y="53" text-anchor="middle" fill="#000d1a" font-size="7.5" font-family="Inter" font-weight="600">Primary</text>
-            <rect x="104" y="40" width="80" height="20" rx="5" fill="none" stroke="#60A5FA" stroke-width="1"/>
-            <text x="144" y="53" text-anchor="middle" fill="#60A5FA" font-size="7.5" font-family="Inter">Secondary</text>
-            <rect x="192" y="40" width="80" height="20" rx="5" fill="#001830"/>
-            <text x="232" y="53" text-anchor="middle" fill="#3a7abf" font-size="7.5" font-family="Inter" opacity="0.5">Disabled</text>
-            <!-- input component -->
-            <text x="16" y="78" fill="#3a7abf" font-size="7" font-family="Inter">Score Input</text>
-            <rect x="16" y="84" width="100" height="22" rx="4" fill="#001020" stroke="#60A5FA" stroke-width="0.8"/>
-            <text x="26" y="98" fill="#9d9abf" font-size="8" font-family="monospace">0</text>
-            <text x="100" y="98" fill="#3a7abf" font-size="14" font-family="Inter">+</text>
-            <!-- match card -->
-            <text x="16" y="124" fill="#3a7abf" font-size="7" font-family="Inter">Match Card Component</text>
-            <rect x="16" y="130" width="260" height="52" rx="6" fill="#001525" stroke="#60A5FA" stroke-width="0.8"/>
-            <text x="36" y="145" fill="#60A5FA" font-size="8" font-family="Inter" font-weight="600">Badminton Men's Singles</text>
-            <text x="36" y="157" fill="#3a7abf" font-size="7" font-family="Inter">Court 2 · Round of 16 · 14:30</text>
-            <text x="36" y="170" fill="#34D399" font-size="7" font-family="Inter">● In Progress</text>
-            <text x="230" y="155" fill="#60A5FA" font-size="18" font-family="Inter" font-weight="700">2–1</text>
-            <!-- key learnings -->
-            <rect x="300" y="24" width="245" height="158" rx="8" fill="#001020"/>
-            <text x="310" y="40" fill="#60A5FA" font-size="8" font-family="Inter" font-weight="600">What this project taught me</text>
-            <text x="310" y="56" fill="#3a7abf" font-size="7.5" font-family="Inter">· PO role in a real team, not just theory</text>
-            <text x="310" y="70" fill="#3a7abf" font-size="7.5" font-family="Inter">· Writing stories with clear acceptance</text>
-            <text x="310" y="82" fill="#3a7abf" font-size="7.5" font-family="Inter">  criteria that devs could act on</text>
-            <text x="310" y="96" fill="#3a7abf" font-size="7.5" font-family="Inter">· Coordinating across sub-teams</text>
-            <text x="310" y="110" fill="#3a7abf" font-size="7.5" font-family="Inter">· Managing sprint scope when time</text>
-            <text x="310" y="122" fill="#3a7abf" font-size="7.5" font-family="Inter">  ran short — negotiating trade-offs</text>
-            <text x="310" y="136" fill="#3a7abf" font-size="7.5" font-family="Inter">· Jira end-to-end: epics → stories</text>
-            <text x="310" y="150" fill="#3a7abf" font-size="7.5" font-family="Inter">  → tasks → sub-tasks → done</text>
-            <text x="310" y="166" fill="#60A5FA" font-size="7" font-family="Inter" font-weight="600">Tools: Jira · Figma · Scrum</text>
-            </svg>
-            <div class="slide-caption">Figma components + what I learned as Product Owner</div>
-          </div>
-        </div>
-        <button class="slider-btn prev">&#8249;</button>
-        <button class="slider-btn next">&#8250;</button>
-        <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">PM · UX/UI</span><span class="proj-year">2023</span></div>
-        <div class="proj-name">Referite</div>
-        <div class="proj-context">Software Process &amp; PM Course (Team)</div>
-        <div class="proj-desc">Referee management and sports scoring for a simulated Paris 2024 Olympics suite. Full Agile workflow with sprint planning, backlog grooming, and retrospectives via Jira.</div>
-        <div class="proj-tech"><span>Figma</span><span>Jira</span><span>Agile / Scrum</span></div>
-        <div class="proj-links"><span class="proj-link" style="opacity:.4;cursor:default"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Figma (private)</span></div>
-      </div>
-    </div>
-
-    <div class="proj-card tilt-card reveal" data-tags="dev">
-      <div class="proj-slider">
-        <div class="slider-track">
-          <!-- Slide 1: AppSheet UI -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#030f03"/>
-            <rect x="0" y="0" width="560" height="22" fill="#051505"/>
-            <text x="16" y="14" fill="#4ADE80" font-size="8" font-family="Inter" font-weight="600">Planty — Google AppSheet Interface</text>
-            <!-- phone frame -->
-            <rect x="20" y="30" width="160" height="160" rx="12" fill="#061206" stroke="#4ADE80" stroke-width="1"/>
-            <rect x="30" y="44" width="140" height="138" rx="6" fill="#030f03"/>
-            <rect x="30" y="44" width="140" height="20" rx="6" fill="#071a07"/>
-            <text x="100" y="57" text-anchor="middle" fill="#4ADE80" font-size="8" font-family="Inter" font-weight="600">Planty</text>
-            <text x="30" y="78" fill="#2d8a50" font-size="7" font-family="Inter">Light Level</text>
-            <rect x="30" y="82" width="140" height="14" rx="3" fill="#071a07" stroke="#1a3a20"/>
-            <text x="38" y="92" fill="#4ADE80" font-size="7" font-family="Inter">Low</text>
-            <rect x="30" y="102" fill="#2d8a50" font-size="7" font-family="Inter"/>
-            <text x="30" y="102" fill="#2d8a50" font-size="7" font-family="Inter">Watering Pref</text>
-            <rect x="30" y="106" width="140" height="14" rx="3" fill="#071a07" stroke="#1a3a20"/>
-            <text x="38" y="116" fill="#4ADE80" font-size="7" font-family="Inter">Low (forgetful)</text>
-            <text x="30" y="130" fill="#2d8a50" font-size="7" font-family="Inter">Space</text>
-            <rect x="30" y="134" width="140" height="14" rx="3" fill="#071a07" stroke="#1a3a20"/>
-            <text x="38" y="144" fill="#4ADE80" font-size="7" font-family="Inter">Indoor · Small</text>
-            <rect x="30" y="154" width="140" height="18" rx="5" fill="#4ADE80"/>
-            <text x="100" y="165" text-anchor="middle" fill="#030f03" font-size="7.5" font-family="Inter" font-weight="700">Get Recommendations</text>
-            <!-- result panel -->
-            <rect x="196" y="30" width="348" height="160" rx="8" fill="#061206" stroke="#4ADE80" stroke-width="0.8"/>
-            <text x="214" y="48" fill="#4ADE80" font-size="8" font-family="Inter" font-weight="600">Results — Best matches for you</text>
-            <rect x="210" y="56" width="320" height="36" rx="5" fill="#071a07"/>
-            <text x="220" y="70" fill="#4ADE80" font-size="9" font-family="Inter" font-weight="600">🌵 Succulent</text>
-            <text x="220" y="82" fill="#2d8a50" font-size="7" font-family="Inter">Very low water · Indoor · Thrives in low light</text>
-            <rect x="210" y="96" width="320" height="36" rx="5" fill="#071a07"/>
-            <text x="220" y="110" fill="#4ADE80" font-size="9" font-family="Inter" font-weight="600">🌿 Pothos</text>
-            <text x="220" y="122" fill="#2d8a50" font-size="7" font-family="Inter">Low water · Trailing · Excellent for indoors</text>
-            <rect x="210" y="136" width="320" height="36" rx="5" fill="#071a07"/>
-            <text x="220" y="150" fill="#4ADE80" font-size="9" font-family="Inter" font-weight="600">🪴 Snake Plant</text>
-            <text x="220" y="162" fill="#2d8a50" font-size="7" font-family="Inter">Very low maintenance · Air-purifying</text>
-            </svg>
-            <div class="slide-caption">AppSheet UI — input environment conditions, get plant recommendations</div>
-          </div>
-          <!-- Slide 2: Prolog Code -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#030f03"/>
-            <rect x="0" y="0" width="560" height="22" fill="#051505"/>
-            <text x="16" y="14" fill="#4ADE80" font-size="8" font-family="monospace">planty.pl — Prolog knowledge base</text>
-            <text x="16" y="36" fill="#6b7280" font-size="9" font-family="monospace">/* -- FACTS -- */</text>
-            <text x="16" y="50" fill="#4ADE80" font-size="9" font-family="monospace">plant(succulent). &nbsp;&nbsp;plant(pothos). &nbsp;&nbsp;plant(snake_plant).</text>
-            <text x="16" y="64" fill="#4ADE80" font-size="9" font-family="monospace">water_need(succulent, very_low).  water_need(pothos, low).</text>
-            <text x="16" y="78" fill="#4ADE80" font-size="9" font-family="monospace">light_pref(succulent, any).  light_pref(pothos, low).</text>
-            <text x="16" y="98" fill="#6b7280" font-size="9" font-family="monospace">/* -- INFERENCE RULES -- */</text>
-            <text x="16" y="112" fill="#a78bfa" font-size="9" font-family="monospace">recommend(Plant, User) :-</text>
-            <text x="16" y="126" fill="#c4b5fd" font-size="9" font-family="monospace">    plant(Plant),</text>
-            <text x="16" y="140" fill="#c4b5fd" font-size="9" font-family="monospace">    user_pref(User, water, W),  water_need(Plant, W),</text>
-            <text x="16" y="154" fill="#c4b5fd" font-size="9" font-family="monospace">    user_pref(User, light, L),  light_pref(Plant, L).</text>
-            <text x="16" y="172" fill="#6b7280" font-size="9" font-family="monospace">/* Query: ?- recommend(X, pim). → succulent, pothos, snake_plant */</text>
-            <rect x="16" y="182" width="6" height="10" fill="#4ADE80" opacity="0.8"><animate attributeName="opacity" values="0.8;0;0.8" dur="1.2s" repeatCount="indefinite"/></rect>
-            </svg>
-            <div class="slide-caption">Prolog facts + inference rules — logic-based recommendation engine</div>
-          </div>
-          <!-- Slide 3: Learning -->
-          <div class="slide">
-            <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="200" fill="#030f03"/>
-            <text x="16" y="20" fill="#4ADE80" font-size="9" font-family="Inter" font-weight="600">Knowledge Representation Flow</text>
-            <!-- flow diagram -->
-            <rect x="16" y="30" width="120" height="44" rx="6" fill="#061206" stroke="#4ADE80" stroke-width="0.8"/>
-            <text x="76" y="48" text-anchor="middle" fill="#4ADE80" font-size="8" font-family="Inter" font-weight="600">Domain Facts</text>
-            <text x="76" y="60" text-anchor="middle" fill="#2d8a50" font-size="7" font-family="Inter">Plants · Water · Light</text>
-            <text x="144" y="54" fill="#4ADE80" font-size="12" font-family="Inter">→</text>
-            <rect x="160" y="30" width="120" height="44" rx="6" fill="#061206" stroke="#4ADE80" stroke-width="0.8"/>
-            <text x="220" y="48" text-anchor="middle" fill="#4ADE80" font-size="8" font-family="Inter" font-weight="600">Inference Rules</text>
-            <text x="220" y="60" text-anchor="middle" fill="#2d8a50" font-size="7" font-family="Inter">Prolog clauses</text>
-            <text x="288" y="54" fill="#4ADE80" font-size="12" font-family="Inter">→</text>
-            <rect x="304" y="30" width="120" height="44" rx="6" fill="#061206" stroke="#4ADE80" stroke-width="0.8"/>
-            <text x="364" y="48" text-anchor="middle" fill="#4ADE80" font-size="8" font-family="Inter" font-weight="600">User Query</text>
-            <text x="364" y="60" text-anchor="middle" fill="#2d8a50" font-size="7" font-family="Inter">Input conditions</text>
-            <text x="432" y="54" fill="#4ADE80" font-size="12" font-family="Inter">→</text>
-            <rect x="448" y="30" width="96" height="44" rx="6" fill="#0d2015" stroke="#4ADE80" stroke-width="1.2"/>
-            <text x="496" y="48" text-anchor="middle" fill="#4ADE80" font-size="8" font-family="Inter" font-weight="600">Result</text>
-            <text x="496" y="60" text-anchor="middle" fill="#4ADE80" font-size="7" font-family="Inter">Plant list</text>
-            <!-- learnings -->
-            <rect x="16" y="90" width="528" height="96" rx="8" fill="#061206" stroke="#1a3a20"/>
-            <text x="26" y="107" fill="#4ADE80" font-size="8.5" font-family="Inter" font-weight="600">What I learned</text>
-            <text x="26" y="122" fill="#2d8a50" font-size="7.5" font-family="Inter">· Logic programming is fundamentally different from OOP — thinking in facts and rules, not objects</text>
-            <text x="26" y="136" fill="#2d8a50" font-size="7.5" font-family="Inter">· Knowledge representation: how to model a real-world domain (plants) as structured Prolog facts</text>
-            <text x="26" y="150" fill="#2d8a50" font-size="7.5" font-family="Inter">· Formal inference: the engine finds solutions I didn't explicitly code — declarative programming mindset</text>
-            <text x="26" y="164" fill="#2d8a50" font-size="7.5" font-family="Inter">· Limits of rule-based AI vs. ML — rules are transparent but brittle; ML is powerful but opaque</text>
-            <text x="26" y="178" fill="#4ADE80" font-size="7" font-family="Inter" font-weight="600">Tools: SWI-Prolog · Google AppSheet (no-code interface)</text>
-            </svg>
-            <div class="slide-caption">Logic programming — facts, rules, queries, and what it taught me</div>
-          </div>
-        </div>
-        <button class="slider-btn prev">&#8249;</button>
-        <button class="slider-btn next">&#8250;</button>
-        <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">Knowledge Eng.</span><span class="proj-year">2024</span></div>
-        <div class="proj-name">Planty</div>
-        <div class="proj-context">Individual Academic Project</div>
-        <div class="proj-desc">Plant recommendation knowledge base built in Prolog. Users input environment conditions and care preferences for personalised suggestions, served through a Google AppSheet interface.</div>
-        <div class="proj-tech"><span>Prolog</span><span>SWI-Prolog</span><span>Google AppSheet</span></div>
-        <div class="proj-links"><span class="proj-link" style="opacity:.4;cursor:default">No public repo</span></div>
-      </div>
-    </div>
-
-    <div class="proj-card tilt-card reveal" data-tags="dev">
-      <div class="proj-img">
-        <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%"><defs><linearGradient id="sm" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a0010"/><stop offset="100%" stop-color="#280018"/></linearGradient></defs><rect width="600" height="180" fill="url(#sm)"/><circle cx="300" cy="90" r="20" fill="#300020" stroke="#FB7185" stroke-width="1.5"/><text x="300" y="94" text-anchor="middle" fill="#FB7185" font-size="8" font-family="Inter">Smoothie</text><circle cx="180" cy="52" r="16" fill="#300020" stroke="#FB7185" stroke-width="1"/><text x="180" y="56" text-anchor="middle" fill="#FB7185" font-size="7" font-family="Inter">Ingredient</text><circle cx="420" cy="52" r="16" fill="#300020" stroke="#FB7185" stroke-width="1"/><text x="420" y="56" text-anchor="middle" fill="#FB7185" font-size="7" font-family="Inter">Nutrient</text><circle cx="180" cy="130" r="16" fill="#300020" stroke="#FB7185" stroke-width="1"/><text x="180" y="134" text-anchor="middle" fill="#FB7185" font-size="7" font-family="Inter">Flavour</text><circle cx="420" cy="130" r="16" fill="#300020" stroke="#FB7185" stroke-width="1"/><text x="420" y="134" text-anchor="middle" fill="#FB7185" font-size="7" font-family="Inter">Preference</text><line x1="196" y1="60" x2="283" y2="80" stroke="#FB7185" stroke-width="0.7" opacity="0.4"/><line x1="404" y1="60" x2="317" y2="80" stroke="#FB7185" stroke-width="0.7" opacity="0.4"/><line x1="196" y1="122" x2="283" y2="100" stroke="#FB7185" stroke-width="0.7" opacity="0.4"/><line x1="404" y1="122" x2="317" y2="100" stroke="#FB7185" stroke-width="0.7" opacity="0.4"/></svg>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">Ontology · Semantic Web</span><span class="proj-year">2024</span></div>
-        <div class="proj-name">Smoogenie</div>
-        <div class="proj-context">Team Academic Project</div>
-        <div class="proj-desc">Smoothie recommendation system as a formal OWL ontology. Models ingredients, nutrients, flavour profiles, and dietary preferences — recommendations served via SPARQL queries.</div>
-        <div class="proj-tech"><span>Protege</span><span>OWL 2</span><span>SPARQL</span><span>RDF</span></div>
-        <div class="proj-links"><span class="proj-link" style="opacity:.4;cursor:default">No public repo</span></div>
-      </div>
-    </div>
-
-    <div class="proj-card tilt-card reveal" data-tags="ux">
-      <div class="proj-img">
-        <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%"><defs><linearGradient id="gd" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#161000"/><stop offset="100%" stop-color="#221a00"/></linearGradient></defs><rect width="600" height="180" fill="url(#gd)"/><rect x="52" y="28" width="135" height="124" rx="6" fill="#1c1600" stroke="#FBBF24" stroke-width="0.8"/><rect x="64" y="40" width="111" height="18" rx="3" fill="#241e00"/><rect x="64" y="64" width="111" height="14" rx="3" fill="#241e00"/><rect x="64" y="83" width="111" height="14" rx="3" fill="#241e00"/><text x="120" y="24" text-anchor="middle" fill="#FBBF24" font-size="8" font-family="Inter" opacity="0.6">To Do</text><rect x="202" y="28" width="135" height="124" rx="6" fill="#1c1600" stroke="#FBBF24" stroke-width="0.8"/><rect x="214" y="40" width="111" height="18" rx="3" fill="#241e00"/><rect x="214" y="64" width="111" height="14" rx="3" fill="#FBBF24" opacity="0.12"/><text x="270" y="24" text-anchor="middle" fill="#FBBF24" font-size="8" font-family="Inter" opacity="0.6">In Progress</text><rect x="352" y="28" width="135" height="124" rx="6" fill="#1c1600" stroke="#FBBF24" stroke-width="0.8"/><rect x="364" y="40" width="111" height="18" rx="3" fill="#241e00"/><text x="420" y="24" text-anchor="middle" fill="#FBBF24" font-size="8" font-family="Inter" opacity="0.6">Done</text></svg>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">UX/UI Design</span><span class="proj-year">2023</span></div>
-        <div class="proj-name">Goodoo</div>
-        <div class="proj-context">GDSC Club Project (Workshop Material)</div>
-        <div class="proj-desc">Task management app designed as GDSC teaching material. Reusable UI components and detailed handoff specs — giving students a consistent visual system to implement in workshops.</div>
-        <div class="proj-tech"><span>Figma</span></div>
-        <div class="proj-links"><span class="proj-link" style="opacity:.4;cursor:default">Figma (private)</span></div>
-      </div>
-    </div>
-
-    <div class="proj-card tilt-card reveal" data-tags="dev ux">
-      <div class="proj-img">
-        <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%"><defs><linearGradient id="pb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#001018"/><stop offset="100%" stop-color="#001820"/></linearGradient></defs><rect width="600" height="180" fill="url(#pb)"/><rect x="210" y="22" width="180" height="136" rx="8" fill="#001520" stroke="#38BDF8" stroke-width="1.2"/><rect x="224" y="36" width="64" height="38" rx="5" fill="#001e2c" stroke="#38BDF8" stroke-width="0.7"/><rect x="302" y="36" width="64" height="38" rx="5" fill="#001e2c" stroke="#38BDF8" stroke-width="0.7"/><rect x="224" y="82" width="64" height="38" rx="5" fill="#38BDF8" opacity="0.08" stroke="#38BDF8" stroke-width="0.7"/><rect x="302" y="82" width="64" height="38" rx="5" fill="#001e2c" stroke="#38BDF8" stroke-width="0.7"/><text x="256" y="60" text-anchor="middle" fill="#38BDF8" font-size="8" font-family="Inter">Slot 1</text><text x="334" y="60" text-anchor="middle" fill="#38BDF8" font-size="8" font-family="Inter">Slot 2</text><text x="256" y="104" text-anchor="middle" fill="#38BDF8" font-size="7" font-family="Inter" opacity="0.45">Borrowed</text><text x="334" y="104" text-anchor="middle" fill="#38BDF8" font-size="8" font-family="Inter">Slot 4</text><text x="300" y="146" text-anchor="middle" fill="#38BDF8" font-size="8" font-family="Inter" opacity="0.55">Smart Lender</text></svg>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">UI · Frontend</span><span class="proj-year">2023</span></div>
-        <div class="proj-name">PowerBank Lender</div>
-        <div class="proj-context">Team Project (3-day sprint)</div>
-        <div class="proj-desc">Smart powerbank lending cabinet prototype. Staff borrow/return via employee ID login; alarm triggers if a powerbank is removed without a registered borrow. Built in 3 days.</div>
-        <div class="proj-tech"><span>React</span><span>Python</span><span>MongoDB</span></div>
-        <div class="proj-links"><span class="proj-link" style="opacity:.4;cursor:default">No public repo</span></div>
-      </div>
-    </div>
-
-    <div class="proj-card tilt-card reveal" data-tags="dev">
-      <div class="proj-img">
-        <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%"><defs><linearGradient id="bk" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a0618"/><stop offset="100%" stop-color="#120c28"/></linearGradient></defs><rect width="600" height="180" fill="url(#bk)"/><rect x="110" y="38" width="38" height="112" rx="3" fill="#140d30" stroke="#A78BFA" stroke-width="1"/><rect x="154" y="52" width="34" height="98" rx="3" fill="#0f0820" stroke="#A78BFA" stroke-width="1"/><rect x="194" y="42" width="42" height="108" rx="3" fill="#180f38" stroke="#A78BFA" stroke-width="1"/><rect x="242" y="58" width="30" height="92" rx="3" fill="#0f0820" stroke="#A78BFA" stroke-width="1"/><rect x="278" y="36" width="46" height="114" rx="3" fill="#140d30" stroke="#A78BFA" stroke-width="1"/><rect x="100" y="150" width="380" height="5" rx="2" fill="#A78BFA" opacity="0.25"/><rect x="370" y="48" width="110" height="84" rx="6" fill="#100b25" stroke="#A78BFA" stroke-width="0.8"/><text x="425" y="88" text-anchor="middle" fill="#A78BFA" font-size="9" font-family="Inter">Google Sheets</text><text x="425" y="102" text-anchor="middle" fill="#A78BFA" font-size="8" font-family="Inter" opacity="0.5">API data store</text></svg>
-      </div>
-      <div class="proj-body">
-        <div class="proj-meta"><span class="proj-type">Full-stack · Self-taught</span><span class="proj-year">2022</span></div>
-        <div class="proj-name">Book Collection</div>
-        <div class="proj-context">Individual Project — first serious coding project</div>
-        <div class="proj-desc">Personal book manager built solo. GUI in Tkinter, data via Google Sheets API. Where OOP, design patterns, and real API integration first clicked — built with books to stay motivated.</div>
-        <div class="proj-tech"><span>Python</span><span>Tkinter</span><span>Google Sheets API</span></div>
-        <div class="proj-links"><span class="proj-link" style="opacity:.4;cursor:default">No public repo</span></div>
-      </div>
-    </div>
-
-  </div>
-</section>
+<section id="projects"></section>
 
 <!-- -- CONTACT -- -->
 <div class="project-modal" id="project-modal" aria-hidden="true">
@@ -1888,50 +884,7 @@
   </div>
 </div>
 
-<section id="contact">
-  <div class="stag">Contact</div>
-  <h2 class="sh">Let's connect</h2>
-  <p class="ssub">Open to full-time PM/PO, QA, or UX roles — remote or on-site in Thailand.</p>
-  <div class="contact-grid">
-    <div>
-      <div class="contact-links-list">
-        <a href="mailto:ratchaprapa.c@gmail.com" class="clink reveal">
-          <div class="clink-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
-          <div><div class="clink-label">Email</div><div class="clink-val">ratchaprapa.c@gmail.com</div></div>
-        </a>
-        <a href="tel:+66936905490" class="clink reveal">
-          <div class="clink-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11 19.79 19.79 0 0 1 1.63 2.48 2 2 0 0 1 3.6.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 1 2.81.7A2 2 0 0 1 21.5 16a2 2 0 0 1 .5.92z"/></svg></div>
-          <div><div class="clink-label">Phone</div><div class="clink-val">+66 93 690 5490</div></div>
-        </a>
-        <a href="https://www.linkedin.com/in/ratchaprapa-chattrakulrak-97111626a/" target="_blank" class="clink reveal">
-          <div class="clink-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-          <div><div class="clink-label">LinkedIn</div><div class="clink-val">ratchaprapa-chattrakulrak</div></div>
-        </a>
-        <a href="https://github.com/ProudHokori" target="_blank" class="clink reveal">
-          <div class="clink-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
-          <div><div class="clink-label">GitHub</div><div class="clink-val">ProudHokori</div></div>
-        </a>
-        <a href="https://www.youtube.com/@hoshitsukihokori" target="_blank" class="clink reveal">
-          <div class="clink-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></div>
-          <div><div class="clink-label">YouTube</div><div class="clink-val">@hoshitsukihokori</div></div>
-        </a>
-      </div>
-      <div class="avail-card reveal">
-        <p>Based in <strong>Thailand</strong><br/>Available for remote &amp; on-site roles<br/>Open to: <strong>PM/PO</strong> &nbsp;·&nbsp; <strong>Manual QA</strong> &nbsp;·&nbsp; <strong>UX Design</strong></p>
-      </div>
-    </div>
-    <form class="contact-form" onsubmit="sendMsg(event)">
-      <div class="fg"><label>Your Name</label><input type="text" placeholder="Jane Smith" required/></div>
-      <div class="fg"><label>Email</label><input type="email" placeholder="jane@company.com" required/></div>
-      <div class="fg"><label>Message</label><textarea placeholder="Tell me about the role or opportunity..." required></textarea></div>
-      <button type="submit" class="btn btn-primary" style="width:fit-content;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        Send message
-      </button>
-      <p id="form-ok">Message received — I'll get back to you soon.</p>
-    </form>
-  </div>
-</section>
+<section id="contact"></section>
 
 <!-- -- FOOTER -- -->
 <footer>
@@ -2175,6 +1128,305 @@
 })();
 
 /* -----------------------------------------
+   PORTFOLIO DATA RENDERER
+   ----------------------------------------- */
+let portfolioData = {};
+let PROJECT_DETAILS = {};
+
+function htmlEscape(value){
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[char]));
+}
+
+function freshAssetUrl(src){
+  if(!src || /^(https?:|data:|blob:|#)/i.test(src)) return src || '';
+  const url = encodeURI(String(src));
+  return `${url}${url.includes('?') ? '&' : '?'}v=${Date.now()}`;
+}
+
+function loadPortfolioData(){
+  try {
+    const req = new XMLHttpRequest();
+    req.open('GET', `portfolio-data.json?v=${Date.now()}`, false);
+    req.send(null);
+    if(req.status >= 200 && req.status < 300) return JSON.parse(req.responseText);
+  } catch(error){
+    console.error('Could not load portfolio-data.json', error);
+  }
+  return {};
+}
+
+function iconFor(label = ''){
+  const key = label.toLowerCase();
+  if(key.includes('qa') || key.includes('test')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
+  if(key.includes('ux') || key.includes('design') || key.includes('figma')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>';
+  if(key.includes('dev') || key.includes('code')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>';
+  if(key.includes('github')) return '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.02c-3.2.7-3.87-1.38-3.87-1.38-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.73-1.53-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18A10.93 10.93 0 0 1 12 6.15c.98 0 1.96.13 2.88.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.58.24 2.75.12 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14v3.16c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>';
+  if(key.includes('youtube') || key.includes('demo')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+  if(key.includes('email')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>';
+  if(key.includes('phone')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11"/></svg>';
+  if(key.includes('linkedin')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>';
+  return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>';
+}
+
+function logoHtml(value = 'proud.'){
+  const clean = htmlEscape(value);
+  return clean.endsWith('.') ? `${clean.slice(0, -1)}<span>.</span>` : clean;
+}
+
+function initialsFromText(value = ''){
+  const words = String(value).replace(/[()]/g, ' ').split(/\s+/).filter(Boolean);
+  const letters = words
+    .filter(word => !/^(co|ltd|club|and|the)$/i.test(word))
+    .slice(0, 2)
+    .map(word => word[0]?.toUpperCase() || '')
+    .join('');
+  return letters || 'PR';
+}
+
+function renderPortfolio(data){
+  if(!data || !Object.keys(data).length) return;
+  document.title = data.meta?.title || document.title;
+  document.querySelector('.nav-logo').innerHTML = logoHtml(data.personal?.logo);
+  document.querySelector('.footer-logo').innerHTML = logoHtml(data.personal?.logo);
+  const navCta = document.querySelector('.nav-cta');
+  if(navCta && data.personal?.email) navCta.href = `mailto:${data.personal.email}`;
+
+  const hero = data.hero || {};
+  document.getElementById('hero-content').innerHTML = `
+    <div class="hero-badge"><span class="badge-dot"></span> ${htmlEscape(hero.badge)}</div>
+    <h1 class="hero-name"><span class="hi">${htmlEscape(hero.greeting)} </span><span class="ac">${htmlEscape(hero.nickname)}</span><br/><span class="nm">${htmlEscape(hero.name)}</span></h1>
+    <div class="hero-roles">${(hero.roles || []).map(role => `<span class="role-chip">${iconFor(role)}${htmlEscape(role)}</span>`).join('')}</div>
+    <p class="hero-desc">${htmlEscape(hero.description)}</p>
+    <div class="hero-ctas">${(hero.ctas || []).map(cta => `<a href="${htmlEscape(cta.url)}" ${/^https?:/.test(cta.url || '') ? 'target="_blank"' : ''} class="btn ${cta.style === 'primary' ? 'btn-primary' : 'btn-ghost'}">${iconFor(cta.label)}${htmlEscape(cta.label)}</a>`).join('')}</div>
+    <div class="hero-stats">${(hero.stats || []).map(stat => `<div><div class="stat-num">${htmlEscape(stat.value)}</div><div class="stat-label">${htmlEscape(stat.label)}</div></div>`).join('')}</div>`;
+
+  const about = data.about || {};
+  document.getElementById('about').innerHTML = `
+    <div class="about-grid">
+      <div class="about-body">
+        <div class="stag">${htmlEscape(about.eyebrow || 'About')}</div>
+        <h2 class="sh">${htmlEscape(about.heading || '').replace(' strategy ', '<br/>strategy ')}</h2>
+        ${(about.paragraphs || []).map(item => `<p>${htmlEscape(item)}</p>`).join('')}
+        <div class="about-edu"><div class="about-edu-icon">${iconFor('education')}</div><div><div class="about-edu-deg">${htmlEscape(about.education?.degree)}</div><div class="about-edu-inst">${htmlEscape(about.education?.institution)}</div><div class="about-edu-year">${htmlEscape(about.education?.year)}</div></div></div>
+        <div class="role-cards">${(about.roleCards || []).map(card => `<div class="role-card reveal"><div class="role-card-head"><span class="role-card-icon">${iconFor(card.title)}</span><span class="role-card-title">${htmlEscape(card.title)}</span></div><p class="role-card-desc">${htmlEscape(card.description)}</p></div>`).join('')}</div>
+      </div>
+      <div class="about-side">
+        ${about.portraitImage ? `<div class="about-portrait-stage"><img class="about-portrait" src="${htmlEscape(freshAssetUrl(about.portraitImage))}" alt="${htmlEscape(data.personal?.nickname || data.personal?.name || 'Proud presenting KU Eater')}" loading="lazy"></div>` : ''}
+      </div>
+    </div>`;
+
+  document.getElementById('experience').innerHTML = `
+    <div class="stag">Experience</div><h2 class="sh">Where I've worked</h2><div class="exp-list">
+    ${(data.experiences || []).map(item => {
+      const folder = item.folder || item.company;
+      const initials = initialsFromText(item.company);
+      return `<div class="exp-item reveal" data-folder="${htmlEscape(folder)}"><div class="exp-meta"><div class="exp-year">${htmlEscape(item.year).replace(' - ', '<br/>')}</div></div><div class="exp-avatar" data-folder="${htmlEscape(folder)}" data-label="${htmlEscape(item.company)}"><span>${htmlEscape(initials)}</span></div><div class="exp-content"><div class="exp-company">${htmlEscape(item.company)}</div><div class="exp-title">${htmlEscape(item.title)}</div><ul class="exp-bullets">${(item.bullets || []).map(bullet => `<li>${htmlEscape(bullet)}</li>`).join('')}</ul></div></div>`;
+    }).join('')}
+    </div>`;
+
+  document.getElementById('skills').innerHTML = `
+    <div class="stag">Skills</div><h2 class="sh">What I work with</h2><div class="skills-cats">
+    ${(data.skills || []).map(cat => `<div class="skill-cat reveal"><div class="skill-cat-head">${iconFor(cat.category)}${htmlEscape(cat.category)}</div><div class="skill-tags">${(cat.items || []).map(item => `<span class="stk ${(cat.highlight || []).includes(item) ? 'hi' : ''}">${htmlEscape(item)}</span>`).join('')}</div></div>`).join('')}
+    </div>`;
+
+  const projectSection = data.projectsSection || {};
+  document.getElementById('projects').innerHTML = `
+    <div class="stag">${htmlEscape(projectSection.eyebrow || 'Projects')}</div>
+    <h2 class="sh">${htmlEscape(projectSection.heading || 'Selected work')}</h2>
+    <p class="ssub">${htmlEscape(projectSection.subheading || '')}</p>
+    <div class="proj-filter">${(projectSection.filters || []).map((filter, i) => `<button class="filter-btn ${i === 0 ? 'active' : ''}" data-filter="${htmlEscape(filter.value)}">${htmlEscape(filter.label)}</button>`).join('')}</div>
+    <div class="proj-grid">${(data.projects || []).map(project => `
+      <div class="proj-card tilt-card reveal" data-tags="${htmlEscape((project.tags || []).join(' '))}">
+        <div class="proj-img"><div class="proj-placeholder"><span>${htmlEscape(project.name)}</span></div></div>
+        <div class="proj-body">
+          <div class="proj-meta"><span class="proj-type">${htmlEscape(project.type)}</span><span class="proj-year">${htmlEscape(project.year)}</span></div>
+          <div class="proj-name">${htmlEscape(project.name)}</div>
+          <div class="proj-context">${htmlEscape(project.context)}</div>
+          <div class="proj-desc">${htmlEscape(project.description)}</div>
+          <div class="proj-tech">${(project.tech || []).map(item => `<span>${htmlEscape(item)}</span>`).join('')}</div>
+          <div class="proj-links">${(project.links || []).map(link => link.disabled ? `<span class="proj-link" style="opacity:.4;cursor:default">${htmlEscape(link.label)}</span>` : `<a href="${htmlEscape(link.url)}" target="_blank" class="proj-link">${iconFor(link.label || link.kind)}${htmlEscape(link.label)}</a>`).join('')}</div>
+        </div>
+      </div>`).join('')}</div>`;
+
+  const contact = data.contact || {};
+  document.getElementById('contact').innerHTML = `
+    <div class="contact-head">
+      <div class="contact-head-copy">
+        <div class="stag">${htmlEscape(contact.eyebrow || 'Contact')}</div>
+        <h2 class="sh">${htmlEscape(contact.heading || "Let's connect")}</h2>
+        <p class="ssub">${htmlEscape(contact.subheading || '')}</p>
+      </div>
+      ${contact.profileImage ? `<img class="contact-portrait" src="${htmlEscape(freshAssetUrl(contact.profileImage))}" alt="${htmlEscape(data.personal?.nickname || data.personal?.name || 'Profile photo')}" loading="lazy">` : ''}
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-links-list">${(contact.links || []).map(link => `<a href="${htmlEscape(link.url)}" ${/^https?:/.test(link.url || '') ? 'target="_blank"' : ''} class="clink reveal"><div class="clink-icon">${iconFor(link.label)}</div><div><div class="clink-label">${htmlEscape(link.label)}</div><div class="clink-val">${htmlEscape(link.value)}</div></div></a>`).join('')}</div>
+        <div class="avail-card reveal"><p>${contact.availability || ''}</p></div>
+      </div>
+      <form class="contact-form" onsubmit="sendMsg(event)">
+        <div class="fg"><label>Your Name</label><input type="text" placeholder="${htmlEscape(contact.form?.namePlaceholder || '')}" required/></div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="${htmlEscape(contact.form?.emailPlaceholder || '')}" required/></div>
+        <div class="fg"><label>Message</label><textarea placeholder="${htmlEscape(contact.form?.messagePlaceholder || '')}" required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:fit-content;">${iconFor('send')}Send message</button>
+        <p id="form-ok">${htmlEscape(contact.form?.successMessage || '')}</p>
+      </form>
+    </div>`;
+
+  const footerPs = document.querySelectorAll('footer p');
+  if(footerPs[0]) footerPs[0].textContent = data.footer?.copyright || '';
+  if(footerPs[1]) footerPs[1].textContent = data.footer?.education || '';
+  PROJECT_DETAILS = Object.fromEntries((data.projects || []).map(project => [project.slug, { folder: project.folder, youtube: project.youtube, ...(project.modal || {}) }]));
+}
+
+function renderIntroVideo(data){
+  const src = data.personal?.introVideo;
+  if(!src) return;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'intro-video-widget';
+  wrap.innerHTML = `
+    <div class="intro-video-panel">
+      <button class="intro-video-close" type="button" aria-label="Close intro video">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <video class="intro-video" src="${htmlEscape(src)}" playsinline preload="auto"></video>
+      <button class="intro-video-toggle" type="button" aria-label="Play intro video">
+        <svg class="intro-play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="intro-pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+      </button>
+      <button class="intro-video-sound" type="button" aria-label="Turn intro video sound on">
+        <svg class="intro-muted-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6M17 9l6 6"/></svg>
+        <svg class="intro-sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      </button>
+    </div>`;
+
+  const tab = document.createElement('button');
+  tab.className = 'intro-video-tab';
+  tab.type = 'button';
+  tab.setAttribute('aria-label', 'Open intro video');
+  tab.innerHTML = `
+    <svg class="intro-play-tab-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="intro-replay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/>
+      <path d="M3 3v5h5"/>
+    </svg>
+    <span class="intro-video-tab-label">Let Me Introduce Myself ;)</span>`;
+
+  document.body.append(wrap, tab);
+
+  const video = wrap.querySelector('.intro-video');
+  const toggle = wrap.querySelector('.intro-video-toggle');
+  const soundToggle = wrap.querySelector('.intro-video-sound');
+  const playIcon = wrap.querySelector('.intro-play-icon');
+  const pauseIcon = wrap.querySelector('.intro-pause-icon');
+  const mutedIcon = wrap.querySelector('.intro-muted-icon');
+  const soundIcon = wrap.querySelector('.intro-sound-icon');
+  const tabLabel = tab.querySelector('.intro-video-tab-label');
+  let finishTimer = null;
+  let hasCompleted = false;
+
+  const syncButton = () => {
+    const playing = !video.paused && !video.ended;
+    playIcon.style.display = playing ? 'none' : '';
+    pauseIcon.style.display = playing ? '' : 'none';
+    toggle.setAttribute('aria-label', playing ? 'Pause intro video' : 'Play intro video');
+  };
+  const syncSoundButton = () => {
+    const muted = video.muted || video.volume === 0;
+    mutedIcon.style.display = muted ? '' : 'none';
+    soundIcon.style.display = muted ? 'none' : '';
+    soundToggle.setAttribute('aria-label', muted ? 'Turn intro video sound on' : 'Mute intro video');
+  };
+
+  const playVideo = (options = {}) => {
+    if(options.muted !== undefined) video.muted = options.muted;
+    video.volume = 1;
+    return video.play().catch(() => {}).finally(() => {
+      syncButton();
+      syncSoundButton();
+    });
+  };
+  const pauseVideo = () => {
+    video.pause();
+    syncButton();
+  };
+  const closeWidget = (replay = false) => {
+    wrap.classList.remove('is-visible');
+    wrap.classList.add('is-closed');
+    tab.classList.toggle('is-replay', replay);
+    tabLabel.textContent = replay ? 'Replay' : 'Let Me Introduce Myself ;)';
+    tab.setAttribute('aria-label', replay ? 'Replay intro video' : 'Open intro video');
+    tab.classList.add('is-visible');
+  };
+  const openWidget = (shouldPlay = true, options = {}) => {
+    if(finishTimer){
+      clearTimeout(finishTimer);
+      finishTimer = null;
+    }
+    wrap.classList.remove('is-closed');
+    tab.classList.remove('is-visible');
+    requestAnimationFrame(() => wrap.classList.add('is-visible'));
+    if(shouldPlay) playVideo(options);
+  };
+
+  toggle.addEventListener('click', () => {
+    if(video.paused || video.ended) playVideo();
+    else pauseVideo();
+  });
+  video.addEventListener('click', () => {
+    if(video.paused || video.ended) playVideo();
+    else pauseVideo();
+  });
+  video.addEventListener('play', syncButton);
+  video.addEventListener('pause', syncButton);
+  video.addEventListener('ended', () => {
+    syncButton();
+    hasCompleted = true;
+    finishTimer = setTimeout(() => {
+      closeWidget(true);
+      finishTimer = null;
+    }, 1500);
+  });
+  video.addEventListener('volumechange', syncSoundButton);
+  soundToggle.addEventListener('click', () => {
+    video.muted = !video.muted;
+    syncSoundButton();
+    if(video.paused || video.ended) playVideo();
+  });
+
+  wrap.querySelector('.intro-video-close').addEventListener('click', () => {
+    if(finishTimer){
+      clearTimeout(finishTimer);
+      finishTimer = null;
+    }
+    pauseVideo();
+    closeWidget(hasCompleted);
+  });
+
+  tab.addEventListener('click', () => {
+    if(tab.classList.contains('is-replay')) video.currentTime = 0;
+    openWidget(true, { muted: false });
+  });
+
+  video.autoplay = false;
+  video.muted = false;
+  video.volume = 1;
+  pauseVideo();
+  syncSoundButton();
+  closeWidget(false);
+}
+
+portfolioData = loadPortfolioData();
+renderPortfolio(portfolioData);
+renderIntroVideo(portfolioData);
+
+/* -----------------------------------------
    PROJECT CARD HOVER GLOW
    ----------------------------------------- */
 document.querySelectorAll('.proj-card').forEach(card => {
@@ -2269,108 +1521,7 @@ function initSlider(slider){
 document.querySelectorAll('.proj-slider').forEach(initSlider);
 
 /* Project details modal */
-const PROJECT_DETAILS = {
-  sleepsense: {
-    youtube: 'https://youtu.be/gK2Yn2xOHhc?si=taa_gkQkzXv3kZ6z',
-    about: 'SleepSense is an IoT sleep-environment monitoring project that collects room signals, sends them through an MQTT and backend pipeline, and turns them into sleep quality insights through analytics and a Streamlit dashboard.',
-    experience: 'I worked across product planning, system architecture, API flow, data handling, and presentation. The project made me practice translating a messy real-world problem into measurable data, then into a dashboard that people could actually understand.',
-    challenges: [
-      'Designing an end-to-end flow from sensors to database to dashboard without losing data consistency.',
-      'Making ML output explainable enough for users, not just technically impressive.',
-      'Balancing PM decisions with hands-on debugging across IoT, backend, and analytics layers.'
-    ]
-  },
-  'ku-eater': {
-    about: 'KU Eater is a food recommendation platform for Kasetsart University students, designed to reduce decision fatigue around cafeteria meals through recommendations, reviews, and menu browsing.',
-    experience: 'I contributed as a product-minded builder: research, user flows, Figma direction, backlog thinking, and frontend/mobile implementation decisions. It was a capstone project where the user problem had to stay visible through every feature choice.',
-    challenges: [
-      'Turning broad student pain points into focused recommendation behavior.',
-      'Keeping web and Android experiences aligned while the team moved quickly.',
-      'Prioritizing features when many ideas sounded useful but only some supported the core user journey.'
-    ]
-  },
-  courtly: {
-    about: 'Courtly is a badminton court booking and management system for real operator workflows. Players can browse and reserve courts, while managers handle schedules, check-ins, and operational visibility.',
-    experience: 'I owned the PM/PO process end to end while also contributing to frontend development, API design, and QA thinking. The project demanded both coordination and hands-on delivery under deadline pressure.',
-    challenges: [
-      'Negotiating scope cuts without weakening the core booking and manager workflows.',
-      'Writing user stories and acceptance criteria clear enough for the team to build from.',
-      'Switching between leadership and implementation without losing product judgment.'
-    ]
-  },
-  furstay: {
-    about: 'FurStay is a pet-sitting service platform with separate experiences for pet owners, sitters, and admins. The product focuses on trust, booking clarity, and role-based operations.',
-    experience: 'I helped shape the product structure, role boundaries, and technical choices while working with a full-stack Next.js, Prisma, NextAuth, and PostgreSQL stack.',
-    challenges: [
-      'Separating three user roles cleanly so permissions and journeys stayed understandable.',
-      'Designing a data model that supported booking, profiles, and admin review flows.',
-      'Balancing marketplace-style UX with the operational needs of a service platform.'
-    ]
-  },
-  ecowear: {
-    about: 'EcoWear is a UX/UI project for sustainable fashion shopping. It explores how eco-conscious choices can feel clear, rewarding, and easy rather than heavy or confusing.',
-    experience: 'I worked through research, persona creation, journey mapping, wireframes, high-fidelity Figma, and component direction. The emphasis was on making sustainability signals visible at decision points.',
-    challenges: [
-      'Making sustainability information useful without overwhelming the shopping flow.',
-      'Moving from research insights into concrete UI patterns such as badges and scores.',
-      'Keeping the visual system consistent while the concept evolved.'
-    ]
-  },
-  referite: {
-    about: 'Referite is a referee management and scoring system made for a simulated Paris 2024 Olympics software suite. It combines score entry, match management, and Agile PM process practice.',
-    experience: 'I acted as Product Owner in a team setting, using Jira for sprint planning, backlog grooming, reviews, and retrospectives while supporting UX and delivery decisions.',
-    challenges: [
-      'Turning course-level process theory into actual ceremonies and artifacts.',
-      'Writing acceptance criteria that reduced ambiguity for development work.',
-      'Managing sprint scope and team coordination as deadlines tightened.'
-    ]
-  },
-  planty: {
-    about: 'Planty is a logic-based plant recommendation project using Prolog and Google AppSheet. Users input environment and care preferences, then receive suitable plant suggestions.',
-    experience: 'This project pushed me into knowledge representation: modeling a real domain as facts, rules, and queries rather than ordinary procedural logic.',
-    challenges: [
-      'Thinking declaratively in Prolog after being used to object-oriented programming.',
-      'Representing fuzzy real-world plant care preferences with strict logical rules.',
-      'Understanding where rule-based AI is transparent, and where it becomes brittle.'
-    ]
-  },
-  smoogenie: {
-    about: 'Smoogenie is a smoothie recommendation ontology built with OWL, RDF, and SPARQL. It models ingredients, nutrients, flavor profiles, and dietary preferences.',
-    experience: 'I worked with semantic web concepts and learned how recommendations can come from structured relationships, not only from conventional application code.',
-    challenges: [
-      'Designing an ontology that was expressive but still queryable.',
-      'Learning to model relationships carefully because one weak class/property choice affects every query.',
-      'Connecting abstract knowledge engineering concepts to a friendly recommendation use case.'
-    ]
-  },
-  goodoo: {
-    about: 'Goodoo is a task management app design created as GDSC workshop material. The goal was to provide clear UI components and handoff specs that students could implement.',
-    experience: 'I focused on making the design teachable: consistent components, clear states, and layouts that helped learners understand implementation patterns.',
-    challenges: [
-      'Designing for beginner developers, not only for end users.',
-      'Keeping components reusable and simple enough for workshop pacing.',
-      'Writing handoff details that reduced confusion during implementation.'
-    ]
-  },
-  'powerbank-lender': {
-    about: 'PowerBank Lender is a smart lending cabinet prototype for borrowing and returning powerbanks through employee ID login, with an alarm concept for unregistered removal.',
-    experience: 'Built in a short sprint, the project forced quick prioritization across UI, hardware behavior, backend assumptions, and team coordination.',
-    challenges: [
-      'Delivering a convincing prototype in only three days.',
-      'Thinking through edge cases around borrow, return, and unauthorized removal.',
-      'Coordinating fast implementation while keeping the demo flow understandable.'
-    ]
-  },
-  'book-collection': {
-    about: 'Book Collection is a personal book manager built with Python Tkinter and Google Sheets API. It was my first serious solo coding project and the project where API integration started to click.',
-    experience: 'I built the GUI, data flow, and API connection by myself, using books as a domain that kept me motivated through the harder parts of learning.',
-    challenges: [
-      'Moving from small scripts into a structured application with real data persistence.',
-      'Learning how API credentials, requests, and data updates work in practice.',
-      'Building enough UI polish to make a personal tool feel usable.'
-    ]
-  }
-};
+PROJECT_DETAILS = portfolioData.projectDetails || PROJECT_DETAILS;
 
 const projectModal = document.getElementById('project-modal');
 const modalTrack = document.getElementById('project-modal-track');
@@ -2379,31 +1530,9 @@ const modalClose = projectModal.querySelector('.project-modal-close');
 
 const projectSlug = text => text.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const setText = (id, value) => { document.getElementById(id).textContent = value || ''; };
-const PROJECT_FOLDER = {
-  'powerbank-lender': 'powerbank'
-};
-const ASSET_ROOTS = ['image', 'images'];
-const MEDIA_FALLBACK = {
-  project: {
-    sleepsense: [
-      'SleepSense_API_Making_Flow_NodeRED.png',
-      'SleepSense_Cover.png',
-      'SleepSense_Logo.png',
-      'SleepSense_MQTT_Flow_NodeRED.png',
-      'SleepSense_Pre_Process_Table.png',
-      'SleepSense_Sensor_Wiring.png',
-      'SleepSense_Sreamlit_Dashboard.png',
-      'SleepSense_System_Diagram.png'
-    ],
-    courtly: [
-      '1-logo.png',
-      'step1.png',
-      'step2.png',
-      'step3.png'
-    ]
-  },
-  work: {}
-};
+const PROJECT_FOLDER = portfolioData.projectFolders || {};
+const ASSET_ROOTS = portfolioData.assetRoots || ['image', 'images'];
+const MEDIA_FALLBACK = portfolioData.mediaFallback || { project: {}, work: {} };
 const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'];
 const VIDEO_EXTS = ['mp4', 'webm', 'mov', 'm4v'];
 const ASSET_VERSION = `v=${Date.now()}`;
@@ -2552,6 +1681,39 @@ async function getWorkMedia(folder){
   return buildFolderMedia('work', folder, root, files).map(mediaSlide);
 }
 
+async function applyExperienceImages(){
+  for(const avatar of document.querySelectorAll('.exp-avatar[data-folder]')){
+    const folder = avatar.dataset.folder;
+    if(!folder || avatar.dataset.loaded === 'true') continue;
+    avatar.dataset.loaded = 'true';
+
+    const listed = await listAssetFiles('work', folder);
+    const imageFiles = listed.files.filter(isImageFile);
+    let imageName = imageFiles.find(isCoverFile) || imageFiles[0] || '';
+    let src = imageName ? assetUrl('work', folder, imageName, listed.root) : '';
+
+    if(!src){
+      const candidates = ['cover.png', 'avatar.png', 'profile.png', 'logo.png', '1.png'];
+      for(const root of ASSET_ROOTS){
+        for(const candidateName of candidates){
+          const candidate = assetUrl('work', folder, candidateName, root);
+          if(await imageExists(candidate)){
+            src = candidate;
+            break;
+          }
+        }
+        if(src) break;
+      }
+    }
+
+    if(src){
+      const label = avatar.dataset.label || 'Experience';
+      avatar.innerHTML = `<img src="${src}" alt="${escapeHtml(label)} image" loading="lazy">`;
+      avatar.classList.add('has-image');
+    }
+  }
+}
+
 function setModalLabels(labels = {}){
   setText('project-modal-about-label', labels.about || 'About the project');
   setText('project-modal-experience-label', labels.experience || 'Experience');
@@ -2697,8 +1859,8 @@ async function openProject(card){
   setText('project-modal-experience', details.experience || 'This project strengthened my ability to connect user needs, delivery constraints, and practical implementation decisions.');
 
   const challenges = details.challenges || ['Clarifying the core user problem, deciding what mattered most, and turning that into a focused deliverable.'];
-  document.getElementById('project-modal-challenges').innerHTML = challenges.map(item => `<li>${item}</li>`).join('');
-  document.getElementById('project-modal-tags').innerHTML = tech.map(item => `<span>${item}</span>`).join('');
+  document.getElementById('project-modal-challenges').innerHTML = challenges.map(item => `<li>${escapeHtml(item)}</li>`).join('');
+  document.getElementById('project-modal-tags').innerHTML = tech.map(item => `<span>${escapeHtml(item)}</span>`).join('');
 
   showModalLoading();
 
@@ -2786,6 +1948,21 @@ if(projectsSection && 'IntersectionObserver' in window){
   requestIdleCallback(applyProjectCoversOnce, { timeout: 1600 });
 } else {
   setTimeout(applyProjectCoversOnce, 800);
+}
+
+const experienceSection = document.getElementById('experience');
+if(experienceSection && 'IntersectionObserver' in window){
+  const experienceImageObserver = new IntersectionObserver(entries => {
+    if(entries.some(entry => entry.isIntersecting)){
+      applyExperienceImages();
+      experienceImageObserver.disconnect();
+    }
+  }, { rootMargin: '500px 0px' });
+  experienceImageObserver.observe(experienceSection);
+} else if('requestIdleCallback' in window){
+  requestIdleCallback(applyExperienceImages, { timeout: 1400 });
+} else {
+  setTimeout(applyExperienceImages, 700);
 }
 
 document.querySelectorAll('.exp-item[data-folder]').forEach(item => {
