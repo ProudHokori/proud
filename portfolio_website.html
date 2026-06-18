@@ -81,6 +81,7 @@
       overflow-x: hidden;
       transition: background 0.25s ease, color 0.25s ease;
     }
+    section { scroll-margin-top: 84px; }
 
     /* scrollbar */
     ::-webkit-scrollbar { width: 5px; }
@@ -122,9 +123,10 @@
       transform: translateY(-1px);
     }
     .theme-toggle svg { width: 16px; height: 16px; display: block; }
-    .theme-icon-sun { display: none; }
-    html[data-theme="light"] .theme-icon-sun { display: block; }
-    html[data-theme="light"] .theme-icon-moon { display: none; }
+    .theme-toggle .theme-icon-moon { display: none; }
+    .theme-toggle .theme-icon-sun { display: block; }
+    html[data-theme="light"] .theme-toggle .theme-icon-moon { display: block; }
+    html[data-theme="light"] .theme-toggle .theme-icon-sun { display: none; }
     .nav-cta {
       display: flex; align-items: center; gap: 7px; padding: 8px 18px;
       border-radius: 8px; font-size: 0.8rem; font-weight: 600;
@@ -141,12 +143,15 @@
     }
     #hero-canvas {
       position: absolute; inset: 0; z-index: 0; opacity: 0.7;
+      pointer-events: none;
     }
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: radial-gradient(ellipse 60% 60% at 70% 40%, rgba(127,138,180,0.055) 0%, transparent 70%),
                   radial-gradient(ellipse 40% 40% at 20% 70%, rgba(155,147,199,0.045) 0%, transparent 60%);
+      pointer-events: none;
     }
+    .hero-inner { position: relative; z-index: 2; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       border: 1px solid var(--border2); border-radius: 100px;
@@ -194,13 +199,28 @@
       display: inline-flex; align-items: center; gap: 7px; padding: 12px 24px;
       border-radius: 8px; font-family: var(--ff); font-weight: 600; font-size: 0.85rem;
       cursor: pointer; text-decoration: none; transition: all 0.2s; border: none;
+      position: relative; overflow: hidden;
     }
     .btn svg, .proj-link svg, .clink-icon svg { flex-shrink: 0; overflow: visible; }
+    .hero-ctas .btn svg { transition: transform 0.24s cubic-bezier(.22,1,.36,1); }
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: var(--button-fg); box-shadow: 0 0 22px rgba(155,147,199,0.22);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(155,147,199,0.28); }
+    .hero-ctas .btn-primary::before {
+      content: ''; position: absolute; inset: -60% auto -60% -35%;
+      width: 34%; transform: rotate(18deg) translateX(-120%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.34), transparent);
+      transition: transform 0.55s cubic-bezier(.22,1,.36,1);
+      pointer-events: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow: 0 14px 34px rgba(155,147,199,0.28), 0 0 26px rgba(155,147,199,0.24);
+      filter: brightness(1.04);
+    }
+    .hero-ctas .btn-primary:hover::before { transform: rotate(18deg) translateX(430%); }
+    .hero-ctas .btn-primary:hover svg { transform: translateX(2px) scale(1.06); }
     .btn-ghost {
       background: transparent; color: var(--text2);
       border: 1px solid var(--border2);
@@ -293,17 +313,19 @@
 
     /* -- EXPERIENCE -- */
     #experience { background: var(--bg); }
-    .exp-list { max-width: 840px; }
+    .exp-list { max-width: 840px; position: relative; }
     .exp-item {
       display: grid; grid-template-columns: 132px 58px minmax(0,1fr);
-      gap: 0 22px; margin-bottom: 48px; position: relative;
+      gap: 0 22px; margin-bottom: 48px; position: relative; --avatar-center: 183px;
     }
     .exp-item:not(:last-child)::after {
-      content: ''; position: absolute; left: 160px; top: 58px; bottom: -24px;
-      width: 1px; background: linear-gradient(180deg, var(--border2), transparent);
+      content: ''; position: absolute; left: var(--avatar-center); top: 66px; bottom: -32px;
+      width: 1px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 46%, var(--border2)), color-mix(in srgb, var(--accent) 10%, transparent));
+      box-shadow: 0 0 14px rgba(155,147,199,0.16);
     }
     .exp-meta { text-align: right; padding-top: 2px; }
-    .exp-year { font-size: 0.73rem; color: var(--muted); line-height: 1.6; }
+    .exp-year { font-size: 0.73rem; color: var(--muted); line-height: 1.6; white-space: nowrap; }
     .exp-avatar {
       width: 58px; height: 58px; border-radius: 50%; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
@@ -544,8 +566,9 @@
       border: 1px solid var(--border2); background: var(--s2); flex-shrink: 0;
       box-shadow: 0 20px 54px var(--shadow-soft), 0 0 0 8px color-mix(in srgb, var(--accent) 7%, transparent);
     }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1080px; align-items: start; }
-    .contact-links-list { display: flex; flex-direction: column; gap: 10px; }
+    .contact-grid { display: block; max-width: 1080px; }
+    .contact-info { max-width: 900px; }
+    .contact-links-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     .clink {
       display: flex; align-items: center; gap: 14px; padding: 14px 18px;
       background: var(--s2); border: 1px solid var(--border); border-radius: 12px;
@@ -567,20 +590,6 @@
     }
     .avail-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
     .avail-card p strong { color: var(--text2); }
-
-    .contact-form { display: flex; flex-direction: column; gap: 14px; }
-    .fg { display: flex; flex-direction: column; gap: 6px; }
-    .fg label { font-size: 0.72rem; font-weight: 600; color: var(--muted); letter-spacing: 0.4px; text-transform: uppercase; }
-    .fg input, .fg textarea {
-      background: var(--s2); border: 1px solid var(--border2); border-radius: 8px;
-      padding: 11px 14px; color: var(--text); font-family: var(--ff); font-size: 0.88rem;
-      outline: none; transition: border-color 0.25s, box-shadow 0.25s; resize: vertical;
-    }
-    .fg input:focus, .fg textarea:focus {
-      border-color: rgba(155,147,199,0.35); box-shadow: 0 0 0 3px rgba(155,147,199,0.06);
-    }
-    .fg textarea { min-height: 110px; }
-    #form-ok { display: none; font-size: 0.8rem; color: var(--accent); margin-top: 4px; }
 
     /* -- INTRO VIDEO POPUP -- */
     .intro-video-widget {
@@ -771,11 +780,11 @@
       .skills-cats { grid-template-columns: 1fr 1fr; }
       .contact-head { gap: 24px; }
       .contact-portrait { width: 128px; height: 128px; margin-top: 16px; }
-      .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .contact-links-list { grid-template-columns: 1fr; }
       .intro-video-widget { right: 18px; bottom: 18px; width: min(320px, calc(100vw - 32px)); }
       .intro-video-tab { bottom: 64px; width: 74px; height: 68px; }
-      .exp-item { grid-template-columns: 58px minmax(0,1fr); gap: 0 18px; }
-      .exp-item::after { display: none; }
+      .exp-item { grid-template-columns: 58px minmax(0,1fr); gap: 0 18px; --avatar-center: 29px; }
+      .exp-item:not(:last-child)::after { top: 66px; bottom: -30px; }
       .exp-meta { grid-column: 2; text-align: left; margin-bottom: 4px; padding-top: 0; }
       .exp-avatar { grid-row: 1 / span 2; grid-column: 1; }
       .exp-content { grid-column: 2; }
@@ -825,7 +834,7 @@
       <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"/></svg>
       <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
     </button>
-    <a href="mailto:ratchaprapa.c@gmail.com" class="nav-cta">
+    <a href="#contact" class="nav-cta">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
       Get in touch
     </a>
@@ -1163,13 +1172,15 @@ function loadPortfolioData(){
 
 function iconFor(label = ''){
   const key = label.toLowerCase();
+  if(key.includes('technical') || key.includes('engineer') || key.includes('frontend')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 18v3"/><polyline points="10 9 7 12 10 15"/><polyline points="14 9 17 12 14 15"/></svg>';
+  if(key.includes('business') || key.includes('market') || key.includes('client')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M3 13h18"/><path d="M12 13v2"/></svg>';
   if(key.includes('qa') || key.includes('test')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
   if(key.includes('ux') || key.includes('design') || key.includes('figma')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>';
   if(key.includes('dev') || key.includes('code')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>';
   if(key.includes('github')) return '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.02c-3.2.7-3.87-1.38-3.87-1.38-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.73-1.53-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18A10.93 10.93 0 0 1 12 6.15c.98 0 1.96.13 2.88.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.58.24 2.75.12 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14v3.16c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>';
   if(key.includes('youtube') || key.includes('demo')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
   if(key.includes('email')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>';
-  if(key.includes('phone')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11"/></svg>';
+  if(key.includes('phone')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.89.66 2.78a2 2 0 0 1-.45 2.11L8 9.88a16 16 0 0 0 6.12 6.12l1.27-1.27a2 2 0 0 1 2.11-.45c.89.31 1.82.53 2.78.66A2 2 0 0 1 22 16.92Z"/></svg>';
   if(key.includes('linkedin')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>';
   return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>';
 }
@@ -1189,13 +1200,41 @@ function initialsFromText(value = ''){
   return letters || 'PR';
 }
 
+function formatDateRange(value = ''){
+  const clean = String(value).replace(/\s+/g, ' ').trim();
+  if(!clean) return '';
+  if(/\s(?:-|–|—|to)\s/i.test(clean)) return clean.replace(/\s(?:-|–|—|to)\s/i, ' - ');
+  return clean.replace(/^([A-Za-z]{3,9}\s+\d{4})\s+(.+)$/, '$1 - $2');
+}
+
+function scrollToSection(targetId){
+  const id = String(targetId || '').replace(/^#/, '');
+  const target = document.getElementById(id);
+  if(!target) return false;
+  const navOffset = (document.getElementById('navbar')?.offsetHeight || 0) + 18;
+  const top = target.getBoundingClientRect().top + window.scrollY - navOffset;
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  try { history.replaceState(null, '', `#${id}`); } catch(e) {}
+  return true;
+}
+
+function bindInternalScrollLinks(root = document){
+  root.querySelectorAll('a[href^="#"]').forEach(link => {
+    if(link.dataset.scrollBound === 'true') return;
+    link.dataset.scrollBound = 'true';
+    link.addEventListener('click', e => {
+      if(scrollToSection(link.getAttribute('href'))) e.preventDefault();
+    });
+  });
+}
+
 function renderPortfolio(data){
   if(!data || !Object.keys(data).length) return;
   document.title = data.meta?.title || document.title;
   document.querySelector('.nav-logo').innerHTML = logoHtml(data.personal?.logo);
   document.querySelector('.footer-logo').innerHTML = logoHtml(data.personal?.logo);
   const navCta = document.querySelector('.nav-cta');
-  if(navCta && data.personal?.email) navCta.href = `mailto:${data.personal.email}`;
+  if(navCta) navCta.href = '#contact';
 
   const hero = data.hero || {};
   document.getElementById('hero-content').innerHTML = `
@@ -1226,7 +1265,7 @@ function renderPortfolio(data){
     ${(data.experiences || []).map(item => {
       const folder = item.folder || item.company;
       const initials = initialsFromText(item.company);
-      return `<div class="exp-item reveal" data-folder="${htmlEscape(folder)}"><div class="exp-meta"><div class="exp-year">${htmlEscape(item.year).replace(' - ', '<br/>')}</div></div><div class="exp-avatar" data-folder="${htmlEscape(folder)}" data-label="${htmlEscape(item.company)}"><span>${htmlEscape(initials)}</span></div><div class="exp-content"><div class="exp-company">${htmlEscape(item.company)}</div><div class="exp-title">${htmlEscape(item.title)}</div><ul class="exp-bullets">${(item.bullets || []).map(bullet => `<li>${htmlEscape(bullet)}</li>`).join('')}</ul></div></div>`;
+      return `<div class="exp-item reveal" data-folder="${htmlEscape(folder)}"><div class="exp-meta"><div class="exp-year">${htmlEscape(formatDateRange(item.year))}</div></div><div class="exp-avatar" data-folder="${htmlEscape(folder)}" data-label="${htmlEscape(item.company)}"><span>${htmlEscape(initials)}</span></div><div class="exp-content"><div class="exp-company">${htmlEscape(item.company)}</div><div class="exp-title">${htmlEscape(item.title)}</div><ul class="exp-bullets">${(item.bullets || []).map(bullet => `<li>${htmlEscape(bullet)}</li>`).join('')}</ul></div></div>`;
     }).join('')}
     </div>`;
 
@@ -1265,23 +1304,17 @@ function renderPortfolio(data){
       ${contact.profileImage ? `<img class="contact-portrait" src="${htmlEscape(freshAssetUrl(contact.profileImage))}" alt="${htmlEscape(data.personal?.nickname || data.personal?.name || 'Profile photo')}" loading="lazy">` : ''}
     </div>
     <div class="contact-grid">
-      <div>
+      <div class="contact-info">
         <div class="contact-links-list">${(contact.links || []).map(link => `<a href="${htmlEscape(link.url)}" ${/^https?:/.test(link.url || '') ? 'target="_blank"' : ''} class="clink reveal"><div class="clink-icon">${iconFor(link.label)}</div><div><div class="clink-label">${htmlEscape(link.label)}</div><div class="clink-val">${htmlEscape(link.value)}</div></div></a>`).join('')}</div>
         <div class="avail-card reveal"><p>${contact.availability || ''}</p></div>
       </div>
-      <form class="contact-form" onsubmit="sendMsg(event)">
-        <div class="fg"><label>Your Name</label><input type="text" placeholder="${htmlEscape(contact.form?.namePlaceholder || '')}" required/></div>
-        <div class="fg"><label>Email</label><input type="email" placeholder="${htmlEscape(contact.form?.emailPlaceholder || '')}" required/></div>
-        <div class="fg"><label>Message</label><textarea placeholder="${htmlEscape(contact.form?.messagePlaceholder || '')}" required></textarea></div>
-        <button type="submit" class="btn btn-primary" style="width:fit-content;">${iconFor('send')}Send message</button>
-        <p id="form-ok">${htmlEscape(contact.form?.successMessage || '')}</p>
-      </form>
     </div>`;
 
   const footerPs = document.querySelectorAll('footer p');
   if(footerPs[0]) footerPs[0].textContent = data.footer?.copyright || '';
   if(footerPs[1]) footerPs[1].textContent = data.footer?.education || '';
   PROJECT_DETAILS = Object.fromEntries((data.projects || []).map(project => [project.slug, { folder: project.folder, youtube: project.youtube, ...(project.modal || {}) }]));
+  bindInternalScrollLinks();
 }
 
 function renderIntroVideo(data){
@@ -1461,6 +1494,14 @@ window.addEventListener('scroll', () => {
   secs.forEach(s => { if(window.scrollY >= s.offsetTop - 100) cur = s.id; });
   navAs.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--text2)' : ''; });
 }, { passive: true });
+
+document.addEventListener('click', e => {
+  const link = e.target.closest('a[href^="#"]');
+  if(!link) return;
+  const targetId = link.getAttribute('href');
+  if(!targetId || targetId === '#') return;
+  if(scrollToSection(targetId)) e.preventDefault();
+});
 
 /* Project filter */
 document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1881,7 +1922,7 @@ function escapeHtml(value){
 async function openExperience(item){
   const company = item.querySelector('.exp-company')?.textContent.trim() || 'Experience';
   const title = item.querySelector('.exp-title')?.textContent.trim() || '';
-  const year = item.querySelector('.exp-year')?.textContent.trim().replace(/\s+/g, ' - ') || '';
+  const year = formatDateRange(item.querySelector('.exp-year')?.textContent.trim() || '');
   const bullets = Array.from(item.querySelectorAll('.exp-bullets li')).map(li => li.textContent.trim()).filter(Boolean);
   const folder = item.dataset.folder || projectSlug(company);
 
@@ -2008,8 +2049,6 @@ document.getElementById('theme-toggle')?.addEventListener('click', () => {
   setTheme(currentTheme() === 'light' ? 'dark' : 'light');
 });
 
-/* Form */
-function sendMsg(e){ e.preventDefault(); document.getElementById('form-ok').style.display='block'; e.target.reset(); }
 </script>
 </body>
 </html>

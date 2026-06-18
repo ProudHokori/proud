@@ -75,11 +75,14 @@
   },
   "about": {
     "eyebrow": "About",
-    "heading": "Product-minded builder with technical depth",
+    "heading": "PM/PO with technical, design, and business range",
     "portraitImage": "images/profile/present pic2.jpg",
     "paragraphs": [
-      "I'm Proud, a Software Engineering graduate from Kasetsart University. I work across product strategy, UX, QA, and frontend, so I can connect user needs with what teams can actually build.",
-      "At ByteArk and in team projects like Courtly, I translated research into requirements, managed backlog priorities, clarified scope, tested releases, and helped bridge design with engineering."
+      "My strongest fit is PM/PO because I can connect the full software picture: user needs, business goals, and engineering reality. I see product work through three pillars a PM/PO should understand deeply: technical, design, and business.",
+      "Technically, I come from Software and Knowledge Engineering, so I have solid fundamentals in how software is planned, built, tested, and shipped. I can code, especially on the frontend, which helps me write practical requirements, understand constraints, and communicate clearly with developers.",
+      "Design is the side I naturally lean into most. In team projects, I was often trusted to lead both features and design because I care about details, analyze real user problems, and use design thinking to shape products around user needs and experience.",
+      "Business-wise, I have always been drawn to selling, building, and understanding why products work. Through Hokori Studio, my small design business, I handled client conversations, requirement analysis, costing, accounting, team assignment, and 100+ mostly B2B deals. I also study how brands and founders think about markets, value, and product-market fit across software, beauty, healthcare, hospitality, real estate, and consumer businesses.",
+      "That detail-oriented mindset also made QA a strength during my PM/PO internship: I wrote test cases, tested releases, and found edge-case bugs that were easy to miss. Beyond PM/PO, I can also contribute in UX/UI design, frontend development, and manual QA when a team needs hands-on support."
     ],
     "education": {
       "degree": "B.Eng. Software and Knowledge Engineering",
@@ -88,16 +91,16 @@
     },
     "roleCards": [
       {
-        "title": "PM / Product Owner",
-        "description": "Research, requirements, backlog priorities, stakeholder alignment, and release readiness."
+        "title": "Technical",
+        "description": "Software engineering fundamentals, frontend development, API thinking, QA awareness, and realistic implementation tradeoffs."
       },
       {
-        "title": "Manual QA",
-        "description": "Test cases, exploratory testing, regression checks, and clear bug reports."
+        "title": "Design",
+        "description": "User research, design thinking, UX flows, Figma mockups, feature clarity, and detail-driven product experience."
       },
       {
-        "title": "UX/UI Design",
-        "description": "User research, wireframes, Figma mockups, and usable interface patterns."
+        "title": "Business",
+        "description": "Client requirements, costing, team coordination, B2B delivery, market curiosity, and product value thinking."
       }
     ]
   },
@@ -701,13 +704,7 @@
         "url": "https://www.youtube.com/@hoshitsukihokori"
       }
     ],
-    "availability": "Based in Thailand<br/>Remote or on-site<br/><strong>PM/PO</strong> · <strong>Manual QA</strong> · <strong>UX Design</strong>",
-    "form": {
-      "namePlaceholder": "Jane Smith",
-      "emailPlaceholder": "jane@company.com",
-      "messagePlaceholder": "Tell me about the role...",
-      "successMessage": "Message received — I'll get back to you soon."
-    }
+    "availability": "Bangkok, Thailand<br/>Available in Remote, Hybrid<br/><strong>PM/PO</strong> · <strong>Manual QA</strong> · <strong>UX Design</strong>"
   },
   "footer": {
     "copyright": "© 2026 Ratchaprapa Chattrakulrak. All rights reserved.",
