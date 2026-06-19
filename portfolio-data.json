@@ -353,11 +353,16 @@
       "links": [
         {
           "label": "GitHub",
-          "url": "https://github.com/ProudHokori/ku-eater-android",
+          "url": "https://github.com/KU-Eater/",
           "kind": "github"
+        },
+        {
+          "label": "Presentation",
+          "url": "https://youtu.be/sGjVLFX6Akw",
+          "kind": "demo"
         }
       ],
-      "youtube": "",
+      "youtube": "https://youtu.be/sGjVLFX6Akw",
       "modal": {
         "about": "KU Eater helps Kasetsart students decide what to eat through recommendations, peer reviews, and menu browsing.",
         "experience": "I shaped research, user flows, Figma direction, backlog thinking, and frontend/mobile decisions while keeping the user problem visible.",
@@ -392,9 +397,19 @@
           "label": "GitHub",
           "url": "https://github.com/Courtly-Badminton-Court-Management/courtly-project",
           "kind": "github"
+        },
+        {
+          "label": "Demo",
+          "url": "https://youtu.be/8kKGbNDKMoM",
+          "kind": "demo"
+        },
+        {
+          "label": "Sprint Playlist",
+          "url": "https://www.youtube.com/playlist?list=PLy2euUO-1ED_5BwWGAM6IQy1v_EnQUnwQ",
+          "kind": "demo"
         }
       ],
-      "youtube": "",
+      "youtube": "https://youtu.be/8kKGbNDKMoM",
       "modal": {
         "about": "Courtly supports badminton reservations, manager scheduling, check-ins, and operational visibility.",
         "experience": "I owned PM/PO work end to end while contributing to frontend, API design, and QA under deadline pressure.",
@@ -410,7 +425,6 @@
       "name": "FurStay",
       "folder": "furstay",
       "tags": [
-        "pm",
         "dev"
       ],
       "type": "PM · Full-stack",
@@ -428,9 +442,14 @@
           "label": "GitHub",
           "url": "https://github.com/ProudHokori/FurStay",
           "kind": "github"
+        },
+        {
+          "label": "Presentation",
+          "url": "https://youtu.be/OpzqmlphXzg",
+          "kind": "demo"
         }
       ],
-      "youtube": "",
+      "youtube": "https://youtu.be/OpzqmlphXzg",
       "modal": {
         "about": "FurStay separates pet owner, sitter, and admin journeys for a clearer pet-sitting service experience.",
         "experience": "I helped define product structure, role boundaries, and technical choices across Next.js, Prisma, NextAuth, and PostgreSQL.",
@@ -457,11 +476,17 @@
       ],
       "links": [
         {
-          "label": "Figma (private)",
-          "disabled": true
+          "label": "Report Journey",
+          "url": "https://drive.google.com/drive/folders/1MdSkzCESZiDFuN4wLAB7cxN7PDlQPgPi?usp=sharing",
+          "kind": "report"
+        },
+        {
+          "label": "Design Demo",
+          "url": "https://youtu.be/TXovgEKAQcc",
+          "kind": "demo"
         }
       ],
-      "youtube": "",
+      "youtube": "https://youtu.be/TXovgEKAQcc",
       "modal": {
         "about": "EcoWear explores how sustainable shopping can feel clear, rewarding, and easy to act on.",
         "experience": "I moved from research to personas, journey maps, wireframes, high-fidelity Figma, and a reusable component direction.",
@@ -491,11 +516,17 @@
       ],
       "links": [
         {
-          "label": "Figma (private)",
-          "disabled": true
+          "label": "GitHub",
+          "url": "https://github.com/Referite",
+          "kind": "github"
+        },
+        {
+          "label": "Plan Presentation",
+          "url": "https://youtu.be/zTb-kIkfBtk",
+          "kind": "demo"
         }
       ],
-      "youtube": "",
+      "youtube": "https://youtu.be/zTb-kIkfBtk",
       "modal": {
         "about": "Referite combines score entry, match management, and referee workflows for a simulated Olympics software suite.",
         "experience": "I acted as Product Owner, using Jira for planning, backlog grooming, reviews, and retrospectives.",
@@ -524,11 +555,17 @@
       ],
       "links": [
         {
-          "label": "No public repo",
-          "disabled": true
+          "label": "Report",
+          "url": "https://docs.google.com/document/d/e/2PACX-1vRRYccr-XKCEOgvljnA1ceX92abwALykPRdOEj9tepHmAerAWZQzgfgXdzxchVXOd3Ga8km5ne6hlK1/pub",
+          "kind": "report"
+        },
+        {
+          "label": "Presentation",
+          "url": "https://youtu.be/WLH1rfBK6ko",
+          "kind": "demo"
         }
       ],
-      "youtube": "",
+      "youtube": "https://youtu.be/WLH1rfBK6ko",
       "modal": {
         "about": "Planty uses Prolog rules to match users with plants based on care preferences and environment.",
         "experience": "This project taught me to model a domain as facts, rules, and queries instead of procedural logic.",
@@ -558,8 +595,9 @@
       ],
       "links": [
         {
-          "label": "No public repo",
-          "disabled": true
+          "label": "Report",
+          "url": "https://docs.google.com/document/d/e/2PACX-1vSo-zqGAhN-y3hBzvbsJUZZaXlLlKa00am2EN4BJ_kftTfPxkahKX22UMeavI53dt49-nOmxZHXneFr/pub",
+          "kind": "report"
         }
       ],
       "youtube": "",
@@ -589,8 +627,14 @@
       ],
       "links": [
         {
-          "label": "Figma (private)",
-          "disabled": true
+          "label": "GitHub",
+          "url": "https://github.com/GToidZ/GDSC-Todo-GToidZ",
+          "kind": "github"
+        },
+        {
+          "label": "Figma",
+          "url": "https://www.figma.com/design/zpM3jm7CxB16JugElEmODZ/Goodo?node-id=0-1&t=0f8dehq9P6RPBQqJ-1",
+          "kind": "figma"
         }
       ],
       "youtube": "",
@@ -623,8 +667,9 @@
       ],
       "links": [
         {
-          "label": "No public repo",
-          "disabled": true
+          "label": "GitHub",
+          "url": "https://github.com/Exceed19-Group10/powerbank-lender-frontend",
+          "kind": "github"
         }
       ],
       "youtube": "",
@@ -656,11 +701,22 @@
       ],
       "links": [
         {
-          "label": "No public repo",
-          "disabled": true
+          "label": "GitHub",
+          "url": "https://github.com/ProudHokori/Book-Collection-project-api-edition",
+          "kind": "github"
+        },
+        {
+          "label": "Presentation 2",
+          "url": "https://youtu.be/WovQxGF6CLU",
+          "kind": "demo"
+        },
+        {
+          "label": "Presentation 1",
+          "url": "https://youtu.be/2fR_4Tghx9c",
+          "kind": "demo"
         }
       ],
-      "youtube": "",
+      "youtube": "https://youtu.be/WovQxGF6CLU",
       "modal": {
         "about": "Book Collection is a personal book manager where my first serious API integration clicked.",
         "experience": "I built the GUI, data flow, and Google Sheets connection myself, using books as a motivating domain.",
@@ -676,7 +732,7 @@
     "eyebrow": "Contact",
     "heading": "Let's connect",
     "subheading": "Open to PM/PO, QA, UX, and product-minded frontend roles.",
-    "profileImage": "images/profile/profile picture2.jpg",
+    "profileImage": "images/profile/profile picture3.png",
     "links": [
       {
         "label": "Email",
