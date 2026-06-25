@@ -4,7 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="referrer" content="strict-origin-when-cross-origin"/>
-  <title>Proud — PM/PO · Manual QA · UX Designer</title>
+  <title>Proud — Product Owner · PM · UX/UI · Full-stack · QA</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon-lightbulb.svg?v=2026-06-25"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <script>
     (() => {
@@ -109,6 +110,7 @@
     .nav-logo {
       font-family: var(--ffd); font-weight: 700; font-size: 1.15rem;
       color: var(--text); letter-spacing: -0.3px;
+      text-decoration: none;
     }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 34px; list-style: none; }
@@ -138,6 +140,52 @@
     .theme-toggle .theme-icon-sun { display: block; }
     html[data-theme="light"] .theme-toggle .theme-icon-moon { display: block; }
     html[data-theme="light"] .theme-toggle .theme-icon-sun { display: none; }
+    .docs-menu { position: relative; }
+    .docs-toggle {
+      height: 36px; display: inline-flex; align-items: center; gap: 7px;
+      border-radius: 100px; border: 1px solid var(--border2);
+      background: var(--glass-bg); color: var(--text2);
+      padding: 0 13px; cursor: pointer; font-family: var(--ff);
+      font-size: 0.78rem; font-weight: 700;
+      transition: transform 0.2s, border-color 0.2s, color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .docs-toggle svg { width: 15px; height: 15px; display: block; flex-shrink: 0; }
+    .docs-toggle:hover,
+    .docs-menu.open .docs-toggle {
+      color: var(--accent); border-color: var(--accent);
+      box-shadow: 0 0 14px var(--glow);
+      transform: translateY(-1px);
+    }
+    .docs-dropdown {
+      position: absolute; top: calc(100% + 10px); right: 0;
+      width: 236px; padding: 8px;
+      border: 1px solid var(--border2); border-radius: 12px;
+      background: color-mix(in srgb, var(--s1) 94%, transparent);
+      box-shadow: 0 18px 42px var(--shadow-soft);
+      backdrop-filter: blur(18px) saturate(1.1);
+      opacity: 0; pointer-events: none;
+      transform: translateY(-6px) scale(0.98);
+      transform-origin: top right;
+      transition: opacity 0.18s, transform 0.18s;
+    }
+    .docs-menu.open .docs-dropdown {
+      opacity: 1; pointer-events: auto; transform: translateY(0) scale(1);
+    }
+    .docs-link {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px; border-radius: 8px; text-decoration: none;
+      color: var(--text2); transition: background 0.18s, color 0.18s;
+    }
+    .docs-link:hover { background: var(--s2); color: var(--text); }
+    .docs-link-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--warm); background: rgba(245,158,11,0.1);
+      flex-shrink: 0;
+    }
+    .docs-link-icon svg { width: 15px; height: 15px; display: block; }
+    .docs-link-title { display: block; font-size: 0.8rem; font-weight: 700; line-height: 1.25; }
+    .docs-link-desc { display: block; margin-top: 2px; font-size: 0.68rem; color: var(--muted); line-height: 1.35; }
     .nav-cta {
       display: flex; align-items: center; gap: 7px; padding: 8px 18px;
       border-radius: 8px; font-size: 0.8rem; font-weight: 600;
@@ -165,17 +213,24 @@
     .hero-inner { position: relative; z-index: 2; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid var(--border2); border-radius: 100px;
-      padding: 5px 14px; font-size: 0.73rem; color: var(--muted);
-      margin-bottom: 32px; background: var(--glass-bg);
+      border: 1px solid rgba(52, 211, 153, 0.38); border-radius: 100px;
+      padding: 6px 15px; font-size: 0.73rem; color: #b7f7da;
+      margin-bottom: 32px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.17), rgba(5, 150, 105, 0.08));
+      box-shadow: 0 0 22px rgba(16, 185, 129, 0.12);
       backdrop-filter: blur(8px);
     }
     .badge-dot {
       width: 6px; height: 6px; border-radius: 50%;
-      background: var(--warm); box-shadow: 0 0 8px var(--warm);
+      background: #34d399; box-shadow: 0 0 10px #34d399;
       animation: blink 2.2s infinite;
     }
-    @keyframes blink { 0%,100%{opacity:1;box-shadow:0 0 8px var(--warm)}50%{opacity:0.3;box-shadow:none} }
+    @keyframes blink { 0%,100%{opacity:1;box-shadow:0 0 10px #34d399}50%{opacity:0.35;box-shadow:none} }
+    html[data-theme="light"] .hero-badge {
+      color: #047857; border-color: rgba(5, 150, 105, 0.28);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(240, 253, 244, 0.76));
+      box-shadow: 0 10px 26px rgba(5, 150, 105, 0.1);
+    }
 
     .hero-name {
       font-family: var(--ffd); font-size: clamp(2.8rem, 7vw, 5.5rem);
@@ -194,12 +249,23 @@
       border-radius: 100px; border: 1px solid var(--border2);
       font-size: 0.78rem; font-weight: 500; color: var(--text2);
       background: var(--glass-bg); backdrop-filter: blur(6px);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s, opacity 0.2s, transform 0.2s;
     }
+    .role-chip:not(.primary-role) { opacity: 0.78; }
     .role-chip:hover {
-      border-color: var(--accent); box-shadow: 0 0 10px rgba(245,158,11,0.16);
+      opacity: 1; border-color: var(--accent); box-shadow: 0 0 10px rgba(245,158,11,0.16);
     }
     .role-chip svg { color: var(--accent); flex-shrink: 0; }
+    .role-chip.primary-role {
+      padding: 7px 16px;
+      border-color: color-mix(in srgb, var(--accent) 68%, var(--border2));
+      color: var(--text); font-weight: 800; font-size: 0.82rem;
+      background: color-mix(in srgb, var(--accent) 12%, var(--glass-bg));
+      box-shadow: 0 0 16px var(--glow);
+      opacity: 1;
+    }
+    .role-chip.primary-role svg { color: var(--accent3); }
+    .role-chip.primary-role:hover { transform: translateY(-1px); box-shadow: 0 0 20px var(--glow); }
 
     .hero-desc {
       max-width: 540px; color: var(--muted); font-size: 0.95rem; line-height: 1.62; margin-bottom: 36px;
@@ -273,10 +339,86 @@
       display: flex; flex-direction: column; justify-content: center;
       padding: 56px clamp(44px, 4vw, 72px) 48px clamp(52px, 5vw, 82px);
     }
-    .about-body .stag { margin-bottom: clamp(62px, 8vh, 92px); }
+    .about-body .stag { margin-bottom: clamp(42px, 6vh, 72px); }
     .about-body .sh { max-width: 700px; font-size: clamp(2.35rem, 3.8vw, 3.7rem); line-height: 1.04; margin-bottom: 24px; }
     .about-body p { color: var(--muted); line-height: 1.68; margin-bottom: 16px; font-size: 0.94rem; max-width: 680px; }
     .about-body p strong { color: var(--text2); font-weight: 500; }
+    .about-qa-shell { max-width: 780px; }
+    .about-qa-bar {
+      display: flex; justify-content: flex-end; align-items: center;
+      margin: -8px 0 8px;
+    }
+    .about-qa-show {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border2); border-radius: 100px;
+      background: color-mix(in srgb, var(--s2) 74%, transparent);
+      color: var(--text2); padding: 8px 12px;
+      font-family: var(--ff); font-size: 0.72rem; font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.22s, border-color 0.22s, color 0.22s, box-shadow 0.22s, background 0.22s;
+    }
+    .about-qa-show svg { width: 15px; height: 15px; display: block; flex-shrink: 0; }
+    .about-qa-show:hover {
+      transform: translateY(-2px); color: var(--text);
+      border-color: color-mix(in srgb, var(--warm) 58%, var(--accent));
+      background: color-mix(in srgb, var(--s2) 80%, var(--warm) 20%);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.18), 0 0 20px rgba(245,158,11,0.09);
+    }
+    .about-qa-viewport {
+      max-width: 780px; overflow: hidden; position: relative;
+      padding: 5px 0 12px;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    .about-qa-track {
+      display: flex; gap: 12px; width: max-content;
+      --rail-distance: 0px;
+      animation: qaRail 72s linear infinite;
+      will-change: transform;
+    }
+    .about-qa-viewport:hover .about-qa-track { animation-play-state: paused; }
+    .about-qa-track.is-paused { animation-play-state: paused; }
+    @keyframes qaRail {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-1 * var(--rail-distance))); }
+    }
+    .about-qa-card {
+      flex: 0 0 292px; min-height: 178px;
+      border: 1px solid var(--border); border-radius: 12px;
+      background: color-mix(in srgb, var(--s2) 78%, transparent);
+      padding: 16px; position: relative; overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(245,158,11,0.05);
+      transition: transform 0.32s cubic-bezier(.22,1,.36,1), border-color 0.28s, box-shadow 0.28s, background 0.28s;
+    }
+    .about-qa-card::before {
+      content: ''; position: absolute; inset: 0 0 auto 0; height: 1px;
+      background: linear-gradient(90deg, var(--accent), var(--warm), transparent);
+      opacity: 0.45;
+    }
+    .about-qa-card:hover {
+      transform: translateY(-4px) scale(1.015);
+      border-color: color-mix(in srgb, var(--accent) 48%, var(--border2));
+      background: color-mix(in srgb, var(--s2) 88%, var(--accent) 12%);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.2), 0 0 24px rgba(245,158,11,0.08);
+      z-index: 2;
+    }
+    .about-qa-kicker {
+      display: inline-flex; align-items: center; margin-bottom: 8px;
+      font-size: 0.64rem; font-weight: 800; letter-spacing: 1.4px;
+      text-transform: uppercase; color: var(--warm);
+    }
+    .about-qa-q {
+      font-family: var(--ffd); font-size: 1rem; font-weight: 700; line-height: 1.18;
+      color: var(--text); margin-bottom: 9px; letter-spacing: 0;
+    }
+    .about-qa-q .mark {
+      color: var(--warm);
+      text-shadow: 0 0 18px rgba(245,158,11,0.16);
+    }
+    .about-body .about-qa-a {
+      max-width: none; margin: 0; font-size: 0.77rem; line-height: 1.54;
+      color: var(--muted);
+    }
     .about-edu {
       margin-top: 28px; padding: 20px 22px;
       background: var(--s2); border: 1px solid var(--border2); border-radius: 12px;
@@ -562,6 +704,62 @@
       font-size: 0.7rem; padding: 4px 10px; border-radius: 4px;
       background: var(--s2); color: var(--muted); border: 1px solid var(--border);
     }
+    .about-qa-modal {
+      position: fixed; inset: 0; z-index: 430; display: none;
+      align-items: center; justify-content: center;
+      padding: 24px; background: var(--modal-backdrop);
+      backdrop-filter: blur(18px) saturate(1.08);
+    }
+    .about-qa-modal.open { display: flex; }
+    .about-qa-modal-panel {
+      position: relative; width: min(980px, 100%); max-height: min(84vh, 780px);
+      overflow: auto; border-radius: 16px;
+      border: 1px solid var(--border2);
+      background: color-mix(in srgb, var(--s1) 94%, transparent);
+      box-shadow: 0 28px 80px var(--shadow-soft);
+      padding: 30px;
+    }
+    .about-qa-modal-close {
+      position: sticky; top: 0; float: right; z-index: 2;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--border2); background: var(--s2); color: var(--text2);
+      cursor: pointer; font-size: 1.25rem; line-height: 1;
+      transition: transform 0.2s, border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .about-qa-modal-close:hover {
+      transform: rotate(8deg);
+      border-color: var(--warm); color: var(--text);
+      background: rgba(245,158,11,0.12);
+    }
+    .about-qa-modal-eyebrow {
+      color: var(--warm); font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .about-qa-modal-title {
+      font-family: var(--ffd); font-size: clamp(1.8rem, 3vw, 2.65rem);
+      line-height: 1.06; margin-bottom: 22px; letter-spacing: 0;
+      max-width: 720px;
+    }
+    .about-qa-modal-list {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .about-qa-modal-item {
+      border: 1px solid var(--border); border-radius: 12px;
+      background: color-mix(in srgb, var(--s2) 82%, transparent);
+      padding: 16px 17px; box-shadow: inset 0 1px 0 rgba(245,158,11,0.06);
+    }
+    .about-qa-modal-item h3 {
+      font-family: var(--ffd); font-size: 1.02rem; line-height: 1.22;
+      margin-bottom: 8px; color: var(--text);
+    }
+    .about-qa-modal-item .about-qa-kicker {
+      margin: 0 8px 0 0; vertical-align: 2px;
+    }
+    .about-qa-modal-item h3 .mark { color: var(--warm); }
+    .about-qa-modal-item p {
+      color: var(--muted); font-size: 0.82rem; line-height: 1.58;
+    }
 
     /* -- CONTACT -- */
     #contact { background: var(--s1); }
@@ -787,6 +985,15 @@
       .about-body { grid-row: 1; padding: 64px 24px 56px; }
       .about-body .stag { margin-bottom: 46px; }
       .about-body .sh { font-size: clamp(2.2rem, 8vw, 3.4rem); }
+      .about-qa-shell { max-width: none; }
+      .about-qa-bar { justify-content: flex-start; margin-top: -2px; }
+      .about-qa-viewport {
+        max-width: none; overflow-x: auto; padding-bottom: 16px;
+        -webkit-mask-image: none; mask-image: none;
+        scrollbar-width: none;
+      }
+      .about-qa-viewport::-webkit-scrollbar { display: none; }
+      .about-qa-track { animation: none; }
       .role-cards { margin-top: 28px; }
       .skills-cats { grid-template-columns: 1fr 1fr; }
       .contact-head { gap: 24px; }
@@ -803,12 +1010,18 @@
       .project-modal-panel { grid-template-columns: 1fr; height: auto; max-height: none; }
       .project-modal-slider { min-height: 260px; height: 48vh; }
       .project-modal-content { padding: 30px 22px 24px; }
+      .about-qa-modal-list { grid-template-columns: 1fr; }
+      .about-qa-modal-panel { padding: 24px 20px; }
       footer { flex-direction: column; text-align: center; }
     }
     @media(max-width:600px){
+      .docs-toggle { width: 36px; padding: 0; justify-content: center; }
+      .docs-toggle span { display: none; }
+      .docs-dropdown { right: -48px; width: 220px; }
       .about-side { min-height: 390px; }
       .about-body { padding-top: 48px; }
       .about-body .stag { margin-bottom: 36px; }
+      .about-qa-card { flex-basis: min(285px, 82vw); min-height: 186px; }
       .role-cards { grid-template-columns: 1fr; gap: 8px; padding-bottom: 8px; }
       .role-card { padding: 16px; }
       .role-card-head { margin-bottom: 4px; }
@@ -832,7 +1045,7 @@
 
 <!-- -- NAV -- -->
 <nav id="navbar">
-  <div class="nav-logo">proud<span>.</span></div>
+  <a href="#hero" class="nav-logo" aria-label="Go to top">proud<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -845,6 +1058,13 @@
       <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"/></svg>
       <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
     </button>
+    <div class="docs-menu" id="docs-menu" hidden>
+      <button class="docs-toggle" id="docs-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Download documents">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span>Resume</span>
+      </button>
+      <div class="docs-dropdown" id="docs-dropdown"></div>
+    </div>
     <button class="share-toggle" id="share-toggle" type="button" aria-label="Share portfolio link" title="Share portfolio link">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.6 6.8-4.2M8.6 13.4l6.8 4.2"/></svg>
     </button>
@@ -904,6 +1124,15 @@
       </div>
       <div class="project-modal-tags" id="project-modal-tags"></div>
     </div>
+  </div>
+</div>
+
+<div class="about-qa-modal" id="about-qa-modal" aria-hidden="true">
+  <div class="about-qa-modal-panel" role="dialog" aria-modal="true" aria-labelledby="about-qa-modal-title">
+    <button class="about-qa-modal-close" type="button" aria-label="Close all Q&A">&times;</button>
+    <div class="about-qa-modal-eyebrow">Product Owner Q&amp;A</div>
+    <h2 class="about-qa-modal-title" id="about-qa-modal-title">Questions a hiring team may ask</h2>
+    <div class="about-qa-modal-list" id="about-qa-modal-list"></div>
   </div>
 </div>
 
@@ -1155,6 +1384,7 @@
    ----------------------------------------- */
 let portfolioData = {};
 let PROJECT_DETAILS = {};
+const SITE_VERSION = '2026-06-25-about-qa-modal';
 
 function htmlEscape(value){
   return String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -1169,17 +1399,23 @@ function htmlEscape(value){
 function freshAssetUrl(src){
   if(!src || /^(https?:|data:|blob:|#)/i.test(src)) return src || '';
   const url = encodeURI(String(src));
-  return `${url}${url.includes('?') ? '&' : '?'}v=${Date.now()}`;
+  return `${url}${url.includes('?') ? '&' : '?'}v=${SITE_VERSION}`;
 }
 
 function loadPortfolioData(){
-  try {
-    const req = new XMLHttpRequest();
-    req.open('GET', `portfolio-data.json?v=${Date.now()}`, false);
-    req.send(null);
-    if(req.status >= 200 && req.status < 300) return JSON.parse(req.responseText);
-  } catch(error){
-    console.error('Could not load portfolio-data.json', error);
+  const sources = [`portfolio-data.json?v=${SITE_VERSION}`, 'portfolio-data.json'];
+  for(const source of sources){
+    try {
+      const req = new XMLHttpRequest();
+      req.open('GET', source, false);
+      req.send(null);
+      const hasBody = req.responseText && req.responseText.trim().length > 0;
+      if(((req.status >= 200 && req.status < 300) || req.status === 0) && hasBody){
+        return JSON.parse(req.responseText);
+      }
+    } catch(error){
+      console.error(`Could not load ${source}`, error);
+    }
   }
   return {};
 }
@@ -1222,6 +1458,24 @@ function formatDateRange(value = ''){
   return clean.replace(/^([A-Za-z]{3,9}\s+\d{4})\s+(.+)$/, '$1 - $2');
 }
 
+function formatQuestion(value = ''){
+  const safe = htmlEscape(value);
+  const words = [
+    'Product Owner',
+    'choose me',
+    'evidence',
+    'different',
+    'messy requirements',
+    'engineers',
+    'designers',
+    'prioritize',
+    'team',
+    'strengths',
+    'growth area'
+  ];
+  return words.reduce((text, word) => text.replace(new RegExp(`\\b${word}\\b`, 'i'), match => `<span class="mark">${match}</span>`), safe);
+}
+
 function scrollToSection(targetId){
   const id = String(targetId || '').replace(/^#/, '');
   const target = document.getElementById(id);
@@ -1243,6 +1497,24 @@ function bindInternalScrollLinks(root = document){
   });
 }
 
+function setupAboutRail(){
+  const track = document.querySelector('.about-qa-track');
+  if(!track) return;
+  const viewport = document.querySelector('.about-qa-viewport');
+  const cards = track.querySelectorAll('.about-qa-card');
+  const duplicateStart = Math.floor(cards.length / 2);
+  if(!cards[0] || !cards[duplicateStart]) return;
+  const distance = cards[duplicateStart].offsetLeft - cards[0].offsetLeft;
+  track.style.setProperty('--rail-distance', `${Math.max(0, distance)}px`);
+  if(viewport && viewport.dataset.railBound !== 'true'){
+    viewport.dataset.railBound = 'true';
+    viewport.addEventListener('pointerenter', () => track.classList.add('is-paused'));
+    viewport.addEventListener('pointerleave', () => track.classList.remove('is-paused'));
+    viewport.addEventListener('focusin', () => track.classList.add('is-paused'));
+    viewport.addEventListener('focusout', () => track.classList.remove('is-paused'));
+  }
+}
+
 function renderPortfolio(data){
   if(!data || !Object.keys(data).length) return;
   document.title = data.meta?.title || document.title;
@@ -1250,30 +1522,72 @@ function renderPortfolio(data){
   document.querySelector('.footer-logo').innerHTML = logoHtml(data.personal?.logo);
   const navCta = document.querySelector('.nav-cta');
   if(navCta) navCta.href = '#contact';
+  const downloads = data.downloads || [];
+  const docsMenu = document.getElementById('docs-menu');
+  const docsToggle = document.getElementById('docs-toggle');
+  const docsToggleText = docsToggle?.querySelector('span');
+  const docsDropdown = document.getElementById('docs-dropdown');
+  if(docsMenu && docsToggle && docsDropdown && downloads.length){
+    docsMenu.hidden = false;
+    if(docsToggleText) docsToggleText.textContent = downloads.length === 1 ? downloads[0].label : 'Docs';
+    docsDropdown.innerHTML = downloads.map(doc => {
+      const isExternal = /^https?:/i.test(doc.url || '');
+      const downloadAttr = doc.filename && !isExternal ? ` download="${htmlEscape(doc.filename)}"` : '';
+      const targetAttr = isExternal ? ' target="_blank" rel="noopener"' : '';
+      return `<a class="docs-link" href="${htmlEscape(doc.url)}"${downloadAttr}${targetAttr}>
+        <span class="docs-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 11v6"/><path d="m9 14 3 3 3-3"/></svg></span>
+        <span><span class="docs-link-title">${htmlEscape(doc.label)}</span><span class="docs-link-desc">${htmlEscape(doc.description || doc.filename || 'Download PDF')}</span></span>
+      </a>`;
+    }).join('');
+  } else if(docsMenu) {
+    docsMenu.hidden = true;
+  }
 
   const hero = data.hero || {};
   document.getElementById('hero-content').innerHTML = `
     <div class="hero-badge"><span class="badge-dot"></span> ${htmlEscape(hero.badge)}</div>
     <h1 class="hero-name"><span class="hi">${htmlEscape(hero.greeting)} </span><span class="ac">${htmlEscape(hero.nickname)}</span><br/><span class="nm">${htmlEscape(hero.name)}</span></h1>
-    <div class="hero-roles">${(hero.roles || []).map(role => `<span class="role-chip">${iconFor(role)}${htmlEscape(role)}</span>`).join('')}</div>
+    <div class="hero-roles">${(hero.roles || []).map(role => {
+      const isPrimaryRole = /product owner/i.test(role);
+      return `<span class="role-chip ${isPrimaryRole ? 'primary-role' : ''}">${iconFor(role)}${htmlEscape(role)}</span>`;
+    }).join('')}</div>
     <p class="hero-desc">${htmlEscape(hero.description)}</p>
     <div class="hero-ctas">${(hero.ctas || []).map(cta => `<a href="${htmlEscape(cta.url)}" ${/^https?:/.test(cta.url || '') ? 'target="_blank"' : ''} class="btn ${cta.style === 'primary' ? 'btn-primary' : 'btn-ghost'}">${iconFor(cta.label)}${htmlEscape(cta.label)}</a>`).join('')}</div>
     <div class="hero-stats">${(hero.stats || []).map(stat => `<div><div class="stat-num">${htmlEscape(stat.value)}</div><div class="stat-label">${htmlEscape(stat.label)}</div></div>`).join('')}</div>`;
 
   const about = data.about || {};
+  const aboutQa = about.qa || [];
+  const qaCards = aboutQa.map((item, i) => `<article class="about-qa-card reveal"><span class="about-qa-kicker">Q${String(i + 1).padStart(2, '0')}</span><h3 class="about-qa-q">${formatQuestion(item.question)}</h3><p class="about-qa-a">${htmlEscape(item.answer)}</p></article>`).join('');
+  const aboutQaModalList = document.getElementById('about-qa-modal-list');
+  if(aboutQaModalList){
+    aboutQaModalList.innerHTML = aboutQa.map((item, i) => `
+      <article class="about-qa-modal-item">
+        <h3><span class="about-qa-kicker">Q${String(i + 1).padStart(2, '0')}</span>${formatQuestion(item.question)}</h3>
+        <p>${htmlEscape(item.answer)}</p>
+      </article>`).join('');
+  }
   document.getElementById('about').innerHTML = `
     <div class="about-grid">
       <div class="about-body">
         <div class="stag">${htmlEscape(about.eyebrow || 'About')}</div>
         <h2 class="sh">${htmlEscape(about.heading || '').replace(' strategy ', '<br/>strategy ')}</h2>
-        ${(about.paragraphs || []).map(item => `<p>${htmlEscape(item)}</p>`).join('')}
+        ${aboutQa.length ? `<div class="about-qa-shell">
+          <div class="about-qa-bar">
+            <button class="about-qa-show" id="about-qa-show" type="button" aria-haspopup="dialog" aria-controls="about-qa-modal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>
+              <span>Show all</span>
+            </button>
+          </div>
+          <div class="about-qa-viewport"><div class="about-qa-track">${qaCards}${qaCards}</div></div>
+        </div>` : (about.paragraphs || []).map(item => `<p>${htmlEscape(item)}</p>`).join('')}
         <div class="about-edu"><div class="about-edu-icon">${iconFor('education')}</div><div><div class="about-edu-deg">${htmlEscape(about.education?.degree)}</div><div class="about-edu-inst">${htmlEscape(about.education?.institution)}</div><div class="about-edu-year">${htmlEscape(about.education?.year)}</div></div></div>
-        <div class="role-cards">${(about.roleCards || []).map(card => `<div class="role-card reveal"><div class="role-card-head"><span class="role-card-icon">${iconFor(card.title)}</span><span class="role-card-title">${htmlEscape(card.title)}</span></div><p class="role-card-desc">${htmlEscape(card.description)}</p></div>`).join('')}</div>
+        ${aboutQa.length ? '' : `<div class="role-cards">${(about.roleCards || []).map(card => `<div class="role-card reveal"><div class="role-card-head"><span class="role-card-icon">${iconFor(card.title)}</span><span class="role-card-title">${htmlEscape(card.title)}</span></div><p class="role-card-desc">${htmlEscape(card.description)}</p></div>`).join('')}</div>`}
       </div>
       <div class="about-side">
         ${about.portraitImage ? `<div class="about-portrait-stage"><img class="about-portrait" src="${htmlEscape(freshAssetUrl(about.portraitImage))}" alt="${htmlEscape(data.personal?.nickname || data.personal?.name || 'Proud presenting KU Eater')}" loading="lazy"></div>` : ''}
       </div>
     </div>`;
+  requestAnimationFrame(setupAboutRail);
 
   document.getElementById('experience').innerHTML = `
     <div class="stag">Experience</div><h2 class="sh">Where I've worked</h2><div class="exp-list">
@@ -1343,7 +1657,7 @@ function renderIntroVideo(data){
       <button class="intro-video-close" type="button" aria-label="Close intro video">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
-      <video class="intro-video" src="${htmlEscape(src)}" playsinline preload="auto"></video>
+      <video class="intro-video" src="${htmlEscape(src)}" playsinline preload="none"></video>
       <button class="intro-video-toggle" type="button" aria-label="Play intro video">
         <svg class="intro-play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         <svg class="intro-pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
@@ -1473,6 +1787,38 @@ function renderIntroVideo(data){
 portfolioData = loadPortfolioData();
 renderPortfolio(portfolioData);
 renderIntroVideo(portfolioData);
+window.addEventListener('resize', setupAboutRail, { passive: true });
+
+const aboutQaModal = document.getElementById('about-qa-modal');
+const aboutQaModalClose = aboutQaModal?.querySelector('.about-qa-modal-close');
+function openAboutQaModal(){
+  if(!aboutQaModal) return;
+  aboutQaModal.classList.add('open');
+  aboutQaModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => aboutQaModalClose?.focus(), 0);
+}
+function closeAboutQaModal(){
+  if(!aboutQaModal) return;
+  aboutQaModal.classList.remove('open');
+  aboutQaModal.setAttribute('aria-hidden', 'true');
+  if(!document.getElementById('project-modal')?.classList.contains('open')){
+    document.body.style.overflow = '';
+  }
+  document.getElementById('about-qa-show')?.focus();
+}
+document.addEventListener('click', e => {
+  if(e.target.closest('#about-qa-show')){
+    openAboutQaModal();
+    return;
+  }
+  if(e.target.closest('.about-qa-modal-close') || e.target === aboutQaModal){
+    closeAboutQaModal();
+  }
+});
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && aboutQaModal?.classList.contains('open')) closeAboutQaModal();
+});
 
 /* -----------------------------------------
    PROJECT CARD HOVER GLOW
@@ -1591,7 +1937,7 @@ const ASSET_ROOTS = portfolioData.assetRoots || ['image', 'images'];
 const MEDIA_FALLBACK = portfolioData.mediaFallback || { project: {}, work: {} };
 const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'];
 const VIDEO_EXTS = ['mp4', 'webm', 'mov', 'm4v'];
-const ASSET_VERSION = `v=${Date.now()}`;
+const ASSET_VERSION = `v=${SITE_VERSION}`;
 const assetListCache = new Map();
 const imageCheckCache = new Map();
 const cacheBust = () => ASSET_VERSION;
@@ -2062,6 +2408,27 @@ function setTheme(theme){
 setTheme(currentTheme());
 document.getElementById('theme-toggle')?.addEventListener('click', () => {
   setTheme(currentTheme() === 'light' ? 'dark' : 'light');
+});
+
+const docsMenu = document.getElementById('docs-menu');
+const docsToggle = document.getElementById('docs-toggle');
+function closeDocsMenu(){
+  docsMenu?.classList.remove('open');
+  docsToggle?.setAttribute('aria-expanded', 'false');
+}
+docsToggle?.addEventListener('click', e => {
+  e.stopPropagation();
+  const isOpen = docsMenu?.classList.toggle('open');
+  docsToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+document.addEventListener('click', e => {
+  if(docsMenu && !docsMenu.contains(e.target)) closeDocsMenu();
+});
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeDocsMenu();
+});
+document.getElementById('docs-dropdown')?.addEventListener('click', e => {
+  if(e.target.closest('a')) closeDocsMenu();
 });
 
 const portfolioShareUrl = 'https://proud-ratchaprapa.vercel.app/portfolio_website';

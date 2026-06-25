@@ -1,7 +1,7 @@
 {
   "_readme": "Edit portfolio facts in this file. Keep valid JSON. Project folders map to images/project/<folder>, and work folders map to images/work/<folder>.",
   "meta": {
-    "title": "Proud — PM/PO · Manual QA · UX Designer",
+    "title": "Proud — Product Owner · PM · UX/UI · Full-stack · QA",
     "description": "Portfolio website content for Ratchaprapa Chattrakulrak.",
     "updated": "2026-06-12"
   },
@@ -25,18 +25,27 @@
     "Projects",
     "Contact"
   ],
+  "downloads": [
+    {
+      "label": "Resume",
+      "description": "Product Owner PDF",
+      "url": "documents/Resume_Ratchaprapa_Product_Owner.pdf",
+      "filename": "Resume_Ratchaprapa_Product_Owner.pdf"
+    }
+  ],
   "hero": {
     "badge": "Open to full-time opportunities",
     "greeting": "Hi, I'm",
     "nickname": "Proud",
     "name": "Ratchaprapa C.",
     "roles": [
-      "Product Owner / PM",
-      "Manual QA",
+      "Product Owner",
+      "PM",
       "UX/UI Designer",
-      "Frontend Developer"
+      "Full-stack Developer",
+      "Manual QA"
     ],
-    "description": "Software Engineering graduate with PM/PO, QA, UX, and frontend experience. I turn messy problems into clear requirements, practical flows, and shippable products.",
+    "description": "Product Owner with software, design, business, and QA range. I turn ambiguous problems into clear requirements, aligned priorities, usable flows, and release-ready products.",
     "ctas": [
       {
         "label": "View Projects",
@@ -56,16 +65,16 @@
     ],
     "stats": [
       {
-        "value": "5+",
-        "label": "Years freelancing"
+        "value": "PO",
+        "label": "Product-first direction"
       },
       {
         "value": "100+",
-        "label": "Client projects"
+        "label": "Client-facing projects"
       },
       {
         "value": "11",
-        "label": "Technical projects"
+        "label": "Product & tech projects"
       },
       {
         "value": "B.Eng.",
@@ -75,14 +84,52 @@
   },
   "about": {
     "eyebrow": "About",
-    "heading": "PM/PO with technical, design, and business range",
+    "heading": "Product Owner who understands the whole product system",
     "portraitImage": "images/profile/present pic2.jpg",
     "paragraphs": [
-      "My strongest fit is PM/PO because I can connect the full software picture: user needs, business goals, and engineering reality. I see product work through three pillars a PM/PO should understand deeply: technical, design, and business.",
-      "Technically, I come from Software and Knowledge Engineering, so I have solid fundamentals in how software is planned, built, tested, and shipped. I can code, especially on the frontend, which helps me write practical requirements, understand constraints, and communicate clearly with developers.",
-      "Design is the side I naturally lean into most. In team projects, I was often trusted to lead both features and design because I care about details, analyze real user problems, and use design thinking to shape products around user needs and experience.",
-      "Business-wise, I have always been drawn to selling, building, and understanding why products work. Through Hokori Studio, my small design business, I handled client conversations, requirement analysis, costing, accounting, team assignment, and 100+ mostly B2B deals. I also study how brands and founders think about markets, value, and product-market fit across software, beauty, healthcare, hospitality, real estate, and consumer businesses.",
-      "That detail-oriented mindset also made QA a strength during my PM/PO internship: I wrote test cases, tested releases, and found edge-case bugs that were easy to miss. Beyond PM/PO, I can also contribute in UX/UI design, frontend development, and manual QA when a team needs hands-on support."
+      "My main direction is Product Owner. I like being the person who connects user needs, business goals, technical constraints, and team execution into one clear product direction.",
+      "Because I studied Software and Knowledge Engineering, I understand how software is planned, designed, built, tested, and shipped. I can read technical tradeoffs, communicate with developers, and write requirements that are realistic enough for a team to execute.",
+      "I also have a strong design sense. In team projects, I was often trusted to lead feature direction and UX/UI because I care about details, user context, and whether the product truly solves a real problem. Design thinking helps me translate messy needs into flows people can actually use.",
+      "On the business side, I learned early through selling, freelancing, and running Hokori Studio. I handled client conversations, requirement analysis, costing, accounting, task assignment, and 100+ mostly B2B deals, which shaped how I think about value, market fit, and product decisions.",
+      "Around the Product Owner role, I can also support as a Project Manager, UX/UI Designer, Full-stack Developer, and Manual QA. Those skills make me more useful in cross-functional teams because I can understand each side deeply and help move work from idea to release."
+    ],
+    "qa": [
+      {
+        "question": "Why Product Owner?",
+        "answer": "Because I care most about turning real problems into product decisions. Software gave me the technical base, but PO is where my interests in users, business, design, and delivery meet."
+      },
+      {
+        "question": "Why should a team choose me?",
+        "answer": "I take ownership early: find pain points, clarify requirements, write user stories and acceptance criteria, align design and engineering, and check the release against the real user problem."
+      },
+      {
+        "question": "What evidence shows I can do PO work?",
+        "answer": "ByteArk gave me discovery-to-release practice. KU Eater, Courtly, and Referite show product direction, MVP scoping, sprint planning, backlog ownership, and cross-team Agile work."
+      },
+      {
+        "question": "What makes my perspective different?",
+        "answer": "I combine software fundamentals, UX/UI sense, QA detail, and 100+ client-facing Hokori Studio deals, so I can balance practicality, usability, and business value."
+      },
+      {
+        "question": "How do I handle messy requirements?",
+        "answer": "I turn ambiguity into structure: research, define the real problem, shape MVP scope, prioritize by impact and feasibility, then keep the team aligned with clear specs."
+      },
+      {
+        "question": "How do I work with engineers and designers?",
+        "answer": "I translate user and business needs into clear flows, specs, and acceptance criteria, then stay close to design and engineering to catch gaps between intent, feasibility, and implementation early."
+      },
+      {
+        "question": "How do I prioritize product decisions?",
+        "answer": "I balance user impact, business value, technical feasibility, team capacity, and release risk. When scope is tight, I protect the core value first and cut or defer what does not serve the main flow."
+      },
+      {
+        "question": "What kind of team fits me best?",
+        "answer": "I fit product-led teams that care about users, move fast, improve continuously, and expect a PO to think deeply, communicate clearly, and take real ownership of outcomes."
+      },
+      {
+        "question": "What are my strengths and growth area?",
+        "answer": "Strengths: ownership, curiosity, empathy, communication, and detail. Growth area: I can overthink quality, so I manage it with prioritization, timeboxing, acceptance criteria, and tradeoff discussions."
+      }
     ],
     "education": {
       "degree": "B.Eng. Software and Knowledge Engineering",
@@ -91,16 +138,16 @@
     },
     "roleCards": [
       {
-        "title": "Technical",
-        "description": "Software engineering fundamentals, frontend development, API thinking, QA awareness, and realistic implementation tradeoffs."
+        "title": "Product Ownership",
+        "description": "Requirements, user stories, acceptance criteria, backlog clarity, feature prioritisation, and release readiness."
       },
       {
-        "title": "Design",
-        "description": "User research, design thinking, UX flows, Figma mockups, feature clarity, and detail-driven product experience."
+        "title": "Project Management",
+        "description": "Sprint planning, stakeholder alignment, scope clarity, progress tracking, team coordination, and delivery follow-through."
       },
       {
-        "title": "Business",
-        "description": "Client requirements, costing, team coordination, B2B delivery, market curiosity, and product value thinking."
+        "title": "Hands-on Product Skills",
+        "description": "UX/UI design, full-stack development fundamentals, manual QA, and practical collaboration with design and engineering."
       }
     ]
   },
@@ -108,7 +155,7 @@
     {
       "folder": "Byteark Intern",
       "company": "ByteArk Co., Ltd.",
-      "title": "PM/PO Intern",
+      "title": "Product Owner / PM Intern",
       "year": "May 2024 Nov 2024",
       "bullets": [
         "Researched users, competitors, pain points, and personas to shape product direction.",
@@ -159,23 +206,41 @@
   ],
   "skills": [
     {
-      "category": "Product Management",
+      "category": "Product Ownership",
       "items": [
-        "Backlog Prioritisation",
+        "Product Discovery",
+        "Requirement Analysis",
+        "Backlog Ownership",
         "User Story Writing",
+        "Acceptance Criteria",
+        "Feature Prioritisation",
         "RFC Writing",
-        "Agile / Scrum",
-        "Roadmap Planning",
-        "Sprint Planning",
-        "Release Management",
-        "Stakeholder Communication",
-        "Product Discovery"
+        "Release Readiness",
+        "Stakeholder Alignment"
       ],
       "highlight": [
-        "Backlog Prioritisation",
+        "Product Discovery",
+        "Backlog Ownership",
         "User Story Writing",
-        "RFC Writing",
-        "Agile / Scrum"
+        "Acceptance Criteria"
+      ]
+    },
+    {
+      "category": "Project Management",
+      "items": [
+        "Agile / Scrum",
+        "Sprint Planning",
+        "Roadmap Planning",
+        "Scope Management",
+        "Progress Tracking",
+        "Team Coordination",
+        "Stakeholder Communication",
+        "Meeting Facilitation"
+      ],
+      "highlight": [
+        "Agile / Scrum",
+        "Sprint Planning",
+        "Scope Management"
       ]
     },
     {
@@ -213,7 +278,7 @@
       ]
     },
     {
-      "category": "Development",
+      "category": "Full-stack Development",
       "items": [
         "Next.js / React",
         "TypeScript",
@@ -266,14 +331,14 @@
   "projectsSection": {
     "eyebrow": "Projects",
     "heading": "Selected work",
-    "subheading": "Focused product, UX, and technical projects built with clear user intent.",
+    "subheading": "Product-led projects where I shaped requirements, user flows, team direction, and hands-on execution.",
     "filters": [
       {
         "label": "All",
         "value": "all"
       },
       {
-        "label": "PM / PO",
+        "label": "Product / PO",
         "value": "pm"
       },
       {
@@ -412,7 +477,7 @@
       "youtube": "https://youtu.be/8kKGbNDKMoM",
       "modal": {
         "about": "Courtly supports badminton reservations, manager scheduling, check-ins, and operational visibility.",
-        "experience": "I owned PM/PO work end to end while contributing to frontend, API design, and QA under deadline pressure.",
+        "experience": "I owned Product Owner work end to end while contributing to frontend, API design, and QA under deadline pressure.",
         "challenges": [
           "Cutting scope without weakening the booking flow.",
           "Writing build-ready stories and acceptance criteria.",
@@ -731,7 +796,7 @@
   "contact": {
     "eyebrow": "Contact",
     "heading": "Let's connect",
-    "subheading": "Open to PM/PO, QA, UX, and product-minded frontend roles.",
+    "subheading": "Open to Product Owner roles, with supporting PM, UX/UI, full-stack, and QA capability.",
     "profileImage": "images/profile/profile picture3.png",
     "links": [
       {
@@ -760,7 +825,7 @@
         "url": "https://www.youtube.com/@hoshitsukihokori"
       }
     ],
-    "availability": "Bangkok, Thailand<br/>Available in Remote, Hybrid<br/><strong>PM/PO</strong> · <strong>Manual QA</strong> · <strong>UX Design</strong>"
+    "availability": "Bangkok, Thailand<br/>Available in Remote, Hybrid<br/><strong>Product Owner</strong> · Project Manager · UX/UI Designer · Full-stack Developer · Manual QA"
   },
   "footer": {
     "copyright": "© 2026 Ratchaprapa Chattrakulrak. All rights reserved.",
