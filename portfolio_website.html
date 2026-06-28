@@ -365,10 +365,23 @@
       box-shadow: 0 12px 26px rgba(0,0,0,0.18), 0 0 20px rgba(245,158,11,0.09);
     }
     .about-qa-viewport {
-      max-width: 780px; overflow: hidden; position: relative;
-      padding: 5px 0 12px;
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      max-width: 780px; overflow: visible; position: relative;
+      padding: 22px 0 34px;
+      isolation: isolate;
+      --qa-edge-cover: clamp(220px, 18vw, 320px);
+    }
+    .about-qa-viewport::before,
+    .about-qa-viewport::after {
+      content: ''; position: absolute; top: -8px; bottom: -10px; z-index: 30;
+      width: var(--qa-edge-cover); pointer-events: none;
+    }
+    .about-qa-viewport::before {
+      left: calc(var(--qa-edge-cover) * -0.46);
+      background: linear-gradient(90deg, var(--s1) 0%, var(--s1) 48%, color-mix(in srgb, var(--s1) 0%, transparent) 100%);
+    }
+    .about-qa-viewport::after {
+      right: calc(var(--qa-edge-cover) * -0.46);
+      background: linear-gradient(270deg, var(--s1) 0%, var(--s1) 48%, color-mix(in srgb, var(--s1) 0%, transparent) 100%);
     }
     .about-qa-track {
       display: flex; gap: 12px; width: max-content;
@@ -388,7 +401,8 @@
       background: color-mix(in srgb, var(--s2) 78%, transparent);
       padding: 16px; position: relative; overflow: hidden;
       box-shadow: inset 0 1px 0 rgba(245,158,11,0.05);
-      transition: transform 0.32s cubic-bezier(.22,1,.36,1), border-color 0.28s, box-shadow 0.28s, background 0.28s;
+      transform-origin: center center;
+      transition: transform 0.42s cubic-bezier(.16,1,.3,1), border-color 0.28s, box-shadow 0.28s, background 0.28s;
     }
     .about-qa-card::before {
       content: ''; position: absolute; inset: 0 0 auto 0; height: 1px;
@@ -396,11 +410,19 @@
       opacity: 0.45;
     }
     .about-qa-card:hover {
-      transform: translateY(-4px) scale(1.015);
+      transform: translateY(-12px) scale(1.18);
       border-color: color-mix(in srgb, var(--accent) 48%, var(--border2));
       background: color-mix(in srgb, var(--s2) 88%, var(--accent) 12%);
-      box-shadow: 0 18px 36px rgba(0,0,0,0.2), 0 0 24px rgba(245,158,11,0.08);
-      z-index: 2;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.28), 0 0 28px rgba(245,158,11,0.1);
+      z-index: 8;
+    }
+    html[data-theme="light"] .about-qa-card {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 8px 18px rgba(80,72,96,0.06);
+    }
+    html[data-theme="light"] .about-qa-card:hover {
+      border-color: color-mix(in srgb, var(--accent) 44%, var(--border2));
+      background: color-mix(in srgb, var(--s1) 72%, var(--accent) 10%);
+      box-shadow: 0 14px 30px rgba(80,72,96,0.13), 0 0 0 1px rgba(125,115,159,0.08);
     }
     .about-qa-kicker {
       display: inline-flex; align-items: center; margin-bottom: 8px;
@@ -671,7 +693,40 @@
     .project-modal-slider .slider-dots { z-index: 80; }
     .project-modal-slider.single .slider-btn,
     .project-modal-slider.single .slider-dots { display: none; }
-    .project-modal-content { min-width: 0; overflow-y: auto; padding: 42px 34px 34px; }
+    .project-modal-content {
+      min-width: 0; min-height: 0; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .project-modal-header {
+      position: relative; z-index: 12;
+      padding: 42px 64px 20px 34px;
+      background:
+        linear-gradient(180deg,
+          color-mix(in srgb, var(--s1) 98%, transparent) 0%,
+          color-mix(in srgb, var(--s1) 94%, transparent) 74%,
+          color-mix(in srgb, var(--s1) 0%, transparent) 100%);
+      backdrop-filter: blur(18px) saturate(1.08);
+    }
+    .project-modal-header::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: -22px; height: 22px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--s1) 90%, transparent), transparent);
+      pointer-events: none;
+    }
+    .project-modal-scroll {
+      min-height: 0; overflow-y: auto;
+      padding: 14px 34px 34px;
+      scrollbar-width: thin;
+      scrollbar-color: color-mix(in srgb, var(--accent) 42%, transparent) transparent;
+    }
+    .project-modal-scroll::-webkit-scrollbar,
+    .about-qa-modal-scroll::-webkit-scrollbar { width: 5px; }
+    .project-modal-scroll::-webkit-scrollbar-track,
+    .about-qa-modal-scroll::-webkit-scrollbar-track { background: transparent; }
+    .project-modal-scroll::-webkit-scrollbar-thumb,
+    .about-qa-modal-scroll::-webkit-scrollbar-thumb {
+      background: color-mix(in srgb, var(--accent) 38%, transparent);
+      border-radius: 999px;
+    }
     .media-loading {
       color: var(--muted); font-size: 0.82rem; letter-spacing: 0.2px;
       padding: 18px; text-align: center;
@@ -684,7 +739,7 @@
       font-family: var(--ffd); font-size: clamp(1.8rem, 4vw, 2.7rem);
       line-height: 1.04; letter-spacing: -1px; margin-bottom: 8px;
     }
-    .project-modal-context { color: var(--muted); font-size: 0.82rem; margin-bottom: 22px; }
+    .project-modal-context { color: var(--muted); font-size: 0.82rem; margin-bottom: 0; }
     .project-detail-block { margin-bottom: 18px; }
     .project-detail-block h3 {
       font-size: 0.74rem; letter-spacing: 1.4px; text-transform: uppercase;
@@ -712,15 +767,36 @@
     }
     .about-qa-modal.open { display: flex; }
     .about-qa-modal-panel {
-      position: relative; width: min(980px, 100%); max-height: min(84vh, 780px);
-      overflow: auto; border-radius: 16px;
+      position: relative; width: min(980px, 100%); height: min(84vh, 780px);
+      overflow: hidden; border-radius: 16px;
       border: 1px solid var(--border2);
       background: color-mix(in srgb, var(--s1) 94%, transparent);
       box-shadow: 0 28px 80px var(--shadow-soft);
-      padding: 30px;
+      display: flex; flex-direction: column;
+    }
+    .about-qa-modal-header {
+      position: relative; z-index: 3;
+      padding: 30px 78px 22px 30px;
+      background:
+        linear-gradient(180deg,
+          color-mix(in srgb, var(--s1) 98%, transparent) 0%,
+          color-mix(in srgb, var(--s1) 94%, transparent) 74%,
+          color-mix(in srgb, var(--s1) 0%, transparent) 100%);
+      backdrop-filter: blur(18px) saturate(1.08);
+    }
+    .about-qa-modal-header::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: -24px; height: 24px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--s1) 90%, transparent), transparent);
+      pointer-events: none;
+    }
+    .about-qa-modal-scroll {
+      min-height: 0; overflow-y: auto;
+      padding: 12px 30px 30px;
+      scrollbar-width: thin;
+      scrollbar-color: color-mix(in srgb, var(--accent) 42%, transparent) transparent;
     }
     .about-qa-modal-close {
-      position: sticky; top: 0; float: right; z-index: 2;
+      position: absolute; top: 24px; right: 24px; z-index: 4;
       width: 36px; height: 36px; border-radius: 50%;
       border: 1px solid var(--border2); background: var(--s2); color: var(--text2);
       cursor: pointer; font-size: 1.25rem; line-height: 1;
@@ -737,7 +813,7 @@
     }
     .about-qa-modal-title {
       font-family: var(--ffd); font-size: clamp(1.8rem, 3vw, 2.65rem);
-      line-height: 1.06; margin-bottom: 22px; letter-spacing: 0;
+      line-height: 1.06; margin-bottom: 0; letter-spacing: 0;
       max-width: 720px;
     }
     .about-qa-modal-list {
@@ -969,6 +1045,15 @@
       transition: opacity 0.6s cubic-bezier(.22,1,.36,1), transform 0.6s cubic-bezier(.22,1,.36,1);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+    .about-qa-card.reveal {
+      transition:
+        opacity 0.6s cubic-bezier(.22,1,.36,1),
+        transform 0.42s cubic-bezier(.16,1,.3,1),
+        border-color 0.28s,
+        box-shadow 0.28s,
+        background 0.28s;
+    }
+    .about-qa-card.reveal.visible:hover { transform: translateY(-12px) scale(1.18); }
     #projects .proj-card.visible:hover { transform: translateY(-4px) scale(1.018); }
 
     /* -- RESPONSIVE -- */
@@ -978,22 +1063,45 @@
       section { padding: 72px 24px; }
       #hero { padding: 90px 24px 60px; }
       .hero-stats { gap: 28px; }
-      .about-grid { grid-template-columns: 1fr; min-height: 0; }
-      .about-side { min-height: 560px; grid-row: 2; }
+      #about,
+      .about-grid,
+      .about-body,
+      .about-side { max-width: 100%; }
+      .about-grid { grid-template-columns: minmax(0, 1fr); min-height: 0; overflow: hidden; }
+      .about-side { min-height: clamp(360px, 72vw, 520px); grid-row: 2; overflow: hidden; }
       .about-portrait-stage { position: absolute; }
       .about-portrait-stage::before { background: linear-gradient(180deg, var(--s1) 0%, transparent 10%); }
-      .about-body { grid-row: 1; padding: 64px 24px 56px; }
+      .about-portrait { object-position: 64% center; }
+      .about-body { grid-row: 1; width: 100%; min-width: 0; padding: 64px 24px 56px; overflow: hidden; }
       .about-body .stag { margin-bottom: 46px; }
-      .about-body .sh { font-size: clamp(2.2rem, 8vw, 3.4rem); }
-      .about-qa-shell { max-width: none; }
+      .about-body .sh {
+        max-width: 100%;
+        font-size: clamp(2.15rem, 7.4vw, 3.05rem);
+        line-height: 1.08;
+        text-wrap: balance;
+        overflow-wrap: normal;
+      }
+      .about-qa-shell { width: 100%; max-width: 100%; overflow: hidden; }
       .about-qa-bar { justify-content: flex-start; margin-top: -2px; }
       .about-qa-viewport {
-        max-width: none; overflow-x: auto; padding-bottom: 16px;
+        width: 100%; max-width: 100%; overflow-x: auto; overflow-y: visible;
+        padding: 12px 0 24px;
         -webkit-mask-image: none; mask-image: none;
         scrollbar-width: none;
+        scroll-snap-type: x proximity;
       }
+      .about-qa-viewport::before,
+      .about-qa-viewport::after { display: none; }
       .about-qa-viewport::-webkit-scrollbar { display: none; }
-      .about-qa-track { animation: none; }
+      .about-qa-track {
+        animation: qaRail 64s linear infinite;
+        gap: 12px;
+        padding-right: 18px;
+      }
+      .about-qa-card { scroll-snap-align: start; }
+      .about-edu { width: 100%; max-width: 100%; min-width: 0; }
+      .about-edu > div:last-child { min-width: 0; }
+      .about-edu-deg { overflow-wrap: anywhere; line-height: 1.35; }
       .role-cards { margin-top: 28px; }
       .skills-cats { grid-template-columns: 1fr 1fr; }
       .contact-head { gap: 24px; }
@@ -1006,22 +1114,64 @@
       .exp-meta { grid-column: 2; text-align: left; margin-bottom: 4px; padding-top: 0; }
       .exp-avatar { grid-row: 1 / span 2; grid-column: 1; }
       .exp-content { grid-column: 2; }
-      .project-modal { padding: 16px; align-items: flex-start; overflow-y: auto; }
-      .project-modal-panel { grid-template-columns: 1fr; height: auto; max-height: none; }
+      .project-modal { padding: 16px; align-items: center; overflow: hidden; }
+      .project-modal-panel {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(260px, 48vh) minmax(0, 1fr);
+        height: calc(100vh - 32px); max-height: 860px;
+      }
       .project-modal-slider { min-height: 260px; height: 48vh; }
-      .project-modal-content { padding: 30px 22px 24px; }
+      .project-modal-content { min-height: 0; }
+      .project-modal-header { padding: 26px 58px 16px 22px; }
+      .project-modal-scroll { padding: 12px 22px 24px; }
       .about-qa-modal-list { grid-template-columns: 1fr; }
-      .about-qa-modal-panel { padding: 24px 20px; }
+      .about-qa-modal { padding: 16px; }
+      .about-qa-modal-panel { height: calc(100vh - 32px); max-height: 760px; }
+      .about-qa-modal-header { padding: 24px 64px 18px 20px; }
+      .about-qa-modal-scroll { padding: 12px 20px 20px; }
       footer { flex-direction: column; text-align: center; }
     }
+    @media(max-width:700px){
+      .hero-ctas {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        width: 100%;
+        max-width: 100%;
+      }
+      .hero-ctas .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 56px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        white-space: nowrap;
+      }
+      .hero-ctas .btn:first-child { grid-column: 1 / -1; }
+    }
     @media(max-width:600px){
-      .docs-toggle { width: 36px; padding: 0; justify-content: center; }
+      nav { padding: 0 18px; }
+      .nav-actions { gap: 8px; }
+      .theme-toggle,
+      .share-toggle,
+      .docs-toggle { width: 34px; height: 34px; }
+      .docs-toggle { padding: 0; justify-content: center; }
       .docs-toggle span { display: none; }
       .docs-dropdown { right: -48px; width: 220px; }
-      .about-side { min-height: 390px; }
-      .about-body { padding-top: 48px; }
+      .nav-cta { padding: 8px 12px; font-size: 0.76rem; gap: 6px; }
+      .nav-cta svg { width: 12px; height: 12px; flex-shrink: 0; }
+      .about-side { min-height: clamp(300px, 82vw, 390px); }
+      .about-portrait { object-position: 68% center; }
+      .about-body { padding: 48px 20px 44px; }
       .about-body .stag { margin-bottom: 36px; }
-      .about-qa-card { flex-basis: min(285px, 82vw); min-height: 186px; }
+      .about-body .sh { font-size: clamp(2rem, 10.6vw, 2.65rem); }
+      .about-qa-card { flex: 0 0 min(312px, calc(100vw - 76px)); min-height: 186px; }
+      .about-qa-card:hover,
+      .about-qa-card.reveal.visible:hover { transform: translateY(-8px) scale(1.06); }
+      .about-edu { padding: 18px 16px; gap: 12px; }
+      .about-edu-deg { font-size: 0.82rem; }
+      .about-edu-inst,
+      .about-edu-year { font-size: 0.74rem; }
       .role-cards { grid-template-columns: 1fr; gap: 8px; padding-bottom: 8px; }
       .role-card { padding: 16px; }
       .role-card-head { margin-bottom: 4px; }
@@ -1032,7 +1182,17 @@
       .intro-video-widget { width: min(280px, calc(100vw - 28px)); right: 14px; bottom: 14px; }
       .intro-video-tab { width: 64px; height: 60px; bottom: 54px; }
       .project-modal { padding: 10px; }
+      .project-modal-panel {
+        height: calc(100vh - 20px);
+        grid-template-rows: 300px minmax(0, 1fr);
+      }
+      .project-modal-header { padding: 24px 54px 14px 18px; }
+      .project-modal-scroll { padding: 10px 18px 18px; }
       .project-modal-slider { height: 300px; min-height: 300px; }
+      .about-qa-modal { padding: 10px; }
+      .about-qa-modal-panel { height: calc(100vh - 20px); }
+      .about-qa-modal-header { padding: 22px 56px 16px 18px; }
+      .about-qa-modal-scroll { padding: 10px 18px 18px; }
     }
   </style>
 </head>
@@ -1107,22 +1267,26 @@
       </div>
     </div>
     <div class="project-modal-content">
-      <div class="project-modal-eyebrow" id="project-modal-eyebrow">Project details</div>
-      <h2 class="project-modal-title" id="project-modal-title"></h2>
-      <div class="project-modal-context" id="project-modal-context"></div>
-      <div class="project-detail-block">
-        <h3 id="project-modal-about-label">About the project</h3>
-        <p id="project-modal-about"></p>
+      <div class="project-modal-header">
+        <div class="project-modal-eyebrow" id="project-modal-eyebrow">Project details</div>
+        <h2 class="project-modal-title" id="project-modal-title"></h2>
+        <div class="project-modal-context" id="project-modal-context"></div>
       </div>
-      <div class="project-detail-block">
-        <h3 id="project-modal-experience-label">Experience</h3>
-        <p id="project-modal-experience"></p>
+      <div class="project-modal-scroll">
+        <div class="project-detail-block">
+          <h3 id="project-modal-about-label">About the project</h3>
+          <p id="project-modal-about"></p>
+        </div>
+        <div class="project-detail-block">
+          <h3 id="project-modal-experience-label">Experience</h3>
+          <p id="project-modal-experience"></p>
+        </div>
+        <div class="project-detail-block">
+          <h3 id="project-modal-challenges-label">Challenge and growth</h3>
+          <ul id="project-modal-challenges"></ul>
+        </div>
+        <div class="project-modal-tags" id="project-modal-tags"></div>
       </div>
-      <div class="project-detail-block">
-        <h3 id="project-modal-challenges-label">Challenge and growth</h3>
-        <ul id="project-modal-challenges"></ul>
-      </div>
-      <div class="project-modal-tags" id="project-modal-tags"></div>
     </div>
   </div>
 </div>
@@ -1130,9 +1294,13 @@
 <div class="about-qa-modal" id="about-qa-modal" aria-hidden="true">
   <div class="about-qa-modal-panel" role="dialog" aria-modal="true" aria-labelledby="about-qa-modal-title">
     <button class="about-qa-modal-close" type="button" aria-label="Close all Q&A">&times;</button>
-    <div class="about-qa-modal-eyebrow">Product Owner Q&amp;A</div>
-    <h2 class="about-qa-modal-title" id="about-qa-modal-title">Questions a hiring team may ask</h2>
-    <div class="about-qa-modal-list" id="about-qa-modal-list"></div>
+    <div class="about-qa-modal-header">
+      <div class="about-qa-modal-eyebrow">Product Owner Q&amp;A</div>
+      <h2 class="about-qa-modal-title" id="about-qa-modal-title">Questions a hiring team may ask</h2>
+    </div>
+    <div class="about-qa-modal-scroll">
+      <div class="about-qa-modal-list" id="about-qa-modal-list"></div>
+    </div>
   </div>
 </div>
 
@@ -1384,7 +1552,7 @@
    ----------------------------------------- */
 let portfolioData = {};
 let PROJECT_DETAILS = {};
-const SITE_VERSION = '2026-06-25-about-qa-modal';
+const SITE_VERSION = '2026-06-27-mobile-hero-cta-grid';
 
 function htmlEscape(value){
   return String(value ?? '').replace(/[&<>"']/g, char => ({
