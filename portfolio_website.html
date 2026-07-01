@@ -536,24 +536,76 @@
 
     /* -- SKILLS -- */
     #skills { background: var(--s1); }
-    .skills-cats { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1080px; }
+    .skills-intro {
+      max-width: 680px; color: var(--muted);
+      font-size: 0.95rem; line-height: 1.68; margin: -4px 0 32px;
+    }
+    .skills-cats { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; max-width: 1120px; }
     .skill-cat {
       background: var(--s2); border: 1px solid var(--border); border-radius: 14px;
-      padding: 22px; transition: all 0.3s; position: relative; overflow: hidden;
+      padding: 22px; transition: transform 0.28s cubic-bezier(.22,1,.36,1), border-color 0.28s, box-shadow 0.28s, background 0.28s;
+      position: relative; overflow: hidden;
     }
     .skill-cat::after {
       content: ''; position: absolute; inset: 0; border-radius: 14px;
       background: radial-gradient(circle at 50% 0%, rgba(245,158,11,0.05), transparent 60%);
       pointer-events: none;
     }
-    .skill-cat:hover { border-color: var(--border2); box-shadow: 0 0 24px rgba(245,158,11,0.06); }
+    .skill-cat:hover { transform: translateY(-3px); border-color: var(--border2); box-shadow: 0 18px 42px rgba(0,0,0,0.18), 0 0 24px rgba(245,158,11,0.06); }
+    .skill-cat.pillar {
+      min-height: 360px;
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--s2) 88%, var(--accent) 12%), var(--s2)),
+        radial-gradient(circle at 18% 0%, rgba(245,158,11,0.1), transparent 38%);
+      border-color: color-mix(in srgb, var(--accent) 34%, var(--border));
+      padding: 24px;
+    }
+    .skill-cat.pillar::before {
+      content: attr(data-index);
+      position: absolute; top: 18px; right: 20px;
+      font-family: var(--ffd); font-size: 3.8rem; line-height: 1;
+      color: color-mix(in srgb, var(--accent) 13%, transparent);
+      pointer-events: none;
+    }
+    .skill-cat.support {
+      background: color-mix(in srgb, var(--s2) 68%, transparent);
+      padding: 18px;
+    }
+    .skill-cat.support::after { opacity: 0.55; }
+    .skill-cat-desc {
+      position: relative; z-index: 1;
+      color: var(--muted); font-size: 0.8rem; line-height: 1.58;
+      margin: -4px 0 15px;
+    }
+    .skill-proof {
+      position: relative; z-index: 1;
+      margin: 0 0 18px; padding: 11px 12px;
+      border: 1px solid color-mix(in srgb, var(--warm) 22%, var(--border));
+      border-radius: 10px;
+      background: rgba(245,158,11,0.06);
+      color: var(--text2); font-size: 0.73rem; line-height: 1.5;
+    }
+    .skill-proof strong {
+      display: block; color: var(--warm);
+      font-size: 0.62rem; letter-spacing: 1.3px;
+      text-transform: uppercase; margin-bottom: 3px;
+    }
     .skill-cat-head {
+      position: relative; z-index: 1;
       display: flex; align-items: center; gap: 9px;
-      font-weight: 600; font-size: 0.84rem; margin-bottom: 16px; color: var(--text);
+      font-weight: 700; font-size: 0.94rem; margin-bottom: 16px; color: var(--text);
     }
     .skill-cat-head svg { color: var(--accent); flex-shrink: 0; }
+    .skill-cat.pillar .skill-cat-head {
+      font-family: var(--ffd); font-size: 1.22rem; letter-spacing: 0;
+      margin-bottom: 14px;
+    }
+    .skill-cat.support .skill-cat-head {
+      font-size: 0.86rem; margin-bottom: 10px;
+    }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
     .stk {
+      position: relative; z-index: 1;
       font-size: 0.72rem; padding: 4px 11px; border-radius: 100px;
       background: var(--s3); border: 1px solid var(--border);
       color: var(--muted); transition: all 0.2s; cursor: default;
@@ -562,6 +614,16 @@
     .stk.hi {
       background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.24);
       color: var(--accent3);
+    }
+    .skill-cat.pillar .stk {
+      padding: 5px 11px; font-size: 0.72rem;
+    }
+    .skill-cat.support .stk {
+      padding: 4px 9px; font-size: 0.68rem;
+    }
+    .support-skills {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px; max-width: 1120px; margin-top: 14px;
     }
 
     /* -- PROJECTS -- */
@@ -838,42 +900,146 @@
     }
 
     /* -- CONTACT -- */
-    #contact { background: var(--s1); }
-    .contact-head {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 42px; max-width: 1080px; margin-bottom: 52px;
+    #contact {
+      background: var(--s1);
+      padding-top: 72px;
+      padding-bottom: 68px;
     }
-    .contact-head-copy { min-width: 0; }
-    .contact-head .ssub { margin-bottom: 0; }
+    .contact-section-head {
+      max-width: 1120px;
+      margin-bottom: 24px;
+    }
+    .contact-wrap {
+      max-width: 1120px;
+      display: grid; grid-template-columns: minmax(260px, 0.34fr) minmax(0, 1fr);
+      gap: 18px; align-items: stretch;
+    }
+    .contact-links-panel,
+    .contact-profile-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(245,158,11,0.06), transparent 36%),
+        color-mix(in srgb, var(--s2) 78%, transparent);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+    .contact-links-panel {
+      padding: 22px;
+    }
+    .contact-panel-head {
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+    .contact-panel-kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--warm); font-size: 0.65rem; font-weight: 800;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .contact-panel-kicker::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: #34d399; box-shadow: 0 0 14px rgba(52,211,153,0.42);
+    }
+    .contact-panel-title {
+      font-family: var(--ffd); font-size: clamp(1.25rem, 2vw, 1.78rem);
+      line-height: 1.08; margin-bottom: 8px; color: var(--text);
+    }
+    .contact-panel-desc {
+      max-width: 620px; color: var(--muted);
+      font-size: 0.78rem; line-height: 1.5;
+    }
+    .contact-profile-card {
+      padding: 22px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: 16px;
+    }
     .contact-portrait {
-      width: clamp(132px, 13vw, 190px); height: clamp(132px, 13vw, 190px);
-      margin-top: 18px; border-radius: 50%; object-fit: cover; object-position: center;
-      border: 1px solid var(--border2); background: var(--s2); flex-shrink: 0;
+      width: 148px; height: 148px;
+      border-radius: 50%; object-fit: cover; object-position: center;
+      border: 1px solid var(--border2);
+      background: var(--s2); flex-shrink: 0;
       box-shadow: 0 20px 54px var(--shadow-soft), 0 0 0 8px color-mix(in srgb, var(--accent) 7%, transparent);
     }
-    .contact-grid { display: block; max-width: 1080px; }
-    .contact-info { max-width: 900px; }
-    .contact-links-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .contact-grid { display: block; min-width: 0; }
+    .contact-info { min-width: 0; }
+    .contact-list {
+      display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 10px;
+    }
     .clink {
       display: flex; align-items: center; gap: 14px; padding: 14px 18px;
-      background: var(--s2); border: 1px solid var(--border); border-radius: 12px;
+      background: color-mix(in srgb, var(--s3) 52%, transparent);
+      border: 1px solid var(--border); border-radius: 12px;
       text-decoration: none; color: var(--text); transition: all 0.25s;
     }
     .clink:hover { border-color: rgba(245,158,11,0.26); box-shadow: 0 0 18px rgba(245,158,11,0.06); transform: translateX(4px); }
+    .clink > div:last-child { min-width: 0; }
+    .clink.primary-contact {
+      position: relative; overflow: hidden;
+      min-height: 82px;
+      display: grid; grid-template-columns: 44px minmax(0, 1fr) auto;
+      align-items: center; column-gap: 14px; padding: 14px 16px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(245,158,11,0.13), transparent 42%),
+        color-mix(in srgb, var(--s3) 68%, transparent);
+      border-color: color-mix(in srgb, var(--warm) 22%, var(--border));
+    }
+    .clink.primary-contact::before {
+      content: ''; position: absolute; inset: auto -24px -42px auto;
+      width: 120px; height: 120px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 68%);
+      pointer-events: none;
+    }
+    .clink.primary-contact::after {
+      position: static;
+      transform: none;
+      justify-self: end;
+      font-size: 0.62rem; font-weight: 800; color: var(--warm);
+      letter-spacing: 0.8px; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .clink.primary-contact[href^="mailto"]::after { content: 'Email me'; }
+    .clink.primary-contact[href^="tel"]::after { content: 'Call me'; }
+    .clink.primary-contact:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 38px rgba(0,0,0,0.18), 0 0 24px rgba(245,158,11,0.1);
+    }
+    .clink.secondary-contact {
+      min-height: 58px; padding: 11px 14px;
+      flex-direction: row; align-items: center; justify-content: flex-start;
+    }
     .clink-icon {
       width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
       background: rgba(245,158,11,0.08); border-radius: 8px; color: var(--accent); flex-shrink: 0;
       border: 1px solid rgba(245,158,11,0.14);
     }
+    .primary-contact .clink-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      color: var(--warm); background: rgba(245,158,11,0.1);
+    }
     .clink-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 2px; }
-    .clink-val { font-size: 0.84rem; font-weight: 500; color: var(--text2); }
+    .clink-val { font-size: 0.8rem; font-weight: 500; color: var(--text2); }
+    .primary-contact .clink-label {
+      color: var(--warm); font-weight: 800; letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .primary-contact .clink-val {
+      font-family: var(--ffd); font-size: clamp(0.86rem, 1.12vw, 1rem);
+      line-height: 1.25; color: var(--text);
+      overflow-wrap: normal;
+      white-space: nowrap;
+    }
+    .secondary-contact .clink-val {
+      font-size: 0.76rem; overflow-wrap: anywhere;
+    }
     .avail-card {
-      margin-top: 18px; padding: 20px 22px;
-      background: var(--s2); border: 1px solid var(--border2);
+      width: 100%; padding: 15px 16px;
+      background: color-mix(in srgb, var(--s3) 48%, transparent);
+      border: 1px solid var(--border2);
       border-left: 2px solid var(--accent); border-radius: 12px;
       box-shadow: -4px 0 18px rgba(245,158,11,0.07);
     }
-    .avail-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .avail-card p { font-size: 0.76rem; color: var(--muted); line-height: 1.55; }
     .avail-card p strong { color: var(--text2); }
 
     /* -- INTRO VIDEO POPUP -- */
@@ -1072,7 +1238,7 @@
       .about-portrait-stage { position: absolute; }
       .about-portrait-stage::before { background: linear-gradient(180deg, var(--s1) 0%, transparent 10%); }
       .about-portrait { object-position: 64% center; }
-      .about-body { grid-row: 1; width: 100%; min-width: 0; padding: 64px 24px 56px; overflow: hidden; }
+      .about-body { grid-row: 1; width: 100%; min-width: 0; padding: 64px 24px 56px; overflow: visible; }
       .about-body .stag { margin-bottom: 46px; }
       .about-body .sh {
         max-width: 100%;
@@ -1081,11 +1247,15 @@
         text-wrap: balance;
         overflow-wrap: normal;
       }
-      .about-qa-shell { width: 100%; max-width: 100%; overflow: hidden; }
-      .about-qa-bar { justify-content: flex-start; margin-top: -2px; }
+      .about-qa-shell {
+        width: 100%; max-width: 100%;
+        overflow-x: clip; overflow-y: visible;
+        padding-top: 8px;
+      }
+      .about-qa-bar { justify-content: flex-start; margin-top: 0; }
       .about-qa-viewport {
         width: 100%; max-width: 100%; overflow-x: auto; overflow-y: visible;
-        padding: 12px 0 24px;
+        padding: 20px 0 28px;
         -webkit-mask-image: none; mask-image: none;
         scrollbar-width: none;
         scroll-snap-type: x proximity;
@@ -1103,10 +1273,13 @@
       .about-edu > div:last-child { min-width: 0; }
       .about-edu-deg { overflow-wrap: anywhere; line-height: 1.35; }
       .role-cards { margin-top: 28px; }
-      .skills-cats { grid-template-columns: 1fr 1fr; }
-      .contact-head { gap: 24px; }
-      .contact-portrait { width: 128px; height: 128px; margin-top: 16px; }
-      .contact-links-list { grid-template-columns: 1fr; }
+      .skills-cats { grid-template-columns: 1fr; }
+      .support-skills { grid-template-columns: 1fr 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 16px; max-width: 760px; }
+      .contact-profile-card { padding: 22px; }
+      .contact-portrait { width: 128px; height: 128px; }
+      .contact-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .clink.primary-contact::after { display: none; }
       .intro-video-widget { right: 18px; bottom: 18px; width: min(320px, calc(100vw - 32px)); }
       .intro-video-tab { bottom: 64px; width: 74px; height: 68px; }
       .exp-item { grid-template-columns: 58px minmax(0,1fr); gap: 0 18px; --avatar-center: 29px; }
@@ -1175,10 +1348,28 @@
       .role-cards { grid-template-columns: 1fr; gap: 8px; padding-bottom: 8px; }
       .role-card { padding: 16px; }
       .role-card-head { margin-bottom: 4px; }
-      .skills-cats { grid-template-columns: 1fr; }
+      .skills-cats,
+      .support-skills { grid-template-columns: 1fr; }
+      .skill-cat.pillar { min-height: 0; }
       .proj-grid { grid-template-columns: 1fr; }
-      .contact-head { align-items: center; gap: 18px; margin-bottom: 40px; }
-      .contact-portrait { width: 92px; height: 92px; margin-top: 0; }
+      .contact-links-panel { padding: 18px; }
+      .contact-profile-card { padding: 18px; }
+      .contact-portrait { width: 96px; height: 96px; justify-self: center; }
+      .contact-list { grid-template-columns: 1fr; }
+      .clink.primary-contact {
+        min-height: 82px;
+        padding: 14px 16px;
+        align-items: center;
+        flex-direction: row;
+      }
+      .clink.primary-contact::after {
+        display: none;
+      }
+      .primary-contact .clink-val {
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+      .clink.secondary-contact { min-height: 74px; flex-direction: row; align-items: center; }
       .intro-video-widget { width: min(280px, calc(100vw - 28px)); right: 14px; bottom: 14px; }
       .intro-video-tab { width: 64px; height: 60px; bottom: 54px; }
       .project-modal { padding: 10px; }
@@ -1552,7 +1743,7 @@
    ----------------------------------------- */
 let portfolioData = {};
 let PROJECT_DETAILS = {};
-const SITE_VERSION = '2026-06-27-mobile-hero-cta-grid';
+const SITE_VERSION = '2026-07-01-video-tab-edge-restore';
 
 function htmlEscape(value){
   return String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -1598,6 +1789,7 @@ function iconFor(label = ''){
   if(key.includes('github')) return '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.02c-3.2.7-3.87-1.38-3.87-1.38-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.73-1.53-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18A10.93 10.93 0 0 1 12 6.15c.98 0 1.96.13 2.88.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.58.24 2.75.12 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14v3.16c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>';
   if(key.includes('report') || key.includes('journey')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h6"/></svg>';
   if(key.includes('youtube') || key.includes('demo') || key.includes('presentation') || key.includes('playlist')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+  if(key.includes('instagram')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>';
   if(key.includes('email')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>';
   if(key.includes('phone')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.89.66 2.78a2 2 0 0 1-.45 2.11L8 9.88a16 16 0 0 0 6.12 6.12l1.27-1.27a2 2 0 0 1 2.11-.45c.89.31 1.82.53 2.78.66A2 2 0 0 1 22 16.92Z"/></svg>';
   if(key.includes('linkedin')) return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>';
@@ -1766,10 +1958,21 @@ function renderPortfolio(data){
     }).join('')}
     </div>`;
 
-  document.getElementById('skills').innerHTML = `
-    <div class="stag">Skills</div><h2 class="sh">What I work with</h2><div class="skills-cats">
-    ${(data.skills || []).map(cat => `<div class="skill-cat reveal"><div class="skill-cat-head">${iconFor(cat.category)}${htmlEscape(cat.category)}</div><div class="skill-tags">${(cat.items || []).map(item => `<span class="stk ${(cat.highlight || []).includes(item) ? 'hi' : ''}">${htmlEscape(item)}</span>`).join('')}</div></div>`).join('')}
+  const skills = data.skills || [];
+  const pillarSkills = skills.filter(cat => cat.tier === 'pillar');
+  const supportSkills = skills.filter(cat => cat.tier !== 'pillar');
+  const skillCard = (cat, i, tier = 'support') => `<div class="skill-cat ${tier} reveal" ${tier === 'pillar' ? `data-index="0${i + 1}"` : ''}>
+      <div class="skill-cat-head">${iconFor(cat.category)}${htmlEscape(cat.category)}</div>
+      ${cat.description ? `<p class="skill-cat-desc">${htmlEscape(cat.description)}</p>` : ''}
+      ${cat.evidence ? `<p class="skill-proof"><strong>Evidence</strong>${htmlEscape(cat.evidence)}</p>` : ''}
+      <div class="skill-tags">${(cat.items || []).map(item => `<span class="stk ${(cat.highlight || []).includes(item) ? 'hi' : ''}">${htmlEscape(item)}</span>`).join('')}</div>
     </div>`;
+  document.getElementById('skills').innerHTML = `
+    <div class="stag">Skills</div>
+    <h2 class="sh">Product Owner skill system</h2>
+    <p class="skills-intro">I position myself around three strengths that matter most for Product Owner work: shaping the right product, designing around users, and understanding what teams can realistically build and ship.</p>
+    <div class="skills-cats">${pillarSkills.map((cat, i) => skillCard(cat, i, 'pillar')).join('')}</div>
+    <div class="support-skills">${supportSkills.map((cat, i) => skillCard(cat, i, 'support')).join('')}</div>`;
 
   const projectSection = data.projectsSection || {};
   document.getElementById('projects').innerHTML = `
@@ -1791,19 +1994,34 @@ function renderPortfolio(data){
       </div>`).join('')}</div>`;
 
   const contact = data.contact || {};
+  const contactLinks = contact.links || [];
+  const primaryContactLinks = contactLinks.filter(link => /email|phone/i.test(link.label || ''));
+  const secondaryContactLinks = contactLinks.filter(link => !/email|phone/i.test(link.label || ''));
+  const orderedContactLinks = [...primaryContactLinks, ...secondaryContactLinks];
+  const contactLinkHtml = (link, extraClass = '') => `<a href="${htmlEscape(link.url)}" ${/^https?:/.test(link.url || '') ? 'target="_blank"' : ''} class="clink ${extraClass} reveal"><div class="clink-icon">${iconFor(link.label)}</div><div><div class="clink-label">${htmlEscape(link.label)}</div><div class="clink-val">${htmlEscape(link.value)}</div></div></a>`;
   document.getElementById('contact').innerHTML = `
-    <div class="contact-head">
-      <div class="contact-head-copy">
+    <div class="contact-section-head">
+      <div>
         <div class="stag">${htmlEscape(contact.eyebrow || 'Contact')}</div>
         <h2 class="sh">${htmlEscape(contact.heading || "Let's connect")}</h2>
-        <p class="ssub">${htmlEscape(contact.subheading || '')}</p>
       </div>
-      ${contact.profileImage ? `<img class="contact-portrait" src="${htmlEscape(freshAssetUrl(contact.profileImage))}" alt="${htmlEscape(data.personal?.nickname || data.personal?.name || 'Profile photo')}" loading="lazy">` : ''}
     </div>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <div class="contact-links-list">${(contact.links || []).map(link => `<a href="${htmlEscape(link.url)}" ${/^https?:/.test(link.url || '') ? 'target="_blank"' : ''} class="clink reveal"><div class="clink-icon">${iconFor(link.label)}</div><div><div class="clink-label">${htmlEscape(link.label)}</div><div class="clink-val">${htmlEscape(link.value)}</div></div></a>`).join('')}</div>
-        <div class="avail-card reveal"><p>${contact.availability || ''}</p></div>
+    <div class="contact-wrap">
+      <div class="contact-profile-card reveal">
+        ${contact.profileImage ? `<img class="contact-portrait" src="${htmlEscape(freshAssetUrl(contact.profileImage))}" alt="${htmlEscape(data.personal?.nickname || data.personal?.name || 'Profile photo')}" loading="lazy">` : ''}
+        <div class="avail-card"><p>${contact.availability || ''}</p></div>
+      </div>
+      <div class="contact-links-panel">
+        <div class="contact-panel-head">
+          <div class="contact-panel-kicker">Fastest response</div>
+          <h3 class="contact-panel-title">Reach me by email or phone first</h3>
+          <p class="contact-panel-desc">I check email consistently and keep my phone reachable, so these two channels are the best way to start a Product Owner conversation.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-list">${orderedContactLinks.map(link => contactLinkHtml(link, /email|phone/i.test(link.label || '') ? 'primary-contact' : 'secondary-contact')).join('')}</div>
+          </div>
+        </div>
       </div>
     </div>`;
 

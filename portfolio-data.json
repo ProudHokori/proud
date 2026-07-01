@@ -206,125 +206,122 @@
   ],
   "skills": [
     {
-      "category": "Product Ownership",
+      "category": "Product Thinking",
+      "tier": "pillar",
+      "description": "Turn vague needs into clear product direction, MVP scope, backlog priorities, and release-ready requirements.",
+      "evidence": "Applied in ByteArk internship, KU Eater, Courtly, Referite, and capstone product planning.",
       "items": [
         "Product Discovery",
         "Requirement Analysis",
+        "Problem Framing",
+        "MVP Scoping",
+        "Feature Prioritisation",
         "Backlog Ownership",
         "User Story Writing",
-        "Acceptance Criteria",
-        "Feature Prioritisation",
-        "RFC Writing",
-        "Release Readiness",
-        "Stakeholder Alignment"
+        "Acceptance Criteria"
       ],
       "highlight": [
         "Product Discovery",
+        "MVP Scoping",
         "Backlog Ownership",
-        "User Story Writing",
         "Acceptance Criteria"
       ]
     },
     {
-      "category": "Project Management",
+      "category": "UX & Design Sense",
+      "tier": "pillar",
+      "description": "Design product flows from real user behavior, not only screens. I connect research, usability, and practical feature decisions.",
+      "evidence": "Led feature and design direction in team projects, especially KU Eater, Courtly, EcoWear, and Goodoo.",
+      "items": [
+        "UX Research",
+        "User Journey Mapping",
+        "Wireframing",
+        "Prototyping",
+        "Information Architecture",
+        "Usability Thinking",
+        "Figma",
+        "Competitor Analysis"
+      ],
+      "highlight": [
+        "UX Research",
+        "User Journey Mapping",
+        "Wireframing",
+        "Figma"
+      ]
+    },
+    {
+      "category": "Technical Delivery",
+      "tier": "pillar",
+      "description": "Understand how software is built, tested, and shipped, so requirements are realistic and communication with engineers is concrete.",
+      "evidence": "B.Eng. Software & Knowledge Engineering, frontend/full-stack projects, API work, Docker, QA, and release checks.",
+      "items": [
+        "Frontend Development",
+        "API & Data Flow",
+        "Technical Tradeoffs",
+        "Manual QA",
+        "Test Case Writing",
+        "Bug Reporting",
+        "Release Readiness",
+        "UAT Support"
+      ],
+      "highlight": [
+        "Frontend Development",
+        "Technical Tradeoffs",
+        "Manual QA",
+        "Release Readiness"
+      ]
+    },
+    {
+      "category": "Delivery & Team Rhythm",
+      "tier": "support",
+      "description": "The operating skills that keep product work moving with clear ownership and team alignment.",
       "items": [
         "Agile / Scrum",
         "Sprint Planning",
-        "Roadmap Planning",
         "Scope Management",
         "Progress Tracking",
-        "Team Coordination",
         "Stakeholder Communication",
         "Meeting Facilitation"
       ],
       "highlight": [
-        "Agile / Scrum",
         "Sprint Planning",
         "Scope Management"
       ]
     },
     {
-      "category": "Manual QA",
-      "items": [
-        "Manual & Functional Testing",
-        "Exploratory Testing",
-        "Test Case Writing",
-        "Regression Testing",
-        "Bug Reporting & Tracking",
-        "UAT Support",
-        "Release Readiness"
-      ],
-      "highlight": [
-        "Manual & Functional Testing",
-        "Exploratory Testing",
-        "Test Case Writing"
-      ]
-    },
-    {
-      "category": "UX/UI Design",
-      "items": [
-        "Figma",
-        "UX Research & Interviews",
-        "Wireframing & Prototyping",
-        "Persona Development",
-        "User Journey Mapping",
-        "Adobe Illustrator",
-        "Competitor Analysis"
-      ],
-      "highlight": [
-        "Figma",
-        "UX Research & Interviews",
-        "Wireframing & Prototyping"
-      ]
-    },
-    {
-      "category": "Full-stack Development",
+      "category": "Hands-on Build Skills",
+      "tier": "support",
+      "description": "Not my positioning, but a real advantage when translating product intent into feasible implementation.",
       "items": [
         "Next.js / React",
         "TypeScript",
         "Tailwind CSS",
         "Python",
-        "Kotlin (Android)",
         "PostgreSQL",
-        "Docker",
-        "Prisma ORM"
+        "Docker"
       ],
       "highlight": [
         "Next.js / React",
-        "TypeScript",
-        "Tailwind CSS"
+        "TypeScript"
       ]
     },
     {
-      "category": "Tools",
+      "category": "Tools & Collaboration",
+      "tier": "support",
+      "description": "Tools I use to make product decisions visible, trackable, and easy for teams to act on.",
       "items": [
         "Jira",
         "Linear",
         "ClickUp",
-        "Postman",
         "Notion",
         "Miro",
         "Google Sheets",
-        "SketchUp",
+        "Postman",
         "AI-assisted workflows"
       ],
       "highlight": [
-        "Jira"
-      ]
-    },
-    {
-      "category": "Soft Skills",
-      "items": [
-        "Cross-functional Communication",
-        "Customer Empathy",
-        "Big-picture Thinking",
-        "Attention to Detail",
-        "Organisation & Planning",
-        "Team Coordination"
-      ],
-      "highlight": [
-        "Cross-functional Communication",
-        "Customer Empathy"
+        "Jira",
+        "Miro"
       ]
     }
   ],
@@ -818,6 +815,11 @@
         "label": "GitHub",
         "value": "ProudHokori",
         "url": "https://github.com/ProudHokori"
+      },
+      {
+        "label": "Instagram",
+        "value": "@proud_hokori",
+        "url": "https://www.instagram.com/proud_hokori/"
       },
       {
         "label": "YouTube",
