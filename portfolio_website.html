@@ -4,7 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="referrer" content="strict-origin-when-cross-origin"/>
-  <title>Proud — Product Owner · PM · UX/UI · Full-stack · QA</title>
+  <title>Proud — Product &amp; Project · A versatile generalist</title>
+  <meta name="description" content=""/>
   <link rel="icon" type="image/svg+xml" href="images/favicon-lightbulb.svg?v=2026-06-25"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <script>
@@ -343,6 +344,10 @@
     .about-body .sh { max-width: 700px; font-size: clamp(2.35rem, 3.8vw, 3.7rem); line-height: 1.04; margin-bottom: 24px; }
     .about-body p { color: var(--muted); line-height: 1.68; margin-bottom: 16px; font-size: 0.94rem; max-width: 680px; }
     .about-body p strong { color: var(--text2); font-weight: 500; }
+    .about-story { margin-top: 20px; max-width: 780px; }
+    .about-story summary { cursor: pointer; color: var(--text2); font-size: 0.82rem; font-weight: 600; padding: 10px 0; }
+    .about-story[open] { padding-bottom: 12px; }
+    .about-story .role-cards { margin-bottom: 16px; }
     .about-qa-shell { max-width: 780px; }
     .about-qa-bar {
       display: flex; justify-content: flex-end; align-items: center;
@@ -485,6 +490,31 @@
     .role-card-icon { color: var(--accent); }
     .role-card-title { font-weight: 600; font-size: 0.84rem; color: var(--text); }
     .role-card-desc { font-size: 0.77rem; color: var(--muted); line-height: 1.5; }
+
+    /* -- PERSONALITY & STORY -- */
+    #personality { background: var(--bg); border-bottom: 1px solid var(--border); }
+    .personality-wrap { max-width: 1120px; margin: 0 auto; }
+    .personality-head { max-width: 760px; margin-bottom: 40px; }
+    .personality-nickname {
+      display: inline-block; color: var(--accent3); background: var(--s2);
+      border: 1px solid var(--border2); border-radius: 100px;
+      padding: 8px 16px; margin: 8px 0 20px; font-size: 0.85rem;
+    }
+    .personality-intro { font-size: 1rem; line-height: 1.85; color: var(--text2); }
+    .personality-columns { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 44px; }
+    .personality-subtitle { font-family: var(--ffd); font-size: 1.2rem; margin-bottom: 22px; color: var(--text); }
+    .personality-traits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .personality-trait { padding: 22px; border: 1px solid var(--border); border-radius: 14px; background: var(--s1); }
+    .personality-trait h4 { color: var(--accent3); font-size: 0.94rem; line-height: 1.4; margin-bottom: 12px; }
+    .personality-trait p, .personality-story p { color: var(--muted); font-size: 0.88rem; line-height: 1.8; }
+    .personality-story { list-style: none; border-left: 1px solid var(--border2); padding-left: 24px; }
+    .personality-story li { position: relative; padding: 0 0 28px; }
+    .personality-story li:last-child { padding-bottom: 0; }
+    .personality-story li::before { content: ''; position: absolute; left: -29px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--glow); }
+    .personality-story h4 { font-size: 0.96rem; color: var(--text2); margin-bottom: 10px; line-height: 1.4; }
+    .personality-closing { margin-top: 32px; padding: 20px 24px; border-left: 3px solid var(--accent); background: var(--s1); color: var(--text2); font-size: 0.94rem; line-height: 1.8; }
+    @media(max-width:900px) { .personality-columns { grid-template-columns: 1fr; gap: 32px; } }
+    @media(max-width:600px) { .personality-traits { grid-template-columns: 1fr; } .personality-trait { padding: 20px; } }
 
     /* -- EXPERIENCE -- */
     #experience { background: var(--bg); }
@@ -1397,13 +1427,7 @@
 <!-- -- NAV -- -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo" aria-label="Go to top">proud<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <ul class="nav-links"></ul>
   <div class="nav-actions">
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme">
       <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"/></svg>
@@ -1421,7 +1445,7 @@
     </button>
     <a href="#contact" class="nav-cta">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      Get in touch
+      <span>Get in touch</span>
     </a>
   </div>
 </nav>
@@ -1435,6 +1459,9 @@
 
 <!-- -- ABOUT -- -->
 <section id="about"></section>
+
+<!-- -- PERSONALITY & STORY -- -->
+<section id="personality"></section>
 
 <!-- -- EXPERIENCE -- -->
 <section id="experience"></section>
@@ -1486,7 +1513,7 @@
   <div class="about-qa-modal-panel" role="dialog" aria-modal="true" aria-labelledby="about-qa-modal-title">
     <button class="about-qa-modal-close" type="button" aria-label="Close all Q&A">&times;</button>
     <div class="about-qa-modal-header">
-      <div class="about-qa-modal-eyebrow">Product Owner Q&amp;A</div>
+      <div class="about-qa-modal-eyebrow">Working with Proud</div>
       <h2 class="about-qa-modal-title" id="about-qa-modal-title">Questions a hiring team may ask</h2>
     </div>
     <div class="about-qa-modal-scroll">
@@ -1743,7 +1770,7 @@
    ----------------------------------------- */
 let portfolioData = {};
 let PROJECT_DETAILS = {};
-const SITE_VERSION = '2026-07-01-video-tab-edge-restore';
+const SITE_VERSION = '2026-10-11-personality';
 
 function htmlEscape(value){
   return String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -1821,7 +1848,7 @@ function formatDateRange(value = ''){
 function formatQuestion(value = ''){
   const safe = htmlEscape(value);
   const words = [
-    'Product Owner',
+    'product and project',
     'choose me',
     'evidence',
     'different',
@@ -1878,10 +1905,21 @@ function setupAboutRail(){
 function renderPortfolio(data){
   if(!data || !Object.keys(data).length) return;
   document.title = data.meta?.title || document.title;
+  const descriptionMeta = document.querySelector('meta[name="description"]');
+  if(descriptionMeta) descriptionMeta.content = data.meta?.description || '';
+  const ui = data.uiText || {};
   document.querySelector('.nav-logo').innerHTML = logoHtml(data.personal?.logo);
   document.querySelector('.footer-logo').innerHTML = logoHtml(data.personal?.logo);
+  document.querySelector('.nav-links').innerHTML = (data.navigation || []).map(label =>
+    `<li><a href="#${htmlEscape(String(label).toLowerCase().replace(/\s+/g, '-'))}">${htmlEscape(label)}</a></li>`
+  ).join('');
   const navCta = document.querySelector('.nav-cta');
-  if(navCta) navCta.href = '#contact';
+  if(navCta){
+    navCta.href = '#contact';
+    navCta.querySelector('span').textContent = ui.navContact || 'Get in touch';
+  }
+  document.querySelector('.about-qa-modal-eyebrow').textContent = ui.aboutQuestionsEyebrow || '';
+  document.getElementById('about-qa-modal-title').textContent = ui.aboutQuestionsTitle || 'Questions a hiring team may ask';
   const downloads = data.downloads || [];
   const docsMenu = document.getElementById('docs-menu');
   const docsToggle = document.getElementById('docs-toggle');
@@ -1889,14 +1927,14 @@ function renderPortfolio(data){
   const docsDropdown = document.getElementById('docs-dropdown');
   if(docsMenu && docsToggle && docsDropdown && downloads.length){
     docsMenu.hidden = false;
-    if(docsToggleText) docsToggleText.textContent = downloads.length === 1 ? downloads[0].label : 'Docs';
+    if(docsToggleText) docsToggleText.textContent = downloads.length === 1 ? downloads[0].label : (ui.docsFallback || 'Docs');
     docsDropdown.innerHTML = downloads.map(doc => {
       const isExternal = /^https?:/i.test(doc.url || '');
       const downloadAttr = doc.filename && !isExternal ? ` download="${htmlEscape(doc.filename)}"` : '';
       const targetAttr = isExternal ? ' target="_blank" rel="noopener"' : '';
       return `<a class="docs-link" href="${htmlEscape(doc.url)}"${downloadAttr}${targetAttr}>
         <span class="docs-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 11v6"/><path d="m9 14 3 3 3-3"/></svg></span>
-        <span><span class="docs-link-title">${htmlEscape(doc.label)}</span><span class="docs-link-desc">${htmlEscape(doc.description || doc.filename || 'Download PDF')}</span></span>
+        <span><span class="docs-link-title">${htmlEscape(doc.label)}</span><span class="docs-link-desc">${htmlEscape(doc.description || doc.filename || ui.downloadFallback || 'Download PDF')}</span></span>
       </a>`;
     }).join('');
   } else if(docsMenu) {
@@ -1908,7 +1946,7 @@ function renderPortfolio(data){
     <div class="hero-badge"><span class="badge-dot"></span> ${htmlEscape(hero.badge)}</div>
     <h1 class="hero-name"><span class="hi">${htmlEscape(hero.greeting)} </span><span class="ac">${htmlEscape(hero.nickname)}</span><br/><span class="nm">${htmlEscape(hero.name)}</span></h1>
     <div class="hero-roles">${(hero.roles || []).map(role => {
-      const isPrimaryRole = /product owner/i.test(role);
+      const isPrimaryRole = (hero.primaryRoles || []).includes(role);
       return `<span class="role-chip ${isPrimaryRole ? 'primary-role' : ''}">${iconFor(role)}${htmlEscape(role)}</span>`;
     }).join('')}</div>
     <p class="hero-desc">${htmlEscape(hero.description)}</p>
@@ -1935,26 +1973,56 @@ function renderPortfolio(data){
           <div class="about-qa-bar">
             <button class="about-qa-show" id="about-qa-show" type="button" aria-haspopup="dialog" aria-controls="about-qa-modal">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>
-              <span>Show all</span>
+              <span>${htmlEscape(ui.aboutQuestionsButton || 'Show all')}</span>
             </button>
           </div>
           <div class="about-qa-viewport"><div class="about-qa-track">${qaCards}${qaCards}</div></div>
         </div>` : (about.paragraphs || []).map(item => `<p>${htmlEscape(item)}</p>`).join('')}
         <div class="about-edu"><div class="about-edu-icon">${iconFor('education')}</div><div><div class="about-edu-deg">${htmlEscape(about.education?.degree)}</div><div class="about-edu-inst">${htmlEscape(about.education?.institution)}</div><div class="about-edu-year">${htmlEscape(about.education?.year)}</div></div></div>
-        ${aboutQa.length ? '' : `<div class="role-cards">${(about.roleCards || []).map(card => `<div class="role-card reveal"><div class="role-card-head"><span class="role-card-icon">${iconFor(card.title)}</span><span class="role-card-title">${htmlEscape(card.title)}</span></div><p class="role-card-desc">${htmlEscape(card.description)}</p></div>`).join('')}</div>`}
+        ${aboutQa.length && (about.paragraphs?.length || about.roleCards?.length) ? `<details class="about-story"><summary>${htmlEscape(ui.aboutStoryButton || 'Read my story and roles')}</summary>
+          ${(about.paragraphs || []).map(item => `<p>${htmlEscape(item)}</p>`).join('')}
+          <div class="role-cards">${(about.roleCards || []).map(card => `<div class="role-card"><div class="role-card-head"><span class="role-card-icon">${iconFor(card.title)}</span><span class="role-card-title">${htmlEscape(card.title)}</span></div><p class="role-card-desc">${htmlEscape(card.description)}</p></div>`).join('')}</div>
+        </details>` : (about.roleCards?.length ? `<div class="role-cards">${about.roleCards.map(card => `<div class="role-card"><div class="role-card-head"><span class="role-card-icon">${iconFor(card.title)}</span><span class="role-card-title">${htmlEscape(card.title)}</span></div><p class="role-card-desc">${htmlEscape(card.description)}</p></div>`).join('')}</div>` : '')}
       </div>
       <div class="about-side">
-        ${about.portraitImage ? `<div class="about-portrait-stage"><img class="about-portrait" src="${htmlEscape(freshAssetUrl(about.portraitImage))}" alt="${htmlEscape(data.personal?.nickname || data.personal?.name || 'Proud presenting KU Eater')}" loading="lazy"></div>` : ''}
+        ${about.portraitImage ? `<div class="about-portrait-stage"><img class="about-portrait" src="${htmlEscape(freshAssetUrl(about.portraitImage))}" alt="${htmlEscape(about.portraitAlt || data.personal?.nickname || data.personal?.name || 'Profile photo')}" loading="lazy"></div>` : ''}
       </div>
     </div>`;
   requestAnimationFrame(setupAboutRail);
 
+  const personality = data.personality || {};
+  const personalitySection = document.getElementById('personality');
+  personalitySection.hidden = !personality.heading;
+  personalitySection.innerHTML = personality.heading ? `
+    <div class="personality-wrap">
+      <header class="personality-head">
+        <div class="stag">${htmlEscape(personality.eyebrow)}</div>
+        <h2 class="sh">${htmlEscape(personality.heading)}</h2>
+        <p class="personality-nickname">${htmlEscape(personality.nickname)}</p>
+        <p class="personality-intro">${htmlEscape(personality.intro)}</p>
+      </header>
+      <div class="personality-columns">
+        <div>
+          <h3 class="personality-subtitle">${htmlEscape(personality.traitsHeading)}</h3>
+          <div class="personality-traits">${(personality.traits || []).map(trait => `
+            <article class="personality-trait"><h4>${htmlEscape(trait.title)}</h4><p>${htmlEscape(trait.description)}</p></article>`).join('')}</div>
+        </div>
+        <div>
+          <h3 class="personality-subtitle">${htmlEscape(personality.storyHeading)}</h3>
+          <ol class="personality-story">${(personality.story || []).map(chapter => `
+            <li><h4>${htmlEscape(chapter.chapter)}</h4><p>${htmlEscape(chapter.body)}</p></li>`).join('')}</ol>
+        </div>
+      </div>
+      <p class="personality-closing">${htmlEscape(personality.closing)}</p>
+    </div>` : '';
+
+  const experienceSection = data.experienceSection || {};
   document.getElementById('experience').innerHTML = `
-    <div class="stag">Experience</div><h2 class="sh">Where I've worked</h2><div class="exp-list">
-    ${(data.experiences || []).map(item => {
+    <div class="stag">${htmlEscape(experienceSection.eyebrow || 'Experience')}</div><h2 class="sh">${htmlEscape(experienceSection.heading || "Where I've worked")}</h2><div class="exp-list">
+    ${(data.experiences || []).map((item, index) => {
       const folder = item.folder || item.company;
       const initials = initialsFromText(item.company);
-      return `<div class="exp-item reveal" data-folder="${htmlEscape(folder)}"><div class="exp-meta"><div class="exp-year">${htmlEscape(formatDateRange(item.year))}</div></div><div class="exp-avatar" data-folder="${htmlEscape(folder)}" data-label="${htmlEscape(item.company)}"><span>${htmlEscape(initials)}</span></div><div class="exp-content"><div class="exp-company">${htmlEscape(item.company)}</div><div class="exp-title">${htmlEscape(item.title)}</div><ul class="exp-bullets">${(item.bullets || []).map(bullet => `<li>${htmlEscape(bullet)}</li>`).join('')}</ul></div></div>`;
+      return `<div class="exp-item reveal" data-exp-index="${index}" data-folder="${htmlEscape(folder)}"><div class="exp-meta"><div class="exp-year">${htmlEscape(formatDateRange(item.year))}</div></div><div class="exp-avatar" data-folder="${htmlEscape(folder)}" data-label="${htmlEscape(item.company)}"><span>${htmlEscape(initials)}</span></div><div class="exp-content"><div class="exp-company">${htmlEscape(item.company)}</div><div class="exp-title">${htmlEscape(item.title)}</div><ul class="exp-bullets">${(item.bullets || []).map(bullet => `<li>${htmlEscape(bullet)}</li>`).join('')}</ul></div></div>`;
     }).join('')}
     </div>`;
 
@@ -1967,10 +2035,11 @@ function renderPortfolio(data){
       ${cat.evidence ? `<p class="skill-proof"><strong>Evidence</strong>${htmlEscape(cat.evidence)}</p>` : ''}
       <div class="skill-tags">${(cat.items || []).map(item => `<span class="stk ${(cat.highlight || []).includes(item) ? 'hi' : ''}">${htmlEscape(item)}</span>`).join('')}</div>
     </div>`;
+  const skillsSection = data.skillsSection || {};
   document.getElementById('skills').innerHTML = `
-    <div class="stag">Skills</div>
-    <h2 class="sh">Product Owner skill system</h2>
-    <p class="skills-intro">I position myself around three strengths that matter most for Product Owner work: shaping the right product, designing around users, and understanding what teams can realistically build and ship.</p>
+    <div class="stag">${htmlEscape(skillsSection.eyebrow || 'Skills')}</div>
+    <h2 class="sh">${htmlEscape(skillsSection.heading || '')}</h2>
+    <p class="skills-intro">${htmlEscape(skillsSection.intro || '')}</p>
     <div class="skills-cats">${pillarSkills.map((cat, i) => skillCard(cat, i, 'pillar')).join('')}</div>
     <div class="support-skills">${supportSkills.map((cat, i) => skillCard(cat, i, 'support')).join('')}</div>`;
 
@@ -2004,6 +2073,7 @@ function renderPortfolio(data){
       <div>
         <div class="stag">${htmlEscape(contact.eyebrow || 'Contact')}</div>
         <h2 class="sh">${htmlEscape(contact.heading || "Let's connect")}</h2>
+        ${contact.subheading ? `<p class="ssub">${htmlEscape(contact.subheading)}</p>` : ''}
       </div>
     </div>
     <div class="contact-wrap">
@@ -2013,9 +2083,9 @@ function renderPortfolio(data){
       </div>
       <div class="contact-links-panel">
         <div class="contact-panel-head">
-          <div class="contact-panel-kicker">Fastest response</div>
-          <h3 class="contact-panel-title">Reach me by email or phone first</h3>
-          <p class="contact-panel-desc">I check email consistently and keep my phone reachable, so these two channels are the best way to start a Product Owner conversation.</p>
+          <div class="contact-panel-kicker">${htmlEscape(contact.panelKicker || '')}</div>
+          <h3 class="contact-panel-title">${htmlEscape(contact.panelTitle || '')}</h3>
+          <p class="contact-panel-desc">${htmlEscape(contact.panelDescription || '')}</p>
         </div>
         <div class="contact-grid">
           <div class="contact-info">
@@ -2035,6 +2105,7 @@ function renderPortfolio(data){
 function renderIntroVideo(data){
   const src = data.personal?.introVideo;
   if(!src) return;
+  const ui = data.uiText || {};
 
   const wrap = document.createElement('div');
   wrap.className = 'intro-video-widget';
@@ -2064,7 +2135,7 @@ function renderIntroVideo(data){
       <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/>
       <path d="M3 3v5h5"/>
     </svg>
-    <span class="intro-video-tab-label">Let Me Introduce Myself ;)</span>`;
+    <span class="intro-video-tab-label">${htmlEscape(ui.introVideoLabel || 'Let Me Introduce Myself ;)')}</span>`;
 
   document.body.append(wrap, tab);
 
@@ -2108,8 +2179,8 @@ function renderIntroVideo(data){
     wrap.classList.remove('is-visible');
     wrap.classList.add('is-closed');
     tab.classList.toggle('is-replay', replay);
-    tabLabel.textContent = replay ? 'Replay' : 'Let Me Introduce Myself ;)';
-    tab.setAttribute('aria-label', replay ? 'Replay intro video' : 'Open intro video');
+    tabLabel.textContent = replay ? (ui.introReplayLabel || 'Replay') : (ui.introVideoLabel || 'Let Me Introduce Myself ;)');
+    tab.setAttribute('aria-label', replay ? (ui.introVideoReplay || 'Replay intro video') : (ui.introVideoOpen || 'Open intro video'));
     tab.classList.add('is-visible');
   };
   const openWidget = (shouldPlay = true, options = {}) => {
@@ -2503,13 +2574,14 @@ async function applyExperienceImages(){
 }
 
 function setModalLabels(labels = {}){
-  setText('project-modal-about-label', labels.about || 'About the project');
-  setText('project-modal-experience-label', labels.experience || 'Experience');
-  setText('project-modal-challenges-label', labels.challenges || 'Challenge and growth');
+  const defaults = portfolioData.uiText?.projectLabels || {};
+  setText('project-modal-about-label', labels.about || defaults.about || 'About the project');
+  setText('project-modal-experience-label', labels.experience || defaults.experience || 'Experience');
+  setText('project-modal-challenges-label', labels.challenges || defaults.challenges || 'Challenge and growth');
 }
 
 function showModalLoading(){
-  modalTrack.innerHTML = '<div class="slide"><div class="media-loading">Loading media...</div></div>';
+  modalTrack.innerHTML = `<div class="slide"><div class="media-loading">${escapeHtml(portfolioData.uiText?.modalLoading || 'Loading media...')}</div></div>`;
   modalDots.innerHTML = '';
   initSlider(projectModal.querySelector('.project-modal-slider'));
   projectModal.classList.add('open');
@@ -2523,7 +2595,7 @@ function renderModalSlides(slides){
   if(slides.length){
     slides.forEach(slide => modalTrack.appendChild(slide));
   } else {
-    modalTrack.innerHTML = '<div class="slide"><div class="media-loading">Add images to this folder and reopen the modal.</div></div>';
+    modalTrack.innerHTML = `<div class="slide"><div class="media-loading">${escapeHtml(portfolioData.uiText?.modalEmpty || 'Add images to this folder and reopen the modal.')}</div></div>`;
   }
   modalDots.innerHTML = '';
   initSlider(projectModal.querySelector('.project-modal-slider'));
@@ -2644,9 +2716,9 @@ async function openProject(card){
   setText('project-modal-title', name);
   setText('project-modal-context', context);
   setText('project-modal-about', details.about || desc);
-  setText('project-modal-experience', details.experience || 'This project strengthened my ability to connect user needs, delivery constraints, and practical implementation decisions.');
+  setText('project-modal-experience', details.experience || portfolioData.uiText?.projectExperienceFallback || '');
 
-  const challenges = details.challenges || ['Clarifying the core user problem, deciding what mattered most, and turning that into a focused deliverable.'];
+  const challenges = details.challenges || [portfolioData.uiText?.projectChallengeFallback || ''];
   document.getElementById('project-modal-challenges').innerHTML = challenges.map(item => `<li>${escapeHtml(item)}</li>`).join('');
   document.getElementById('project-modal-tags').innerHTML = tech.map(item => `<span>${escapeHtml(item)}</span>`).join('');
 
@@ -2667,26 +2739,25 @@ function escapeHtml(value){
 }
 
 async function openExperience(item){
+  const experienceData = portfolioData.experiences?.[Number(item.dataset.expIndex)] || {};
   const company = item.querySelector('.exp-company')?.textContent.trim() || 'Experience';
   const title = item.querySelector('.exp-title')?.textContent.trim() || '';
   const year = formatDateRange(item.querySelector('.exp-year')?.textContent.trim() || '');
   const bullets = Array.from(item.querySelectorAll('.exp-bullets li')).map(li => li.textContent.trim()).filter(Boolean);
-  const folder = item.dataset.folder || projectSlug(company);
+  const folder = experienceData.folder || item.dataset.folder || projectSlug(company);
+  const highlights = experienceData.highlights?.length ? experienceData.highlights : (bullets.length > 1 ? bullets.slice(1) : bullets);
+  const tags = experienceData.tags?.length ? experienceData.tags : ['Experience', 'Work'];
 
-  setModalLabels({
-    about: 'About this work',
-    experience: 'Role and scope',
-    challenges: 'Highlights'
-  });
+  setModalLabels(portfolioData.uiText?.workLabels || {});
   setText('project-modal-eyebrow', 'Experience');
   setText('project-modal-title', company);
   setText('project-modal-context', [title, year].filter(Boolean).join(' / '));
-  setText('project-modal-about', title || company);
-  setText('project-modal-experience', bullets[0] || 'A selected work experience from my portfolio.');
-  document.getElementById('project-modal-challenges').innerHTML = (bullets.length > 1 ? bullets.slice(1) : bullets)
-    .map(item => `<li>${escapeHtml(item)}</li>`)
+  setText('project-modal-about', experienceData.summary || title || company);
+  setText('project-modal-experience', experienceData.detail || bullets[0] || portfolioData.uiText?.workExperienceFallback || '');
+  document.getElementById('project-modal-challenges').innerHTML = highlights
+    .map(highlight => `<li>${escapeHtml(highlight)}</li>`)
     .join('');
-  document.getElementById('project-modal-tags').innerHTML = '<span>Experience</span><span>Work</span>';
+  document.getElementById('project-modal-tags').innerHTML = tags.map(tag => `<span>${escapeHtml(tag)}</span>`).join('');
 
   showModalLoading();
   const media = await getWorkMedia(folder);
@@ -2817,7 +2888,7 @@ document.getElementById('docs-dropdown')?.addEventListener('click', e => {
   if(e.target.closest('a')) closeDocsMenu();
 });
 
-const portfolioShareUrl = 'https://proud-ratchaprapa.vercel.app/portfolio_website';
+const portfolioShareUrl = portfolioData.meta?.shareUrl || location.href;
 async function copyShareUrl(){
   if(navigator.clipboard?.writeText){
     await navigator.clipboard.writeText(portfolioShareUrl);
@@ -2839,8 +2910,8 @@ document.getElementById('share-toggle')?.addEventListener('click', async () => {
   try {
     if(navigator.share){
       await navigator.share({
-        title: 'Proud Ratchaprapa Portfolio',
-        text: 'Portfolio website of Ratchaprapa Chattrakulrak',
+        title: portfolioData.meta?.shareTitle || document.title,
+        text: portfolioData.meta?.shareDescription || portfolioData.meta?.description || '',
         url: portfolioShareUrl
       });
       return;

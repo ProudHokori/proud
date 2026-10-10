@@ -1,9 +1,12 @@
 {
   "_readme": "Edit portfolio facts in this file. Keep valid JSON. Project folders map to images/project/<folder>, and work folders map to images/work/<folder>.",
   "meta": {
-    "title": "Proud — Product Owner · PM · UX/UI · Full-stack · QA",
-    "description": "Portfolio website content for Ratchaprapa Chattrakulrak.",
-    "updated": "2026-06-12"
+    "title": "Proud — Product & Project · A versatile generalist",
+    "description": "Meet Proud: a versatile generalist connecting product thinking, project management, coordination, design, and technical delivery.",
+    "updated": "2026-10-11",
+    "shareUrl": "https://proud-ratchaprapa.vercel.app/portfolio_website",
+    "shareTitle": "Proud Ratchaprapa Portfolio",
+    "shareDescription": "Portfolio website of Ratchaprapa Chattrakulrak"
   },
   "personal": {
     "name": "Ratchaprapa Chattrakulrak",
@@ -20,11 +23,40 @@
   },
   "navigation": [
     "About",
+    "Personality",
     "Experience",
     "Skills",
     "Projects",
     "Contact"
   ],
+  "uiText": {
+    "navContact": "Get in touch",
+    "docsFallback": "Docs",
+    "downloadFallback": "Download PDF",
+    "aboutQuestionsEyebrow": "Working with Proud",
+    "aboutQuestionsTitle": "Questions a hiring team may ask",
+    "aboutQuestionsButton": "Show all",
+    "aboutStoryButton": "Read my story and roles",
+    "projectLabels": {
+      "about": "About the project",
+      "experience": "Experience",
+      "challenges": "Challenge and growth"
+    },
+    "workLabels": {
+      "about": "About this work",
+      "experience": "Role and scope",
+      "challenges": "Key contributions"
+    },
+    "modalLoading": "Loading media...",
+    "modalEmpty": "Add images to this folder and reopen the modal.",
+    "projectExperienceFallback": "This project strengthened my ability to connect user needs, delivery constraints, and practical implementation decisions.",
+    "projectChallengeFallback": "Clarifying the core user problem, deciding what mattered most, and turning that into a focused deliverable.",
+    "workExperienceFallback": "A selected work experience from my portfolio.",
+    "introVideoLabel": "Let Me Introduce Myself ;)",
+    "introReplayLabel": "Replay",
+    "introVideoOpen": "Open intro video",
+    "introVideoReplay": "Replay intro video"
+  },
   "downloads": [
     {
       "label": "Resume",
@@ -34,18 +66,19 @@
     }
   ],
   "hero": {
-    "badge": "Open to full-time opportunities",
+    "badge": "Open to product & project opportunities",
     "greeting": "Hi, I'm",
     "nickname": "Proud",
     "name": "Ratchaprapa C.",
     "roles": [
-      "Product Owner",
-      "PM",
+      "Product & Project",
+      "Planning & Coordination",
       "UX/UI Designer",
       "Full-stack Developer",
       "Manual QA"
     ],
-    "description": "Product Owner with software, design, business, and QA range. I turn ambiguous problems into clear requirements, aligned priorities, usable flows, and release-ready products.",
+    "primaryRoles": ["Product & Project", "Planning & Coordination"],
+    "description": "A versatile generalist who connects ideas, people, and execution. I bring product thinking, project management, and coordination together with hands-on skills in UX/UI, development, and QA — helping teams turn an unclear brief into a clear plan and practical next steps.",
     "ctas": [
       {
         "label": "View Projects",
@@ -65,8 +98,8 @@
     ],
     "stats": [
       {
-        "value": "PO",
-        "label": "Product-first direction"
+        "value": "360°",
+        "label": "Think · Manage · Coordinate"
       },
       {
         "value": "100+",
@@ -84,27 +117,28 @@
   },
   "about": {
     "eyebrow": "About",
-    "heading": "Product Owner who understands the whole product system",
-    "portraitImage": "images/profile/present pic2.jpg",
+    "heading": "Connecting the idea, the people, and the work",
+    "portraitAlt": "Proud in front of a product planning board",
+    "portraitImage": "images/profile/present pic3.png",
     "paragraphs": [
-      "My main direction is Product Owner. I like being the person who connects user needs, business goals, technical constraints, and team execution into one clear product direction.",
+      "I enjoy product and project work: understanding a problem, thinking through possibilities, shaping a plan, and coordinating the people who bring it to life. My strength is connecting these parts so that an idea can move forward.",
       "Because I studied Software and Knowledge Engineering, I understand how software is planned, designed, built, tested, and shipped. I can read technical tradeoffs, communicate with developers, and write requirements that are realistic enough for a team to execute.",
       "I also have a strong design sense. In team projects, I was often trusted to lead feature direction and UX/UI because I care about details, user context, and whether the product truly solves a real problem. Design thinking helps me translate messy needs into flows people can actually use.",
       "On the business side, I learned early through selling, freelancing, and running Hokori Studio. I handled client conversations, requirement analysis, costing, accounting, task assignment, and 100+ mostly B2B deals, which shaped how I think about value, market fit, and product decisions.",
-      "Around the Product Owner role, I can also support as a Project Manager, UX/UI Designer, Full-stack Developer, and Manual QA. Those skills make me more useful in cross-functional teams because I can understand each side deeply and help move work from idea to release."
+      "My range across planning, coordination, UX/UI, development, and QA helps me ask better questions and make handoffs clearer. I can contribute wherever the team needs me, while staying clear about my responsibilities and when to involve a specialist."
     ],
     "qa": [
       {
-        "question": "Why Product Owner?",
-        "answer": "Because I care most about turning real problems into product decisions. Software gave me the technical base, but PO is where my interests in users, business, design, and delivery meet."
+        "question": "Why product and project work?",
+        "answer": "I enjoy both figuring out what is worth building and helping people get there. Product thinking connects me to users and ideas; project work lets me turn those ideas into a plan, coordinate the team, and follow through."
       },
       {
         "question": "Why should a team choose me?",
         "answer": "I take ownership early: find pain points, clarify requirements, write user stories and acceptance criteria, align design and engineering, and check the release against the real user problem."
       },
       {
-        "question": "What evidence shows I can do PO work?",
-        "answer": "ByteArk gave me discovery-to-release practice. KU Eater, Courtly, and Referite show product direction, MVP scoping, sprint planning, backlog ownership, and cross-team Agile work."
+        "question": "Where have I put this range to work?",
+        "answer": "At ByteArk, I worked across research, requirements, coordination, and QA. University projects brought design and development together, while freelance work and student activities gave me practice with clients, scope, budgets, and team organisation."
       },
       {
         "question": "What makes my perspective different?",
@@ -124,7 +158,7 @@
       },
       {
         "question": "What kind of team fits me best?",
-        "answer": "I fit product-led teams that care about users, move fast, improve continuously, and expect a PO to think deeply, communicate clearly, and take real ownership of outcomes."
+        "answer": "I enjoy teams that care about users, share context openly, and value people who can connect different kinds of work. I want room to contribute ideas, manage details, coordinate across roles, and keep learning from the people around me."
       },
       {
         "question": "What are my strengths and growth area?",
@@ -138,7 +172,7 @@
     },
     "roleCards": [
       {
-        "title": "Product Ownership",
+        "title": "Product Thinking",
         "description": "Requirements, user stories, acceptance criteria, backlog clarity, feature prioritisation, and release readiness."
       },
       {
@@ -151,26 +185,103 @@
       }
     ]
   },
+  "personality": {
+    "eyebrow": "Personality & story",
+    "heading": "Many skills. One connected way of working.",
+    "nickname": "ซุปเปอร์เป็ด · The versatile generalist",
+    "intro": "I call myself a ‘super duck’ — someone with a wide range of skills and the curiosity to keep adding to them. I enjoy connecting creative, technical, and organisational work, then finding the role where I can help the team most.",
+    "traitsHeading": "What I bring to the team",
+    "traits": [
+      {
+        "title": "Curious and adaptable",
+        "description": "I like learning how things work. Moving between software, design, and client projects has taught me to pick up new tools and adapt my approach to the task."
+      },
+      {
+        "title": "People-minded",
+        "description": "I care about understanding what someone actually needs. I enjoy asking questions, listening to different perspectives, and helping clients, designers, and developers understand each other."
+      },
+      {
+        "title": "Creative, with structure",
+        "description": "I enjoy exploring ideas and shaping the user experience. I also like turning that thinking into flows, requirements, priorities, and a plan people can work with."
+      },
+      {
+        "title": "Responsible for the follow-through",
+        "description": "I pay attention to the details between an idea and its delivery: clarifying scope, tracking progress, coordinating handoffs, and checking the result."
+      }
+    ],
+    "storyHeading": "How that range came together",
+    "story": [
+      {
+        "chapter": "Software gave me a foundation",
+        "body": "Studying Software and Knowledge Engineering at Kasetsart University helped me understand how software is designed, built, and tested. Team projects let me connect technical work with product decisions and UX."
+      },
+      {
+        "chapter": "Client work made it practical",
+        "body": "Freelancing and running Hokori Studio brought me into direct conversations with clients. I learned to clarify requests, scope deliverables, work through costs and timelines, and coordinate production."
+      },
+      {
+        "chapter": "Teamwork connected the pieces",
+        "body": "My ByteArk internship and student club activities gave me different ways to practise planning and coordination. Together, these experiences shaped my interest in work that connects ideas, people, and execution."
+      }
+    ],
+    "closing": "My range helps me see the connections. Clear priorities help me decide where to focus — and when to bring in someone with deeper expertise."
+  },
+  "experienceSection": {
+    "eyebrow": "Experience",
+    "heading": "Where I've worked"
+  },
   "experiences": [
     {
       "folder": "Byteark Intern",
       "company": "ByteArk Co., Ltd.",
       "title": "Product Owner / PM Intern",
       "year": "May 2024 Nov 2024",
+      "summary": "PM/PO internship focused on discovery, requirements, sprint alignment, and release quality.",
+      "detail": "I worked across the discovery-to-release flow: interviewing users, analysing pain points, benchmarking competitors, writing user stories, RFCs, and acceptance criteria, aligning UI flows with designers and engineers, monitoring sprint progress, and verifying releases before shipment.",
       "bullets": [
-        "Researched users, competitors, pain points, and personas to shape product direction.",
-        "Wrote user stories, RFCs, and acceptance criteria; aligned UI flows with designers and engineers.",
-        "Tracked sprint progress, tested releases, and surfaced issues before they became blockers."
+        "Discovery: interviewed users, mapped pain points, and benchmarked competitors before requirements were written.",
+        "Requirements: wrote user stories, RFCs, and acceptance criteria for clearer design-engineering handoff.",
+        "Delivery alignment: tracked sprint progress and surfaced design/engineering gaps before they became blockers.",
+        "Release quality: ran manual, regression, and exploratory testing with structured bug reports."
+      ],
+      "highlights": [
+        "Brought research insights back early enough to influence what the team built.",
+        "Translated requirements into intuitive UI flows with designers.",
+        "Verified each release against acceptance criteria before shipment.",
+        "Owned structured bug reports and release-readiness checks."
+      ],
+      "tags": [
+        "Product Discovery",
+        "User Stories",
+        "Acceptance Criteria",
+        "Manual QA",
+        "Release Readiness"
       ]
     },
     {
       "folder": "Hokori Studio",
       "company": "Hokori Design Studio",
-      "title": "Founder — 3D Design Services",
-      "year": "Dec 2022 Jan 2025",
+      "title": "Freelancer & Founder",
+      "year": "Oct 2021 Present",
+      "summary": "Founded and ran a small design studio, closing 100+ client deals and managing work end to end.",
+      "detail": "I sourced and managed mostly business-owner clients, analyzed requirements directly with customers, scoped deliverables, quoted and costed each project, closed deals, delegated production work, and handled bookkeeping and financial close-out for every engagement.",
       "bullets": [
-        "Founded a 3D design service and delivered 100+ interior/exterior client projects.",
-        "Owned marketing, scoping, client communication, production, and team coordination."
+        "Client ownership: closed and delivered 100+ interior/exterior design projects for business clients.",
+        "Requirement scoping: translated client needs into concrete deliverables, quotes, costs, and timelines.",
+        "Operations: managed bookkeeping, quality control, and task delegation across a small production team."
+      ],
+      "highlights": [
+        "Closed 100+ client deals across design and development-related work.",
+        "Turned vague client requests into concrete specs before production began.",
+        "Balanced quality, timeline, and budget across each engagement.",
+        "Managed client communication, cost summaries, and financial close-out."
+      ],
+      "tags": [
+        "Client Requirements",
+        "B2B Communication",
+        "Scoping",
+        "Costing",
+        "Operations"
       ]
     },
     {
@@ -178,9 +289,23 @@
       "company": "Google Developer Student Club (GDSC), KU",
       "title": "Core Team Member",
       "year": "Aug 2022 Apr 2024",
+      "summary": "Supported student tech community events, workshops, and hands-on learning materials.",
+      "detail": "I helped organize workshops and community activities, supported speaker and participant coordination, and created practical UI teaching material that students could use during hands-on sessions.",
       "bullets": [
-        "Organised tech workshops, career sessions, and student community events.",
-        "Designed Goodoo UI components used as workshop teaching material."
+        "Workshop execution: organized tech events, hands-on sessions, and student community activities.",
+        "Learning tools: designed Goodoo UI components as practical workshop material.",
+        "Coordination: supported speaker communication, event flow, and participant readiness."
+      ],
+      "highlights": [
+        "Designed Goodoo UI components for workshop learning.",
+        "Coordinated event flow, speakers, and participant readiness.",
+        "Supported a more practical, hands-on learning experience for students."
+      ],
+      "tags": [
+        "Workshop Design",
+        "Community",
+        "UI Components",
+        "Event Coordination"
       ]
     },
     {
@@ -188,22 +313,59 @@
       "company": "SKE19 & CPSK Club, Kasetsart University",
       "title": "Vice-President & Financial Manager",
       "year": "Jan 2022 Dec 2024",
+      "summary": "Led student club operations across major university events, finance, branding, and back-office workflows.",
+      "detail": "I led 30+ members across major university events, overseeing planning, execution, budgeting, stakeholder coordination, and operational decisions. I also handled financial operations, supported branding work, and built Excel-based systems for registration, applicant data, name lists, check-in preparation, and cross-team data sharing.",
       "bullets": [
-        "Led event teams across BarCamp Bangkhen, JobFair, SOS Camp, and Byenior.",
-        "Managed budgets, approvals, procurement documents, and financial records."
+        "Team leadership: led 30+ student members across BarCamp Bangkhen, JobFair, SOS Camp, and Byenior.",
+        "Financial ownership: handled budgeting, procurement, approvals, and reporting.",
+        "Workflow systems: built Excel-based tools for registration, applicant data, check-in, and team handoff.",
+        "Branding support: guided theme direction, character concepts, promo content, and design documentation."
+      ],
+      "highlights": [
+        "Oversaw planning, execution, budgeting, stakeholder coordination, and operational decisions.",
+        "Managed budget planning, procurement, payment tracking, cost control, and reporting.",
+        "Built reusable workflows and semi-automated processes to reduce manual work.",
+        "Enabled teams to work in parallel through cleaner data sharing and handoff systems."
+      ],
+      "tags": [
+        "Leadership",
+        "Finance",
+        "Operations",
+        "Excel Systems",
+        "Event Branding"
       ]
     },
     {
       "folder": "Freelance",
       "company": "Self-employed",
-      "title": "Freelancer — Development, Design, AI Media",
+      "title": "Freelancer - Development, Design, AI Media",
       "year": "Oct 2021 Present",
+      "summary": "Delivered flexible client work across web development, design, and AI-assisted media.",
+      "detail": "I handled varied client requests across development, graphic design, and AI media, learning new tools quickly, clarifying scope with clients, and adapting workflows to each project's constraints.",
       "bullets": [
-        "Delivered client work across development, graphic design, and AI-generated media.",
-        "Learned new tools quickly and adapted to varied client needs."
+        "Multi-disciplinary delivery: shipped client work across web development, graphic design, and AI media.",
+        "Fast tool adoption: learned new workflows quickly to match each client's constraints.",
+        "Client communication: clarified needs, adjusted scope, and delivered usable outputs."
+      ],
+      "highlights": [
+        "Adapted quickly across different project types and client needs.",
+        "Used AI-assisted workflows when they improved production speed or creative range.",
+        "Kept communication practical: clarify needs, scope the work, and deliver usable outputs."
+      ],
+      "tags": [
+        "Freelance",
+        "Web",
+        "Design",
+        "AI Media",
+        "Client Work"
       ]
     }
   ],
+  "skillsSection": {
+    "eyebrow": "Skills",
+    "heading": "From thinking it through to making it happen",
+    "intro": "My skills connect product thinking, project planning, and practical delivery. Design, development, and QA give me the context to collaborate across roles and help work move forward."
+  },
   "skills": [
     {
       "category": "Product Thinking",
@@ -229,7 +391,7 @@
     },
     {
       "category": "UX & Design Sense",
-      "tier": "pillar",
+      "tier": "support",
       "description": "Design product flows from real user behavior, not only screens. I connect research, usability, and practical feature decisions.",
       "evidence": "Led feature and design direction in team projects, especially KU Eater, Courtly, EcoWear, and Goodoo.",
       "items": [
@@ -272,9 +434,10 @@
       ]
     },
     {
-      "category": "Delivery & Team Rhythm",
-      "tier": "support",
-      "description": "The operating skills that keep product work moving with clear ownership and team alignment.",
+      "category": "Project Management & Coordination",
+      "tier": "pillar",
+      "description": "Turn a shared goal into clear scope, priorities, and next steps. Keep people informed, track progress, and coordinate the handoffs that keep a project moving.",
+      "evidence": "Practised through ByteArk, client work at Hokori Studio, university projects, and student club operations.",
       "items": [
         "Agile / Scrum",
         "Sprint Planning",
@@ -291,7 +454,7 @@
     {
       "category": "Hands-on Build Skills",
       "tier": "support",
-      "description": "Not my positioning, but a real advantage when translating product intent into feasible implementation.",
+      "description": "Hands-on software skills help me explore feasibility, contribute to implementation, and discuss tradeoffs with developers.",
       "items": [
         "Next.js / React",
         "TypeScript",
@@ -335,7 +498,7 @@
         "value": "all"
       },
       {
-        "label": "Product / PO",
+        "label": "Product / Project",
         "value": "pm"
       },
       {
@@ -793,8 +956,11 @@
   "contact": {
     "eyebrow": "Contact",
     "heading": "Let's connect",
-    "subheading": "Open to Product Owner roles, with supporting PM, UX/UI, full-stack, and QA capability.",
-    "profileImage": "images/profile/profile picture3.png",
+    "subheading": "Open to product and project opportunities across planning, management, coordination, and hands-on delivery.",
+    "panelKicker": "Fastest response",
+    "panelTitle": "Reach me by email or phone first",
+    "panelDescription": "Have a product idea, a project to move forward, or a team that could use a versatile generalist? Reach me by email or phone — I'd love to hear about it.",
+    "profileImage": "images/profile/profile picture4.jpg",
     "links": [
       {
         "label": "Email",
@@ -827,7 +993,7 @@
         "url": "https://www.youtube.com/@hoshitsukihokori"
       }
     ],
-    "availability": "Bangkok, Thailand<br/>Available in Remote, Hybrid<br/><strong>Product Owner</strong> · Project Manager · UX/UI Designer · Full-stack Developer · Manual QA"
+    "availability": "Bangkok, Thailand<br/>Available in Remote, Hybrid<br/><strong>Product & Project</strong> · Planning · Management · Coordination<br/>UX/UI · Development · QA"
   },
   "footer": {
     "copyright": "© 2026 Ratchaprapa Chattrakulrak. All rights reserved.",
