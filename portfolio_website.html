@@ -7,15 +7,15 @@
   <title>Proud — Product &amp; Project · A versatile generalist</title>
   <meta name="description" content=""/>
   <link rel="icon" type="image/svg+xml" href="images/favicon-lightbulb.svg?v=2026-06-25"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <script>
     (() => {
       try {
-        const saved = localStorage.getItem('portfolio-theme');
-        const theme = saved === 'light' || saved === 'dark' ? saved : 'dark';
+        const saved = localStorage.getItem('portfolio-theme-playful-v1');
+        const theme = saved === 'light' || saved === 'dark' ? saved : 'light';
         document.documentElement.dataset.theme = theme;
       } catch(e) {
-        document.documentElement.dataset.theme = 'dark';
+        document.documentElement.dataset.theme = 'light';
       }
     })();
   </script>
@@ -1416,6 +1416,7 @@
       .about-qa-modal-scroll { padding: 10px 18px 18px; }
     }
   </style>
+  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-11-playful"/>
 </head>
 <body>
 
@@ -1538,6 +1539,8 @@
    ----------------------------------------- */
 (function(){
   const canvas = document.getElementById('hero-canvas');
+  // The illustrated design uses CSS motion instead of the old wireframe scene.
+  if(!canvas || getComputedStyle(canvas).display === 'none' || typeof THREE === 'undefined') return;
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
@@ -1770,7 +1773,7 @@
    ----------------------------------------- */
 let portfolioData = {};
 let PROJECT_DETAILS = {};
-const SITE_VERSION = '2026-10-11-personality';
+const SITE_VERSION = '2026-10-11-playful';
 
 function htmlEscape(value){
   return String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -1808,6 +1811,9 @@ function loadPortfolioData(){
 
 function iconFor(label = ''){
   const key = label.toLowerCase();
+  if(key === 'idea') return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M9 21h6M8 14a6 6 0 1 1 8 0c-1 .8-1 2-1 2H9s0-1.2-1-2Z"/><path d="M12 1v1M3 5l1 1M20 6l1-1"/></svg>';
+  if(key === 'people') return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6M17 15a5 5 0 0 1 4 5"/></svg>';
+  if(key === 'planning') return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="3"/><rect x="8" y="2" width="8" height="5" rx="2"/><path d="m8 13 2 2 5-5M8 18h8"/></svg>';
   if(key.includes('technical') || key.includes('engineer') || key.includes('frontend')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 18v3"/><polyline points="10 9 7 12 10 15"/><polyline points="14 9 17 12 14 15"/></svg>';
   if(key.includes('business') || key.includes('market') || key.includes('client')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M3 13h18"/><path d="M12 13v2"/></svg>';
   if(key.includes('qa') || key.includes('test')) return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
@@ -1943,6 +1949,7 @@ function renderPortfolio(data){
 
   const hero = data.hero || {};
   document.getElementById('hero-content').innerHTML = `
+    <div class="hero-copy">
     <div class="hero-badge"><span class="badge-dot"></span> ${htmlEscape(hero.badge)}</div>
     <h1 class="hero-name"><span class="hi">${htmlEscape(hero.greeting)} </span><span class="ac">${htmlEscape(hero.nickname)}</span><br/><span class="nm">${htmlEscape(hero.name)}</span></h1>
     <div class="hero-roles">${(hero.roles || []).map(role => {
@@ -1951,6 +1958,14 @@ function renderPortfolio(data){
     }).join('')}</div>
     <p class="hero-desc">${htmlEscape(hero.description)}</p>
     <div class="hero-ctas">${(hero.ctas || []).map(cta => `<a href="${htmlEscape(cta.url)}" ${/^https?:/.test(cta.url || '') ? 'target="_blank"' : ''} class="btn ${cta.style === 'primary' ? 'btn-primary' : 'btn-ghost'}">${iconFor(cta.label)}${htmlEscape(cta.label)}</a>`).join('')}</div>
+    </div>
+    ${hero.illustration ? `<div class="hero-visual">
+      <div class="mascot-halo" aria-hidden="true"></div>
+      <span class="visual-spark spark-one" aria-hidden="true">✦</span><span class="visual-spark spark-two" aria-hidden="true">✦</span>
+      <img class="hero-mascot" src="${htmlEscape(freshAssetUrl(hero.illustration.src))}" alt="${htmlEscape(hero.illustration.alt)}" fetchpriority="high" width="1024" height="1024"/>
+      <div class="mascot-note">${htmlEscape(hero.illustration.caption)}</div>
+      ${(hero.illustration.tags || []).map((tag,i) => `<span class="floating-tag floating-tag-${i}">${htmlEscape(tag)}</span>`).join('')}
+    </div>` : ''}
     <div class="hero-stats">${(hero.stats || []).map(stat => `<div><div class="stat-num">${htmlEscape(stat.value)}</div><div class="stat-label">${htmlEscape(stat.label)}</div></div>`).join('')}</div>`;
 
   const about = data.about || {};
@@ -1995,22 +2010,23 @@ function renderPortfolio(data){
   personalitySection.hidden = !personality.heading;
   personalitySection.innerHTML = personality.heading ? `
     <div class="personality-wrap">
-      <header class="personality-head">
+      <div class="personality-introduction"><header class="personality-head">
         <div class="stag">${htmlEscape(personality.eyebrow)}</div>
         <h2 class="sh">${htmlEscape(personality.heading)}</h2>
         <p class="personality-nickname">${htmlEscape(personality.nickname)}</p>
         <p class="personality-intro">${htmlEscape(personality.intro)}</p>
       </header>
+      ${personality.illustration ? `<figure class="personality-visual"><img src="${htmlEscape(freshAssetUrl(personality.illustration.src))}" alt="${htmlEscape(personality.illustration.alt)}" loading="lazy" width="1024" height="1024"/><figcaption>${htmlEscape(personality.illustration.caption)}</figcaption></figure>` : ''}</div>
       <div class="personality-columns">
         <div>
           <h3 class="personality-subtitle">${htmlEscape(personality.traitsHeading)}</h3>
           <div class="personality-traits">${(personality.traits || []).map(trait => `
-            <article class="personality-trait"><h4>${htmlEscape(trait.title)}</h4><p>${htmlEscape(trait.description)}</p></article>`).join('')}</div>
+            <article class="personality-trait"><span class="trait-icon" aria-hidden="true">${iconFor(trait.icon)}</span><h4>${htmlEscape(trait.title)}</h4><p>${htmlEscape(trait.description)}</p></article>`).join('')}</div>
         </div>
         <div>
           <h3 class="personality-subtitle">${htmlEscape(personality.storyHeading)}</h3>
           <ol class="personality-story">${(personality.story || []).map(chapter => `
-            <li><h4>${htmlEscape(chapter.chapter)}</h4><p>${htmlEscape(chapter.body)}</p></li>`).join('')}</ol>
+            <li><span class="story-icon" aria-hidden="true">${iconFor(chapter.icon)}</span><span class="story-number" aria-hidden="true">${String((personality.story || []).indexOf(chapter)+1).padStart(2,'0')}</span><h4>${htmlEscape(chapter.chapter)}</h4><p>${htmlEscape(chapter.body)}</p></li>`).join('')}</ol>
         </div>
       </div>
       <p class="personality-closing">${htmlEscape(personality.closing)}</p>
@@ -2852,7 +2868,7 @@ function currentTheme(){
 function setTheme(theme){
   const nextTheme = theme === 'light' ? 'light' : 'dark';
   document.documentElement.dataset.theme = nextTheme;
-  try { localStorage.setItem('portfolio-theme', nextTheme); } catch(e) {}
+  try { localStorage.setItem('portfolio-theme-playful-v1', nextTheme); } catch(e) {}
 
   const toggle = document.getElementById('theme-toggle');
   if(toggle){

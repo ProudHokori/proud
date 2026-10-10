@@ -78,7 +78,13 @@
       "Manual QA"
     ],
     "primaryRoles": ["Product & Project", "Planning & Coordination"],
-    "description": "A versatile generalist who connects ideas, people, and execution. I bring product thinking, project management, and coordination together with hands-on skills in UX/UI, development, and QA — helping teams turn an unclear brief into a clear plan and practical next steps.",
+    "description": "Big ideas, clear plans, and a little creative spark. I connect product thinking, project management, and people — with hands-on skills in design, development, and QA to help good ideas happen.",
+    "illustration": {
+      "src": "images/illustrations/super-duck-hero.png",
+      "alt": "A cheerful 3D yellow duck in a lavender cape, surrounded by an idea bulb, checklist, and conversation bubbles",
+      "caption": "A little duck. A lot of possibilities.",
+      "tags": ["Ideas person ✦", "Makes a plan", "Connects the dots"]
+    },
     "ctas": [
       {
         "label": "View Projects",
@@ -187,40 +193,52 @@
   },
   "personality": {
     "eyebrow": "Personality & story",
-    "heading": "Many skills. One connected way of working.",
+    "heading": "Meet the super duck.",
     "nickname": "ซุปเปอร์เป็ด · The versatile generalist",
-    "intro": "I call myself a ‘super duck’ — someone with a wide range of skills and the curiosity to keep adding to them. I enjoy connecting creative, technical, and organisational work, then finding the role where I can help the team most.",
+    "intro": "Curious by nature, creative at heart, and happiest when the pieces click together. I call myself a ‘super duck’: I move between ideas, design, technology, and organising the work, finding the place where I can help the team most.",
+    "illustration": {
+      "src": "images/illustrations/super-duck-story.png",
+      "alt": "Proud's 3D super duck mascot exploring ideas with a laptop, pencil, and colourful building blocks",
+      "caption": "Always learning. Always connecting."
+    },
     "traitsHeading": "What I bring to the team",
     "traits": [
       {
         "title": "Curious and adaptable",
-        "description": "I like learning how things work. Moving between software, design, and client projects has taught me to pick up new tools and adapt my approach to the task."
+        "icon": "idea",
+        "description": "New tool? New challenge? I'm curious. Software, design, and client work have taught me to learn quickly and adapt."
       },
       {
         "title": "People-minded",
-        "description": "I care about understanding what someone actually needs. I enjoy asking questions, listening to different perspectives, and helping clients, designers, and developers understand each other."
+        "icon": "people",
+        "description": "I ask, listen, and help people understand each other — from clients to designers and developers."
       },
       {
         "title": "Creative, with structure",
-        "description": "I enjoy exploring ideas and shaping the user experience. I also like turning that thinking into flows, requirements, priorities, and a plan people can work with."
+        "icon": "design",
+        "description": "I enjoy the 'what if?' and the 'how do we get there?' Ideas become flows, priorities, and a plan."
       },
       {
         "title": "Responsible for the follow-through",
-        "description": "I pay attention to the details between an idea and its delivery: clarifying scope, tracking progress, coordinating handoffs, and checking the result."
+        "icon": "planning",
+        "description": "I keep an eye on scope, progress, handoffs, and the final result. The details matter, too."
       }
     ],
     "storyHeading": "How that range came together",
     "story": [
       {
         "chapter": "Software gave me a foundation",
+        "icon": "technical",
         "body": "Studying Software and Knowledge Engineering at Kasetsart University helped me understand how software is designed, built, and tested. Team projects let me connect technical work with product decisions and UX."
       },
       {
         "chapter": "Client work made it practical",
+        "icon": "client",
         "body": "Freelancing and running Hokori Studio brought me into direct conversations with clients. I learned to clarify requests, scope deliverables, work through costs and timelines, and coordinate production."
       },
       {
         "chapter": "Teamwork connected the pieces",
+        "icon": "people",
         "body": "My ByteArk internship and student club activities gave me different ways to practise planning and coordination. Together, these experiences shaped my interest in work that connects ideas, people, and execution."
       }
     ],
