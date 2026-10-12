@@ -7,7 +7,10 @@
     button.dataset.mounted = 'true';
     const canvas = button.querySelector('canvas');
     const image = button.querySelector('img');
-    const gl = canvas.getContext('webgl', { alpha: true, antialias: false, premultipliedAlpha: false });
+    // Use the compositor's native premultiplied-alpha convention. Straight
+    // alpha plus a transformed canvas can show an opaque matte in Chrome.
+    // Keep the last frame because this character renders only while moving.
+    const gl = canvas.getContext('webgl', { alpha: true, antialias: false, premultipliedAlpha: true, preserveDrawingBuffer: true });
     if (!gl) return; // The accessible original image remains visible.
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
     const vertexSource = `
@@ -72,6 +75,7 @@
       if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error('Character program unavailable');
     } catch (_) { return; }
     gl.useProgram(program);
+    gl.clearColor(0, 0, 0, 0);
     const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
@@ -111,6 +115,7 @@
       const hand = reducedMotion.matches ? 0 : wave + x*.025-y*.04;
       gl.uniform2f(uniforms.gaze,x,y);
       gl.uniform1f(uniforms.handAngle,hand);
+      gl.clear(gl.COLOR_BUFFER_BIT);
       gl.drawArrays(gl.TRIANGLES,0,6);
       button.style.transform = reducedMotion.matches ? '' : `rotateY(${x*7}deg) rotateX(${-y*4}deg)`;
       // Expose only the rendered pose for diagnostics, not an animation API.
@@ -128,7 +133,12 @@
     };
     const load = () => {
       if (ready || !image.naturalWidth) return;
-      try { gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image); }
+      try {
+        // Premultiply before filtering so fully transparent texels carry no
+        // hidden background RGB into the character's hair and outline.
+        gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+        gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);
+      }
       catch (_) { return; }
       ready = true;
       resize();
