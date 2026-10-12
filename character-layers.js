@@ -17,6 +17,8 @@
     const ellipse=(cx,cy,rx,ry)=>{ctx.beginPath();ctx.ellipse(cx,cy,rx,ry,0,0,Math.PI*2);};
     function eye(cx,cy,angle,blink,gx,gy) {
       ctx.save();ctx.translate(cx,cy);ctx.rotate(angle);
+      // Enlarge the whole eye together, keeping its glossy look and thin white rim.
+      ctx.scale(1.24,1.22);
       ctx.strokeStyle='#4a2c21';ctx.lineWidth=7;ctx.lineCap='round';
       const side=cx<512?-1:1;
       if(blink>.86){ctx.beginPath();ctx.moveTo(-35,0);ctx.quadraticCurveTo(0,20,35,0);ctx.stroke();ctx.restore();return;}
