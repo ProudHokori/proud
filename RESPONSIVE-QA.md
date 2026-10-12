@@ -1,0 +1,46 @@
+# Responsive review — 13 October 2026
+
+## Character and room
+
+`hero-scene.js` observes the hero, character and stage dimensions. It aligns the
+room image's configured `hero.background.floorAnchor` with the rendered contact
+point under the shoes, including after fonts and artwork load. The room keeps its
+natural aspect ratio. `character-layers.js` draws the contact shadow and pivots
+the grounded character at the feet; greetings no longer lift it off the floor.
+
+## Browser checks
+
+Tested local Chromium previews at widths **320, 390, 600, 768, 900, 1024, 1280,
+1536 and 1920 CSS pixels**, plus **320 × 568** and **844 × 390** for short and
+landscape screens. This covers representative sizes and the site's main layout
+breakpoints, rather than every possible device/browser combination.
+
+- All nine widths: no document horizontal overflow; header actions fit; inspected
+  hero, personality, skills, project and contact text had no horizontal clipping.
+- Floor anchor versus rendered shoe/contact point: difference rounded to **0 px**
+  at all nine tested widths.
+- Visually reviewed desktop/mobile hero floor placement, phone About/Contact and
+  project cards, tablet Skills, and light/dark themes.
+- Mobile section menu opens, navigates and closes; Escape closes it and returns
+  focus to the toggle. Existing section labels remain JSON-driven.
+- Resume menu fits at 320 px. Existing PDF link and local file were verified.
+- UX/UI project filter returned KU Eater, EcoWear, Referite, Goodoo and PowerBank
+  Lender. KU Eater and ByteArk detail dialogs opened and closed.
+- Portrait and landscape detail panels remain inside the viewport with scrollable
+  text and a visible close control; the Q&A dialog fits at 320 × 568.
+- Small-phone intro video panel opens and closes inside the viewport.
+- Mobile Q&A stops automatic movement, hides duplicate marquee copies, and keeps
+  a native horizontally scrollable, keyboard-focusable region plus Show all.
+- No browser console errors observed during the review. External destination
+  pages and sending email/phone/share actions were not exercised.
+
+## Fixes included
+
+- Add a mobile/tablet navigation disclosure instead of hiding all section links.
+- Wrap project links and long contact values; keep resume dropdown within the nav.
+- Use dynamic viewport heights and scrollable detail content, including a split
+  layout on short landscape screens.
+- Reduce the mobile video tab footprint and unnecessary tablet skill-card height.
+- Improve small evidence/contact label contrast in light mode.
+
+Pre-change checkpoint: `4d3f7d9` (cozy hero background).

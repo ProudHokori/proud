@@ -31,6 +31,8 @@
   ],
   "uiText": {
     "navContact": "Get in touch",
+    "navMenuOpen": "Open navigation menu",
+    "navMenuClose": "Close navigation menu",
     "docsFallback": "Docs",
     "downloadFallback": "Download PDF",
     "aboutQuestionsEyebrow": "Working with Proud",
@@ -67,7 +69,8 @@
   ],
   "hero": {
     "background": {
-      "src": "images/illustrations/cozy-office-hero.png"
+      "src": "images/illustrations/cozy-office-hero.png",
+      "floorAnchor": [0.7, 0.91]
     },
     "badge": "Open to product & project opportunities",
     "greeting": "Hi, I'm",

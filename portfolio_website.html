@@ -1416,7 +1416,7 @@
       .about-qa-modal-scroll { padding: 10px 18px 18px; }
     }
   </style>
-  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-13-cozy-room"/>
+  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-13-grounded-responsive"/>
 </head>
 <body>
 
@@ -1428,7 +1428,7 @@
 <!-- -- NAV -- -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo" aria-label="Go to top">proud<span>.</span></a>
-  <ul class="nav-links"></ul>
+  <ul class="nav-links" id="section-navigation"></ul>
   <div class="nav-actions">
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme">
       <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"/></svg>
@@ -1448,6 +1448,7 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
       <span>Get in touch</span>
     </a>
+    <button class="nav-menu-toggle" id="nav-menu-toggle" type="button" aria-controls="section-navigation" aria-expanded="false" aria-label="Open navigation menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
   </div>
 </nav>
 
@@ -1534,7 +1535,8 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="character-layers.js?v=2026-10-13-soft-brown-eyes"></script>
+<script src="character-layers.js?v=2026-10-13-grounded-responsive"></script>
+<script src="hero-scene.js?v=2026-10-13-grounded-responsive"></script>
 <script>
 /* -----------------------------------------
    THREE.JS HERO — floating violet particle network & 3D Lightbulb (Fully Elongated)
@@ -1775,7 +1777,7 @@
    ----------------------------------------- */
 let portfolioData = {};
 let PROJECT_DETAILS = {};
-const SITE_VERSION = '2026-10-13-cozy-room';
+const SITE_VERSION = '2026-10-13-grounded-responsive';
 
 function htmlEscape(value){
   return String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -1922,8 +1924,13 @@ function renderPortfolio(data){
     `<li><a href="#${htmlEscape(String(label).toLowerCase().replace(/\s+/g, '-'))}">${htmlEscape(label)}</a></li>`
   ).join('');
   const navCta = document.querySelector('.nav-cta');
+  const menuToggle = document.getElementById('nav-menu-toggle');
+  menuToggle.dataset.openLabel = ui.navMenuOpen || 'Open navigation menu';
+  menuToggle.dataset.closeLabel = ui.navMenuClose || 'Close navigation menu';
+  menuToggle.setAttribute('aria-label', menuToggle.dataset.openLabel);
   if(navCta){
     navCta.href = '#contact';
+    navCta.setAttribute('aria-label', ui.navContact || 'Get in touch');
     navCta.querySelector('span').textContent = ui.navContact || 'Get in touch';
   }
   document.querySelector('.about-qa-modal-eyebrow').textContent = ui.aboutQuestionsEyebrow || '';
@@ -1973,6 +1980,7 @@ function renderPortfolio(data){
     </div>` : ''}
     <div class="hero-stats">${(hero.stats || []).map(stat => `<div><div class="stat-num">${htmlEscape(stat.value)}</div><div class="stat-label">${htmlEscape(stat.label)}</div></div>`).join('')}</div>`;
   if(hero.illustration?.interactive) window.mountPortfolioCharacter?.(document.querySelector('.character-interaction'), { ...hero.illustration, baseSrc: freshAssetUrl(hero.illustration.baseSrc) });
+  window.mountPortfolioScene?.(document.getElementById('hero'), hero.background);
 
   const about = data.about || {};
   const aboutQa = about.qa || [];
@@ -1997,7 +2005,7 @@ function renderPortfolio(data){
               <span>${htmlEscape(ui.aboutQuestionsButton || 'Show all')}</span>
             </button>
           </div>
-          <div class="about-qa-viewport"><div class="about-qa-track">${qaCards}${qaCards}</div></div>
+          <div class="about-qa-viewport" tabindex="0" role="region" aria-label="${htmlEscape(ui.aboutQuestionsEyebrow || '')}"><div class="about-qa-track">${qaCards}${qaCards.replaceAll('class="about-qa-card reveal"', 'class="about-qa-card reveal is-duplicate" aria-hidden="true"')}</div></div>
         </div>` : (about.paragraphs || []).map(item => `<p>${htmlEscape(item)}</p>`).join('')}
         <div class="about-edu"><div class="about-edu-icon">${iconFor('education')}</div><div><div class="about-edu-deg">${htmlEscape(about.education?.degree)}</div><div class="about-edu-inst">${htmlEscape(about.education?.institution)}</div><div class="about-edu-year">${htmlEscape(about.education?.year)}</div></div></div>
         ${aboutQa.length && (about.paragraphs?.length || about.roleCards?.length) ? `<details class="about-story"><summary>${htmlEscape(ui.aboutStoryButton || 'Read my story and roles')}</summary>
@@ -2328,6 +2336,22 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 const secs = document.querySelectorAll('section[id]');
 const navAs = document.querySelectorAll('.nav-links a');
 const navbar = document.getElementById('navbar');
+const menuToggle = document.getElementById('nav-menu-toggle');
+function setNavigationOpen(open) {
+  navbar.classList.toggle('menu-open', open);
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.setAttribute('aria-label', open ? menuToggle.dataset.closeLabel : menuToggle.dataset.openLabel);
+}
+menuToggle.addEventListener('click', () => setNavigationOpen(menuToggle.getAttribute('aria-expanded') !== 'true'));
+document.addEventListener('click', event => {
+  if (!navbar.contains(event.target) || event.target.closest('.nav-links a,.nav-cta,.docs-toggle')) setNavigationOpen(false);
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+    setNavigationOpen(false); menuToggle.focus();
+  }
+});
+matchMedia('(max-width:1100px)').addEventListener('change', () => setNavigationOpen(false));
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 20);
   let cur = '';

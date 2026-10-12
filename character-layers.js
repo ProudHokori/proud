@@ -50,7 +50,17 @@
       const bounce=delight?Math.sin(Math.PI*de/.7)*-12:0;
       ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);
       ctx.scale(canvas.width/1024,canvas.height/1536);
-      ctx.translate(512,800+bounce);ctx.rotate(reduced.matches?0:x*.022);ctx.scale(.9,.9);ctx.translate(-512,-800);
+      const grounded=button.closest('.has-cozy-room');
+      if(grounded) {
+        // Keep the feet and contact shadow planted during greetings, too.
+        ctx.save();ctx.translate(460,1424);ctx.scale(230,32);
+        const shadow=ctx.createRadialGradient(0,0,.05,0,0,1);
+        shadow.addColorStop(0,'rgba(61,39,34,.34)');shadow.addColorStop(.5,'rgba(61,39,34,.16)');shadow.addColorStop(1,'rgba(61,39,34,0)');
+        ctx.fillStyle=shadow;ellipse(0,0,1,1);ctx.fill();ctx.restore();
+        ctx.translate(512,1424);ctx.rotate(reduced.matches?0:x*.012);ctx.scale(.9,.9);ctx.translate(-512,-1493);
+      } else {
+        ctx.translate(512,800+bounce);ctx.rotate(reduced.matches?0:x*.022);ctx.scale(.9,.9);ctx.translate(-512,-800);
+      }
       ctx.drawImage(base,0,0,1024,1536);
       ctx.save();ctx.translate(400,780);ctx.rotate(wave+(reduced.matches?0:-y*.016));ctx.translate(-400,-780);
       ctx.clip(arm);ctx.drawImage(original,0,0,1024,1536);ctx.restore();
