@@ -26,11 +26,11 @@
       outer.addColorStop(0,'#ffffff');outer.addColorStop(.65,'#fffdf8');outer.addColorStop(1,'#e8ddd5');
       ellipse(0,0,42,49);ctx.fillStyle=outer;ctx.fill();
       ctx.save();ellipse(0,0,40,47);ctx.clip();
-      const px=gx*13,py=gy*9;
+      const px=gx*8,py=gy*6;
       const iris=ctx.createRadialGradient(px-8,py-18,3,px,py,40);
       iris.addColorStop(0,'#936447');iris.addColorStop(.55,'#65412e');iris.addColorStop(1,'#42271d');
-      ellipse(px,py,29,35);ctx.fillStyle=iris;ctx.fill();
-      ellipse(px,py,16,23);ctx.fillStyle='#291914';ctx.fill();
+      ellipse(px,py,38,45);ctx.fillStyle=iris;ctx.fill();
+      ellipse(px,py,23,31);ctx.fillStyle='#291914';ctx.fill();
       ellipse(px-12,py-23,10,11);ctx.fillStyle='#fffaf2';ctx.fill();
       ellipse(px+11,py+20,4,5);ctx.fillStyle='rgba(255,224,175,.62)';ctx.fill();
       ctx.restore();ctx.restore();
