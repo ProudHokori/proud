@@ -7,7 +7,7 @@
   <title>Proud — Product &amp; Project · A versatile generalist</title>
   <meta name="description" content=""/>
   <link rel="icon" type="image/svg+xml" href="images/favicon-lightbulb.svg?v=2026-06-25"/>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
   <script>
     (() => {
       try {
@@ -1416,7 +1416,7 @@
       .about-qa-modal-scroll { padding: 10px 18px 18px; }
     }
   </style>
-  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-12-alpha-fix"/>
+  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-12-white-eyes"/>
 </head>
 <body>
 
@@ -1533,7 +1533,7 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="interactive-character.js?v=2026-10-12-alpha-fix"></script>
+<script src="character-layers.js?v=2026-10-12-white-eyes"></script>
 <script>
 /* -----------------------------------------
    THREE.JS HERO — floating violet particle network & 3D Lightbulb (Fully Elongated)
@@ -1774,7 +1774,7 @@
    ----------------------------------------- */
 let portfolioData = {};
 let PROJECT_DETAILS = {};
-const SITE_VERSION = '2026-10-12-character';
+const SITE_VERSION = '2026-10-12-white-eyes';
 
 function htmlEscape(value){
   return String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -1968,7 +1968,7 @@ function renderPortfolio(data){
       ${(hero.illustration.tags || []).map((tag,i) => `<span class="floating-tag floating-tag-${i}">${htmlEscape(tag)}</span>`).join('')}
     </div>` : ''}
     <div class="hero-stats">${(hero.stats || []).map(stat => `<div><div class="stat-num">${htmlEscape(stat.value)}</div><div class="stat-label">${htmlEscape(stat.label)}</div></div>`).join('')}</div>`;
-  if(hero.illustration?.interactive) window.mountPortfolioCharacter?.(document.querySelector('.character-interaction'), hero.illustration);
+  if(hero.illustration?.interactive) window.mountPortfolioCharacter?.(document.querySelector('.character-interaction'), { ...hero.illustration, baseSrc: freshAssetUrl(hero.illustration.baseSrc) });
 
   const about = data.about || {};
   const aboutQa = about.qa || [];
