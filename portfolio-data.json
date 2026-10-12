@@ -80,9 +80,11 @@
     "primaryRoles": ["Product & Project", "Planning & Coordination"],
     "description": "Big ideas, clear plans, and a little creative spark. I connect product thinking, project management, and people — with hands-on skills in design, development, and QA to help good ideas happen.",
     "illustration": {
-      "src": "images/illustrations/super-duck-hero.png",
-      "alt": "A cheerful 3D yellow duck in a lavender cape, surrounded by an idea bulb, checklist, and conversation bubbles",
-      "caption": "A little duck. A lot of possibilities.",
+      "src": "images/illustrations/proud-chibi-interactive.png",
+      "alt": "A waving chibi Proud with long brown hair, a lavender cardigan, and a cream outfit",
+      "interactive": true,
+      "actionLabel": "Say hello to Proud — click or tap to wave",
+      "caption": "Move your mouse · Tap to say hi!",
       "tags": ["Ideas person ✦", "Makes a plan", "Connects the dots"]
     },
     "ctas": [
