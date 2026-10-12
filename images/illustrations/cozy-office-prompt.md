@@ -1,0 +1,9 @@
+# Cozy hero room — 13 October 2026
+
+Generated with the built-in ImageGen tool. Asset: `cozy-office-hero.png`.
+The user's lo-fi room screenshots informed the mood; this is an original room illustration.
+Only the hero uses the decorative image, with CSS fades for readability and a darker treatment in dark mode. The asset path is configured in `portfolio-data.json` under `hero.background.src`.
+
+## Final prompt
+
+Use case: stylized-concept. Asset type: wide landscape background illustration for an existing pastel portfolio hero. Create an original cozy 3D home office combined with a small living room, evoking the quiet rainy-window atmosphere of a lo-fi listening room. Soft rounded designer-toy / clay-render style compatible with a cute chibi character, fine matte materials, cream walls, pale oak, lavender upholstery, sage plants, butter-yellow lamplight. Wide 16:9 composition, eye-level slightly elevated interior view. Left 45 percent has a calm pale cream wall with very sparse soft details and generous clean space for dark website text; furnishings concentrated across center-right: rounded lavender loveseat with cushions, small oak work desk and closed laptop toward the far right, a warm glowing floor lamp, a leafy potted plant, a few books, large window with gentle rain and softly blurred trees outside. Keep center-right foreground clear for a separate standing character to be overlaid later. A soft oval rug, warm wooden floor, peaceful inviting afternoon light, subtle cool lavender outside the window. Light airy low contrast pastel render, recognizable room with dimensional soft shadows, not washed-out white, no harsh outlines. One continuous room, edge-to-edge scene. No people or characters, no UI, no clocks or typography, no music player, no logos, no watermark. This should be an actual room artwork, not a screenshot or website mockup.

@@ -1416,7 +1416,7 @@
       .about-qa-modal-scroll { padding: 10px 18px 18px; }
     }
   </style>
-  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-12-playful-type"/>
+  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-13-cozy-room"/>
 </head>
 <body>
 
@@ -1455,6 +1455,7 @@
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-overlay"></div>
+  <div class="hero-room" id="hero-room" aria-hidden="true"></div>
   <div class="hero-inner" id="hero-content"></div>
 </section>
 
@@ -1533,7 +1534,7 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="character-layers.js?v=2026-10-12-cute-big-eyes"></script>
+<script src="character-layers.js?v=2026-10-13-soft-brown-eyes"></script>
 <script>
 /* -----------------------------------------
    THREE.JS HERO — floating violet particle network & 3D Lightbulb (Fully Elongated)
@@ -1774,7 +1775,7 @@
    ----------------------------------------- */
 let portfolioData = {};
 let PROJECT_DETAILS = {};
-const SITE_VERSION = '2026-10-12-white-eyes';
+const SITE_VERSION = '2026-10-13-cozy-room';
 
 function htmlEscape(value){
   return String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -1949,6 +1950,9 @@ function renderPortfolio(data){
   }
 
   const hero = data.hero || {};
+  const room = document.getElementById('hero-room');
+  room.innerHTML = hero.background?.src ? `<img src="${htmlEscape(freshAssetUrl(hero.background.src))}" alt="" decoding="async"/>` : '';
+  document.getElementById('hero').classList.toggle('has-cozy-room', Boolean(hero.background?.src));
   document.getElementById('hero-content').innerHTML = `
     <div class="hero-copy">
     <div class="hero-badge"><span class="badge-dot"></span> ${htmlEscape(hero.badge)}</div>

@@ -31,7 +31,7 @@
       const px=gx*8,py=gy*6;
       const iris=ctx.createRadialGradient(px-8,py-18,3,px,py,40);
       // Preserve the original single, glossy dark eye; only its surround is white.
-      iris.addColorStop(0,'#4b3024');iris.addColorStop(.55,'#2e1e17');iris.addColorStop(1,'#20140f');
+      iris.addColorStop(0,'#79513a');iris.addColorStop(.55,'#513322');iris.addColorStop(1,'#362218');
       ellipse(px,py,35,43);ctx.fillStyle=iris;ctx.fill();
       ellipse(px-12,py-23,10,11);ctx.fillStyle='#fffaf2';ctx.fill();
       ellipse(px+11,py+20,4,5);ctx.fillStyle='rgba(255,224,175,.62)';ctx.fill();

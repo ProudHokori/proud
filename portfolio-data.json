@@ -66,6 +66,9 @@
     }
   ],
   "hero": {
+    "background": {
+      "src": "images/illustrations/cozy-office-hero.png"
+    },
     "badge": "Open to product & project opportunities",
     "greeting": "Hi, I'm",
     "nickname": "Proud",
