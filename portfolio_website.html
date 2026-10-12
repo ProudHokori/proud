@@ -7,7 +7,7 @@
   <title>Proud — Product &amp; Project · A versatile generalist</title>
   <meta name="description" content=""/>
   <link rel="icon" type="image/svg+xml" href="images/favicon-lightbulb.svg?v=2026-06-25"/>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
   <script>
     (() => {
       try {
@@ -1416,7 +1416,7 @@
       .about-qa-modal-scroll { padding: 10px 18px 18px; }
     }
   </style>
-  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-12-white-eyes"/>
+  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-12-playful-type"/>
 </head>
 <body>
 
@@ -1952,7 +1952,7 @@ function renderPortfolio(data){
   document.getElementById('hero-content').innerHTML = `
     <div class="hero-copy">
     <div class="hero-badge"><span class="badge-dot"></span> ${htmlEscape(hero.badge)}</div>
-    <h1 class="hero-name"><span class="hi">${htmlEscape(hero.greeting)} </span><span class="ac">${htmlEscape(hero.nickname)}</span><br/><span class="nm">${htmlEscape(hero.name)}</span></h1>
+    <h1 class="hero-name"><span class="hi">${htmlEscape(hero.greeting)} </span><span class="ac" aria-label="${htmlEscape(hero.nickname)}">${Array.from(hero.nickname || '').map(letter => `<span class="name-letter" aria-hidden="true">${htmlEscape(letter)}</span>`).join('')}</span><br/><span class="nm">${htmlEscape(hero.name)}</span></h1>
     <div class="hero-roles">${(hero.roles || []).map(role => {
       const isPrimaryRole = (hero.primaryRoles || []).includes(role);
       return `<span class="role-chip ${isPrimaryRole ? 'primary-role' : ''}">${iconFor(role)}${htmlEscape(role)}</span>`;
