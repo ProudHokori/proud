@@ -225,6 +225,12 @@ section { padding: 88px max(32px,calc((100vw - 1160px)/2)); }
   .hero-name { grid-row: 2; margin-bottom: 0; }.hero-roles { grid-row: 3; margin: 8px 0; }
   .hero-visual { grid-row: 4; }.hero-desc { grid-row: 5; margin: 16px 0; }
   .hero-ctas { grid-row: 6; }.hero-stats { grid-row: 7; }
+  .hero-inner:not(:has(.hero-badge)) .hero-name { grid-row: 1; }
+  .hero-inner:not(:has(.hero-badge)) .hero-roles { grid-row: 2; }
+  .hero-inner:not(:has(.hero-badge)) .hero-visual { grid-row: 3; }
+  .hero-inner:not(:has(.hero-badge)) .hero-desc { grid-row: 4; }
+  .hero-inner:not(:has(.hero-badge)) .hero-ctas { grid-row: 5; }
+  .hero-inner:not(:has(.hero-badge)) .hero-stats { grid-row: 6; }
   .hero-name .nm { font-size: 1.3rem; margin-top: 8px; }.hero-desc { font-size: 1rem; }
   .hero-badge { font-size: .7rem; padding: 7px 12px; }
   .role-chip, .role-chip.primary-role { font-size: .72rem; padding: 7px 11px; }

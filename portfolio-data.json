@@ -73,6 +73,7 @@
       "floorAnchor": [0.7, 0.91]
     },
     "badge": "Open to product & project opportunities",
+    "showBadge": false,
     "greeting": "Hi, I'm",
     "nickname": "Proud",
     "name": "Ratchaprapa C.",

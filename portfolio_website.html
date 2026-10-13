@@ -1416,7 +1416,7 @@
       .about-qa-modal-scroll { padding: 10px 18px 18px; }
     }
   </style>
-  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-13-hero-coverage"/>
+  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-13-hide-badge"/>
 </head>
 <body>
 
@@ -1777,7 +1777,7 @@
    ----------------------------------------- */
 let portfolioData = {};
 let PROJECT_DETAILS = {};
-const SITE_VERSION = '2026-10-13-grounded-responsive';
+const SITE_VERSION = '2026-10-13-hide-badge';
 
 function htmlEscape(value){
   return String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -1962,7 +1962,7 @@ function renderPortfolio(data){
   document.getElementById('hero').classList.toggle('has-cozy-room', Boolean(hero.background?.src));
   document.getElementById('hero-content').innerHTML = `
     <div class="hero-copy">
-    <div class="hero-badge"><span class="badge-dot"></span> ${htmlEscape(hero.badge)}</div>
+    ${hero.badge && hero.showBadge !== false ? `<div class="hero-badge"><span class="badge-dot"></span> ${htmlEscape(hero.badge)}</div>` : ''}
     <h1 class="hero-name"><span class="hi">${htmlEscape(hero.greeting)} </span><span class="ac" aria-label="${htmlEscape(hero.nickname)}">${Array.from(hero.nickname || '').map(letter => `<span class="name-letter" aria-hidden="true">${htmlEscape(letter)}</span>`).join('')}</span><br/><span class="nm">${htmlEscape(hero.name)}</span></h1>
     <div class="hero-roles">${(hero.roles || []).map(role => {
       const isPrimaryRole = (hero.primaryRoles || []).includes(role);
