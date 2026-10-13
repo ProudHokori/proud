@@ -1416,7 +1416,7 @@
       .about-qa-modal-scroll { padding: 10px 18px 18px; }
     }
   </style>
-  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-13-hide-badge"/>
+  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-13-hero-order"/>
 </head>
 <body>
 
@@ -1964,12 +1964,12 @@ function renderPortfolio(data){
     <div class="hero-copy">
     ${hero.badge && hero.showBadge !== false ? `<div class="hero-badge"><span class="badge-dot"></span> ${htmlEscape(hero.badge)}</div>` : ''}
     <h1 class="hero-name"><span class="hi">${htmlEscape(hero.greeting)} </span><span class="ac" aria-label="${htmlEscape(hero.nickname)}">${Array.from(hero.nickname || '').map(letter => `<span class="name-letter" aria-hidden="true">${htmlEscape(letter)}</span>`).join('')}</span><br/><span class="nm">${htmlEscape(hero.name)}</span></h1>
+    <div class="hero-ctas">${(hero.ctas || []).map(cta => `<a href="${htmlEscape(cta.url)}" ${/^https?:/.test(cta.url || '') ? 'target="_blank"' : ''} class="btn ${cta.style === 'primary' ? 'btn-primary' : 'btn-ghost'}">${iconFor(cta.label)}${htmlEscape(cta.label)}</a>`).join('')}</div>
     <div class="hero-roles">${(hero.roles || []).map(role => {
       const isPrimaryRole = (hero.primaryRoles || []).includes(role);
       return `<span class="role-chip ${isPrimaryRole ? 'primary-role' : ''}">${iconFor(role)}${htmlEscape(role)}</span>`;
     }).join('')}</div>
     <p class="hero-desc">${htmlEscape(hero.description)}</p>
-    <div class="hero-ctas">${(hero.ctas || []).map(cta => `<a href="${htmlEscape(cta.url)}" ${/^https?:/.test(cta.url || '') ? 'target="_blank"' : ''} class="btn ${cta.style === 'primary' ? 'btn-primary' : 'btn-ghost'}">${iconFor(cta.label)}${htmlEscape(cta.label)}</a>`).join('')}</div>
     </div>
     ${hero.illustration ? `<div class="hero-visual ${hero.illustration.interactive ? 'has-interactive-character' : ''}">
       <div class="mascot-halo" aria-hidden="true"></div>
