@@ -44,3 +44,22 @@ breakpoints, rather than every possible device/browser combination.
 - Improve small evidence/contact label contrast in light mode.
 
 Pre-change checkpoint: `4d3f7d9` (cozy hero background).
+
+## Follow-up: room edge coverage and hero spacing
+
+The user reported a right-edge gap at **863 × 1143**. The earlier floor-anchor
+check verified foot alignment, but did not verify that the image reached both
+horizontal edges. With a centered character, the off-center room anchor left
+too little image to the right.
+
+The image width now includes independent left/right coverage constraints, with
+2 px overscan, while preserving the floor anchor and image aspect ratio.
+Rechecked widths **320, 390, 600, 768, 863, 900, 901, 1024, 1280, 1536, 1920**:
+both edges covered, no page overflow, and rounded foot-anchor error of 0 px.
+Visually checked the reported 863 × 1143 size, desktop dark mode and mobile
+light mode; no console errors observed.
+
+The character is approximately 15–18% larger. Hero top padding is now 112 px on
+desktop, 94 px on tablet, and 90 px on phone; the copy is aligned to the top so
+the enlarged character does not reintroduce empty space above it.
+Pre-fix checkpoint: `fcee21d`.
