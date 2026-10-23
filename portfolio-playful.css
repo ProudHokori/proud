@@ -47,7 +47,7 @@ html[data-theme="light"] .clink.primary-contact::after { color: var(--accent3); 
 .nav-cta:hover, .btn-primary:hover { box-shadow: 0 6px 0 color-mix(in srgb, var(--warm) 65%, #a87424); }
 .btn-ghost { border-radius: 100px; background: var(--s1); }
 .btn { font-weight: 800; padding: 14px 24px; }
-#hero { min-height: auto; padding: 112px 52px 64px; background: radial-gradient(ellipse at 86% 35%,var(--lilac-card),transparent 56%),var(--bg); }
+#hero { min-height: auto; padding: 100px 52px 40px; background: radial-gradient(ellipse at 86% 35%,var(--lilac-card),transparent 56%),var(--bg); }
 #hero-canvas, .hero-overlay { display: none; }
 #hero.has-cozy-room { isolation: isolate; background: var(--bg); }
 .hero-room { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
@@ -59,18 +59,18 @@ html[data-theme="light"] .hero-room img { filter: saturate(.78); opacity: .82; }
 .hero-copy { min-width: 0; align-self: start; }
 .hero-badge { font-weight: 800; margin-bottom: 24px; }
 .hero-name { font-size: 1rem; line-height: 1.15; letter-spacing: 0; font-weight: 600; }
-.hero-name .hi { display: block; width: fit-content; font-family: var(--ff-note); font-size: clamp(2.4rem,4vw,3.2rem); font-weight: 600; color: var(--text2); transform: rotate(-4deg); margin: 0 0 4px 4px; }
-.hero-name .ac { display: inline-block; position: relative; isolation: isolate; white-space: nowrap; font-size: clamp(5rem,10vw,8rem); line-height: 1.1; letter-spacing: -.035em; padding: 0 .04em .08em; background: none; -webkit-text-fill-color: var(--accent); color: var(--accent); }
+.hero-name .hi { display: block; width: fit-content; font-family: var(--ff-note); font-size: clamp(1.8rem,min(4vw,5svh),3.2rem); font-weight: 600; color: var(--text2); transform: rotate(-4deg); margin: 0 0 4px 4px; }
+.hero-name .ac { display: inline-block; position: relative; isolation: isolate; white-space: nowrap; font-size: clamp(4rem,min(10vw,15svh),8rem); line-height: 1.1; letter-spacing: -.035em; padding: 0 .04em .08em; background: none; -webkit-text-fill-color: var(--accent); color: var(--accent); }
 .hero-name .ac::after { content: ''; position: absolute; z-index: -1; left: 2%; right: -2%; bottom: .06em; height: .14em; background: var(--warm); border-radius: 50%; transform: rotate(-3deg); }
 .name-letter { display: inline-block; transform: rotate(-3deg); text-shadow: 0 3px 0 var(--bg), 0 6px 0 var(--lilac-card); transition: transform .2s ease; }
 .name-letter:nth-child(2n) { transform: translateY(-.025em) rotate(3deg); }
 .name-letter:nth-child(3n) { transform: translateY(.015em) rotate(-2deg); }
 .hero-name .ac:hover .name-letter { transform: translateY(-.04em) rotate(0); }
 .hero-name .nm { display: inline-block; margin-top: 12px; font-family: var(--ff); font-size: clamp(1.25rem,2.4vw,1.8rem); line-height: 1.35; font-weight: 700; color: var(--text2); letter-spacing: -.5px; }
-.hero-roles { margin: 22px 0; gap: 8px; }
+.hero-roles { margin: clamp(12px,2.4svh,22px) 0; gap: 8px; }
 .role-chip, .role-chip.primary-role { box-shadow: none; background: var(--s1); opacity: 1; }
 .role-chip.primary-role { background: var(--lilac-card); border-color: transparent; }
-.hero-desc { font-size: 1.05rem; line-height: 1.75; max-width: 580px; margin-bottom: 28px; color: var(--text2); }
+.hero-desc { font-size: 1.05rem; line-height: 1.65; max-width: 580px; margin-bottom: clamp(16px,2.8svh,28px); color: var(--text2); }
 .hero-visual { position: relative; min-width: 0; aspect-ratio: 1/1; display: grid; place-items: center; }
 .mascot-halo { position: absolute; width: 82%; aspect-ratio: 1; border-radius: 48% 52% 61% 39% / 50% 43% 57% 50%; background: var(--lilac-card); border: 2px dashed color-mix(in srgb,var(--accent) 25%,transparent); transform: rotate(-10deg); }
 .hero-mascot { width: 112%; max-width: none; height: auto; z-index: 1; object-fit: contain; animation: mascot-float 6s ease-in-out infinite; }
@@ -195,6 +195,8 @@ section { padding: 88px max(32px,calc((100vw - 1160px)/2)); }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-copy { max-width: 670px; }
   .hero-visual { width: min(450px,90%); margin: 0 auto; }
+  .has-cozy-room .has-interactive-character { aspect-ratio: auto; height: clamp(320px,42svh,520px); }
+  .has-cozy-room .character-interaction { width: min(90%,350px,max(190px,calc(30svh - 30px))); }
   .hero-stats { margin-top: 16px; }
   .personality-introduction { padding: 32px; grid-template-columns: 1fr; }
   .personality-visual { max-width: 350px; margin: auto; }
@@ -219,23 +221,25 @@ section { padding: 88px max(32px,calc((100vw - 1160px)/2)); }
   nav { left: 10px; right: 10px; padding: 0 13px; border-radius: 20px; }.nav-logo { font-size: 1.2rem; }
   .nav-actions { gap: 6px; }.nav-cta { padding: 8px 10px; font-size: .72rem; }
   #hero { padding: 90px 22px 36px; }
-  .hero-name .hi { font-size: 2.3rem; }.hero-name .ac { font-size: clamp(4rem,20vw,6.5rem); }
+  .hero-name .hi { font-size: 2rem; }.hero-name .ac { font-size: clamp(3.5rem,min(18vw,10svh),5rem); }
   .hero-inner { gap: 14px; }.hero-copy { display: contents; }
   .hero-badge { grid-row: 1; justify-self: start; margin-bottom: 4px; }
   .hero-name { grid-row: 2; margin-bottom: 0; }.hero-roles { grid-row: 3; margin: 8px 0; }
-  .hero-visual { grid-row: 4; }.hero-desc { grid-row: 5; margin: 16px 0; }
-  .hero-ctas { grid-row: 6; }.hero-stats { grid-row: 7; }
+  .hero-visual { grid-row: 6; }.hero-desc { grid-row: 4; margin: 0; }
+  .hero-ctas { grid-row: 5; }.hero-stats { grid-row: 7; }
   .hero-inner:not(:has(.hero-badge)) .hero-name { grid-row: 1; }
   .hero-inner:not(:has(.hero-badge)) .hero-roles { grid-row: 2; }
-  .hero-inner:not(:has(.hero-badge)) .hero-visual { grid-row: 3; }
-  .hero-inner:not(:has(.hero-badge)) .hero-desc { grid-row: 4; }
-  .hero-inner:not(:has(.hero-badge)) .hero-ctas { grid-row: 5; }
+  .hero-inner:not(:has(.hero-badge)) .hero-visual { grid-row: 5; }
+  .hero-inner:not(:has(.hero-badge)) .hero-desc { grid-row: 3; }
+  .hero-inner:not(:has(.hero-badge)) .hero-ctas { grid-row: 4; }
   .hero-inner:not(:has(.hero-badge)) .hero-stats { grid-row: 6; }
   .hero-name .nm { font-size: 1.3rem; margin-top: 8px; }.hero-desc { font-size: 1rem; }
   .hero-badge { font-size: .7rem; padding: 7px 12px; }
   .role-chip, .role-chip.primary-role { font-size: .72rem; padding: 7px 11px; }
   .hero-ctas .btn { border-radius: 100px; }.hero-visual { width: 94%; max-width: 360px; }
   .has-interactive-character { max-width: 310px; margin-top: 8px; }.character-interaction { width: 88%; }
+  .has-cozy-room .has-interactive-character { height: 440px; }
+  .has-cozy-room .character-interaction { width: min(90%,270px); }
   .hero-stats { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px 18px; padding: 24px; }
   .stat-num { font-size: 2.2rem; }.stat-label { font-size: .73rem; }
   .has-interactive-character .floating-tag { font-size: 1.12rem; padding: 8px 11px; }
@@ -251,6 +255,30 @@ section { padding: 88px max(32px,calc((100vw - 1160px)/2)); }
   .personality-story li, .personality-story li:last-child { padding: 24px; }
   .story-icon { position: static; }.story-number { display: inline; }
   .personality-closing { font-size: .9rem; padding: 20px; }
+}
+/* Size the desktop composition against available height as well as width.
+   Keep natural document flow for zoom, larger text and very short windows. */
+@media(min-width:901px) {
+  .hero-copy { align-self: center; }
+  .has-cozy-room .has-interactive-character { aspect-ratio: auto; height: clamp(320px,calc(100svh - 140px),620px); }
+  .has-cozy-room .character-interaction { width: min(90%,390px,max(190px,calc(66.667svh - 120px))); }
+  .has-interactive-character .mascot-note { bottom: 0; }
+}
+@media(max-width:600px) and (max-height:740px) {
+  #hero { padding-top: 84px; }
+  .hero-inner { gap: 10px; }
+  .hero-name .hi { font-size: 1.75rem; }
+  .hero-name .ac { font-size: clamp(3rem,16vw,4rem); }
+  .hero-name .nm { margin-top: 4px; }
+  .hero-roles { margin: 4px 0; gap: 6px; }
+  .hero-desc { line-height: 1.5; }
+  .hero-ctas .btn { min-height: 44px; padding: 10px 12px; }
+}
+@media(min-width:901px) and (max-height:650px) {
+  .hero-name .nm { font-size: 1.4rem; margin-top: 6px; }
+  .hero-desc { font-size: 1rem; line-height: 1.55; }
+  .hero-roles { gap: 6px; }
+  .hero-ctas .btn { min-height: 44px; padding: 10px 20px; }
 }
 @media(max-height:540px) and (min-width:600px) and (max-width:1100px) {
   .project-modal-panel { height: calc(100dvh - 24px); grid-template-columns: minmax(0,1fr) minmax(0,1fr); grid-template-rows: minmax(0,1fr); }

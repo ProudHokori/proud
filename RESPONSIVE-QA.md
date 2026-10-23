@@ -63,3 +63,28 @@ The character is approximately 15–18% larger. Hero top padding is now 112 px o
 desktop, 94 px on tablet, and 90 px on phone; the copy is aligned to the top so
 the enlarged character does not reintroduce empty space above it.
 Pre-fix checkpoint: `fcee21d`.
+
+## Follow-up: available viewport height (24 October 2026)
+
+Checkpoint: `a08689c`, confirmed pushed before editing.
+
+- Hero heading size and spacing now respond to both width and small viewport
+  height. Desktop character/stage dimensions reserve space for the fixed nav
+  and the interaction caption. No fixed section height or text clipping.
+- Preserve the content order: roles, introduction, links. On phones the
+  character follows this complete group instead of separating text from links.
+- Desktop checks: 1920x900, 1920x720, 1440x640, 1366x600, 1280x600,
+  1024x600 and 901x600. All three CTA buttons and the character/caption fit
+  in the opening viewport. At 1440x640 the CTA bottom is 567 px.
+- Also checked 863x1143, 768x1024, 600x800, 390x844, 375x667, 320x568
+  and 844x390. CTA buttons fit the first viewport except at 320x568 and
+  844x390, where natural page scrolling preserves readable text and usable
+  controls. On phones the illustration continues below the text and links.
+- No horizontal page overflow or heading/nav overlap at these sizes. After
+  resize layout settles, room edges remain covered and rounded floor-anchor
+  error is 0 px. The final tablet adjustment also keeps the caption within
+  768x1024 (bottom 1017 px).
+- Visually checked desktop dark/light themes, 375x667 mobile and 768x1024
+  tablet. Theme toggle, View Projects navigation, resume menu/link and the
+  KU Eater detail dialog open/close were checked. External social destinations
+  and actual PDF downloading were not exercised in this focused follow-up.
