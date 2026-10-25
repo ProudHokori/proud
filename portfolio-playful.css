@@ -28,6 +28,9 @@ html[data-theme="light"] {
 }
 body { font-size: 16px; }
 nav { top: 16px; left: 24px; right: 24px; height: 66px; padding: 0 26px; border: 1px solid var(--border); border-radius: 24px; box-shadow: 0 6px 24px var(--shadow-soft); }
+nav { transition: transform .24s ease, height .2s ease, background .2s ease, box-shadow .2s ease; }
+nav.scrolled { height: 54px; box-shadow: 0 3px 12px var(--shadow-soft); }
+nav.nav-hidden { transform: translateY(calc(-100% - 32px)); pointer-events: none; }
 .nav-logo { font-size: 1.6rem; font-weight: 500; letter-spacing: -.5px; }
 .nav-links { gap: 24px; }
 .nav-links a { font-weight: 800; color: var(--text2); }
@@ -288,6 +291,7 @@ section { padding: 88px max(32px,calc((100vw - 1160px)/2)); }
   .project-modal-header { padding: 20px 48px 12px 18px; }
 }
 @media(prefers-reduced-motion:reduce) {
+  nav { transition: none; }
   html { scroll-behavior: auto; }.hero-mascot { animation: none; }
   .personality-trait, .btn, .floating-tag, .name-letter { transition: none; }
   .hero-name .ac:hover .name-letter { transform: none; }
