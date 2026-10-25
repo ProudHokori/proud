@@ -88,3 +88,22 @@ Checkpoint: `a08689c`, confirmed pushed before editing.
   tablet. Theme toggle, View Projects navigation, resume menu/link and the
   KU Eater detail dialog open/close were checked. External social destinations
   and actual PDF downloading were not exercised in this focused follow-up.
+
+## Follow-up: soft cursor light and character hops (25 October 2026)
+
+Checkpoint: `742296a`, pushed before editing.
+
+- Added a warm, soft pointer light with separate light/dark colors and no
+  pointer hit area. It hides on pointer exit, window blur, touch input and
+  reduced-motion preference; updates are coalesced into animation frames.
+- Character greetings use two rigid hops and a gentle sway, with a fixed floor
+  shadow that shrinks/fades in flight. Pointer entry, click and occasional idle
+  greetings trigger the movement; repeated input cannot restart a hop midair.
+- Checked the live page at 1440x800 dark and 390x844 light. No horizontal
+  overflow; clicks triggered positive hop heights and returned to 0.00.
+  The cursor light followed the pointer with pointer-events: none. Theme
+  switching worked and no browser console errors were recorded.
+- Rechecked the mobile navigation: open menu remained visible while scrolling
+  (menu-open scrolled at y=738.5), and the logo returned to the top.
+- Both edited/new JavaScript files passed Node syntax checks. Touch and
+  reduced-motion guards were inspected in code, not device-emulated.

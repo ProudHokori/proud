@@ -11,7 +11,7 @@
     const arm=new Path2D('M 423 731 C 365 708 319 729 266 762 L 235 746 C 230 728 239 695 228 681 C 214 664 202 683 197 696 C 180 686 173 660 159 666 C 144 672 154 692 160 706 C 146 696 131 678 122 689 C 111 700 130 716 142 724 C 119 715 106 714 105 729 C 105 742 121 748 135 751 C 111 745 109 759 119 771 C 130 782 155 779 165 787 C 149 799 151 823 163 846 C 187 899 238 943 296 936 C 330 935 354 922 376 899 L 403 813 Z');
     let ready=false,visible=true,frame=0,timer=0,lastTime=0;
     let x=0,y=0,vx=0,vy=0,targetX=0,targetY=0,idleX=0,idleY=0;
-    let waveAt=-10000,blinkAt=-10000,delightAt=-10000,inside=false;
+    let waveAt=-10000,blinkAt=-10000,delightAt=-10000,inside=false,idleCount=0;
     const clamp=v=>Math.max(-1,Math.min(1,v));
     const requestFrame=()=>{if(ready&&visible&&!document.hidden&&!frame)frame=requestAnimationFrame(draw);};
     const ellipse=(cx,cy,rx,ry)=>{ctx.beginPath();ctx.ellipse(cx,cy,rx,ry,0,0,Math.PI*2);};
@@ -46,37 +46,46 @@
       const blink=blinking?Math.pow(Math.sin(Math.PI*be/.22),2):0;
       const we=(time-waveAt)/1000,waving=!reduced.matches&&we>=0&&we<1.55;
       const wave=waving?Math.sin(we*14)*Math.sin(Math.PI*we/1.55)*.16:0;
-      const de=(time-delightAt)/1000,delight=!reduced.matches&&de>=0&&de<.7;
-      const bounce=delight?Math.sin(Math.PI*de/.7)*-12:0;
+      const de=(time-delightAt)/1000,delight=!reduced.matches&&de>=0&&de<.95;
+      // Two rigid little hops, with a smaller second hop. Never stretch the artwork.
+      const hop=delight?(de<.55?Math.sin(Math.PI*de/.55)*70:Math.sin(Math.PI*(de-.55)/.4)*24):0;
+      const sway=waving?Math.sin(we*8)*Math.sin(Math.PI*we/1.55)*.018:0;
       ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);
       ctx.scale(canvas.width/1024,canvas.height/1536);
       const grounded=button.closest('.has-cozy-room');
       if(grounded) {
-        // Keep the feet and contact shadow planted during greetings, too.
-        ctx.save();ctx.translate(460,1424);ctx.scale(230,32);
+        // The floor stays fixed while the character lifts away and lands on it.
+        ctx.save();ctx.translate(460,1424);ctx.scale(230-hop*.65,32-hop*.08);ctx.globalAlpha=1-hop/150;
         const shadow=ctx.createRadialGradient(0,0,.05,0,0,1);
         shadow.addColorStop(0,'rgba(61,39,34,.34)');shadow.addColorStop(.5,'rgba(61,39,34,.16)');shadow.addColorStop(1,'rgba(61,39,34,0)');
         ctx.fillStyle=shadow;ellipse(0,0,1,1);ctx.fill();ctx.restore();
-        ctx.translate(512,1424);ctx.rotate(reduced.matches?0:x*.012);ctx.scale(.9,.9);ctx.translate(-512,-1493);
+        ctx.translate(512,1424-hop);ctx.rotate(reduced.matches?0:x*.012+sway);ctx.scale(.9,.9);ctx.translate(-512,-1493);
       } else {
-        ctx.translate(512,800+bounce);ctx.rotate(reduced.matches?0:x*.022);ctx.scale(.9,.9);ctx.translate(-512,-800);
+        ctx.translate(512,800-hop);ctx.rotate(reduced.matches?0:x*.022+sway);ctx.scale(.9,.9);ctx.translate(-512,-800);
       }
       ctx.drawImage(base,0,0,1024,1536);
       ctx.save();ctx.translate(400,780);ctx.rotate(wave+(reduced.matches?0:-y*.016));ctx.translate(-400,-780);
       ctx.clip(arm);ctx.drawImage(original,0,0,1024,1536);ctx.restore();
       eye(399,509,.24,blink,x,y);eye(651,562,.24,blink,x,y);
       canvas.dataset.gaze=`${x.toFixed(3)},${y.toFixed(3)}`;canvas.dataset.handAngle=wave.toFixed(3);canvas.dataset.blink=blink.toFixed(3);
+      canvas.dataset.hop=hop.toFixed(2);
       if(blinking||waving||delight||Math.abs(tx-x)+Math.abs(ty-y)+Math.abs(vx)+Math.abs(vy)>.005)requestFrame();
     }
     function scheduleIdle() {
       clearTimeout(timer);if(!ready||!visible||document.hidden||reduced.matches)return;
-      timer=setTimeout(()=>{blinkAt=performance.now();idleX=(Math.random()-.5)*.14;idleY=(Math.random()-.5)*.07;requestFrame();scheduleIdle();},2800+Math.random()*2300);
+      timer=setTimeout(()=>{
+        const now=performance.now();blinkAt=now;
+        idleX=(Math.random()-.5)*.22;idleY=(Math.random()-.5)*.1;
+        // Occasional greetings leave quiet pauses between playful moments.
+        if(++idleCount%3===1&&now-delightAt>1800){waveAt=delightAt=now;blinkAt=now+780;}
+        requestFrame();scheduleIdle();
+      },2800+Math.random()*2300);
     }
     const resize=()=>{const r=button.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.max(1,Math.round(r.width*dpr));canvas.height=Math.max(1,Math.round(r.height*dpr));requestFrame();};
     const loadImage=img=>new Promise((resolve,reject)=>{if(img.complete&&img.naturalWidth)return resolve();img.addEventListener('load',resolve,{once:true});img.addEventListener('error',reject,{once:true});});
     base.src=options.baseSrc;
     Promise.all([loadImage(base),loadImage(original)]).then(()=>{ready=true;resize();button.classList.add('is-ready');scheduleIdle();}).catch(()=>{});
-    const hello=()=>{if(reduced.matches)return;waveAt=performance.now();delightAt=waveAt;blinkAt=waveAt+260;requestFrame();};
+    const hello=()=>{const now=performance.now();if(reduced.matches||now-delightAt<1100)return;waveAt=delightAt=now;blinkAt=now+780;requestFrame();};
     const neutral=()=>{targetX=targetY=idleX=idleY=0;inside=false;requestFrame();};
     window.addEventListener('pointermove',e=>{
       if(!visible||reduced.matches||e.pointerType==='touch')return;
