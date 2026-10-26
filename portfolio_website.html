@@ -1416,7 +1416,7 @@
       .about-qa-modal-scroll { padding: 10px 18px 18px; }
     }
   </style>
-  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-25-shared-gutters"/>
+  <link rel="stylesheet" href="portfolio-playful.css?v=2026-10-26-about-me"/>
 </head>
 <body>
 
@@ -1464,7 +1464,7 @@
 <section id="about"></section>
 
 <!-- -- PERSONALITY & STORY -- -->
-<section id="personality"></section>
+<section id="personality" data-nav-section="about"></section>
 
 <!-- -- EXPERIENCE -- -->
 <section id="experience"></section>
@@ -1778,7 +1778,7 @@
    ----------------------------------------- */
 let portfolioData = {};
 let PROJECT_DETAILS = {};
-const SITE_VERSION = '2026-10-13-hide-badge';
+const SITE_VERSION = '2026-10-26-about-me';
 
 function htmlEscape(value){
   return String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -1921,9 +1921,11 @@ function renderPortfolio(data){
   const ui = data.uiText || {};
   document.querySelector('.nav-logo').innerHTML = logoHtml(data.personal?.logo);
   document.querySelector('.footer-logo').innerHTML = logoHtml(data.personal?.logo);
-  document.querySelector('.nav-links').innerHTML = (data.navigation || []).map(label =>
-    `<li><a href="#${htmlEscape(String(label).toLowerCase().replace(/\s+/g, '-'))}">${htmlEscape(label)}</a></li>`
-  ).join('');
+  document.querySelector('.nav-links').innerHTML = (data.navigation || []).map(item => {
+    const label = typeof item === 'string' ? item : item.label;
+    const id = typeof item === 'string' ? item.toLowerCase().replace(/\s+/g, '-') : item.id;
+    return `<li><a href="#${htmlEscape(id)}">${htmlEscape(label)}</a></li>`;
+  }).join('');
   const navCta = document.querySelector('.nav-cta');
   const menuToggle = document.getElementById('nav-menu-toggle');
   menuToggle.dataset.openLabel = ui.navMenuOpen || 'Open navigation menu';
@@ -2026,7 +2028,7 @@ function renderPortfolio(data){
   personalitySection.innerHTML = personality.heading ? `
     <div class="personality-wrap">
       <div class="personality-introduction"><header class="personality-head">
-        <div class="stag">${htmlEscape(personality.eyebrow)}</div>
+        ${personality.eyebrow ? `<div class="stag">${htmlEscape(personality.eyebrow)}</div>` : ''}
         <h2 class="sh">${htmlEscape(personality.heading)}</h2>
         <p class="personality-nickname">${htmlEscape(personality.nickname)}</p>
         <p class="personality-intro">${htmlEscape(personality.intro)}</p>
@@ -2386,7 +2388,7 @@ function updateReadingNavigation() {
     }
   }
   let cur = '';
-  secs.forEach(s => { if(window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  secs.forEach(s => { if(window.scrollY >= s.offsetTop - 100) cur = s.dataset.navSection || s.id; });
   navAs.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--text2)' : ''; });
 }
 function scheduleReadingNavigation() {

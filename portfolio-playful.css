@@ -130,7 +130,7 @@ footer { padding-inline: var(--page-gutter); }
 .about-portrait-stage::before { display: none; }
 .about-portrait { object-position: 62% center; }
 .about-side { border-radius: 32px 0 0 32px; overflow: hidden; }
-#personality { border: 0; }
+#personality { border: 0; padding-top: 32px; }
 .personality-introduction { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 24px; align-items: center; padding: 40px 44px; border-radius: 36px; background: var(--yellow-card); position: relative; overflow: hidden; }
 .personality-head { margin: 0; max-width: 650px; }
 .personality-head .sh { font-size: clamp(2rem,3.6vw,3rem); }

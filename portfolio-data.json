@@ -22,8 +22,7 @@
     "introVideo": "images/profile/introduce.mp4"
   },
   "navigation": [
-    "About",
-    "Personality",
+    { "label": "About me", "id": "about" },
     "Experience",
     "Skills",
     "Projects",
@@ -132,7 +131,7 @@
     ]
   },
   "about": {
-    "eyebrow": "About",
+    "eyebrow": "About me",
     "heading": "Connecting the idea, the people, and the work",
     "portraitAlt": "Proud in front of a product planning board",
     "portraitImage": "images/profile/present pic3.png",
@@ -202,7 +201,7 @@
     ]
   },
   "personality": {
-    "eyebrow": "Personality & story",
+    "eyebrow": "",
     "heading": "Meet the super duck.",
     "nickname": "ซุปเปอร์เป็ด · The versatile generalist",
     "intro": "Curious by nature, creative at heart, and happiest when the pieces click together. I call myself a ‘super duck’: I move between ideas, design, technology, and organising the work, finding the place where I can help the team most.",
