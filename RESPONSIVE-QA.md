@@ -107,3 +107,21 @@ Checkpoint: `742296a`, pushed before editing.
   (menu-open scrolled at y=738.5), and the logo returned to the top.
 - Both edited/new JavaScript files passed Node syntax checks. Touch and
   reduced-motion guards were inspected in code, not device-emulated.
+
+## Follow-up: consistent page gutters (25 October 2026)
+
+Checkpoint: `0bdfb58`, confirmed pushed before editing.
+
+- Replaced independent section/nav/footer margins with a shared responsive
+  gutter: centered 1160px content, minimum 32px on larger screens and 22px
+  at widths up to 600px. About's outer card now follows that same frame.
+- Removed narrower nested limits from Personality, Experience, Skills,
+  Projects and Contact. Text-specific measures inside cards remain intact.
+- Measured all eight main content blocks at widths 1920, 1440, 1101, 863,
+  600, 390 and 320px: their left and right edges match at every width, with
+  no horizontal page or navigation overflow.
+- About carousel cards now fit their available mobile rail; verified a 225px
+  card in a 225px rail at 320px, retaining horizontal scrolling between cards.
+- Visually checked desktop light/dark and 390px mobile; mobile menu/link,
+  theme switching and About's Show all dialog open/close worked. No browser
+  console errors recorded.
